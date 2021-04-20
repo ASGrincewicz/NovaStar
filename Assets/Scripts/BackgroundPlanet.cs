@@ -12,17 +12,31 @@ namespace Veganimus.NovaStar
         [SerializeField] private float _speed;
         [SerializeField] private List<GameObject> _planets = new List<GameObject>();
         [SerializeField] private GameObject _currentPlanet;
-        private void Start()
-        {
-            GameObject planet = Instantiate(_planets[UnityEngine.Random.Range(0, _planets.Count -1)], transform.position, Quaternion.identity, this.transform);
-            _currentPlanet = planet;
-        }
+        private int _planetToSpawn = 0;
 
-        void Update()
+        private void Start() => SpawnPlanet();
+
+        private void Update()
         {
-            transform.Translate(Vector3.left * _speed * Time.deltaTime);
-            if (transform.position.x < -15f)
-             Destroy(gameObject);
+            _currentPlanet.transform.Translate(Vector3.left * _speed * Time.deltaTime);
+            if (_currentPlanet.transform.position.x < -15f)
+            {
+                _currentPlanet.SetActive(false);
+                SpawnPlanet();
+            }
+        }
+        private void SpawnPlanet()
+        {
+            if (_planetToSpawn < _planets.Count)
+             _planetToSpawn++;
+            
+            else
+                _planetToSpawn = 0;
+                GameObject planet = _planets[_planetToSpawn];
+                planet.transform.position = transform.position;
+                planet.transform.rotation = Quaternion.identity;
+                planet.SetActive(true);
+                _currentPlanet = planet;
         }
     }
 }

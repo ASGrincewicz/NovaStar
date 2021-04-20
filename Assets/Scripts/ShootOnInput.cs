@@ -62,16 +62,12 @@ namespace Veganimus.NovaStar
            if(_autoShootRaycastOn == true)
             {
                 if (Time.time > _canFire)
-                {
-                    AcquireTarget();
-                }
+                AcquireTarget();
             }
            else if(_aIAutoShootOn)
             {
                 if (Time.time > _canFire)
-                {
-                    FireWeapon();
-                }
+                 FireWeapon();
             }
             if (_currentWeaponID > _weaponType.Count - 1)
                 _currentWeaponID = _weaponType.Count - 1;
@@ -82,9 +78,7 @@ namespace Veganimus.NovaStar
             if (Time.time > _canFire)
             {
                 _canFire = Time.time + _fireRate;
-              
                 _projectilePrefab = PoolManager.Instance.RequestProjectile();
-
                 _projectilePrefab.transform.position =  _fireOffset.transform.position;
                 _projectilePrefab.transform.rotation = Quaternion.identity;
                 _projectileRigidbody = _projectilePrefab.GetComponent<Rigidbody>();

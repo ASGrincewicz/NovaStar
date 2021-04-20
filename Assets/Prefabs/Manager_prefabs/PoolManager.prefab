@@ -60,6 +60,36 @@ Transform:
   m_Father: {fileID: 2624876563007947477}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6770663298435406103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1080968775536860384}
+  m_Layer: 0
+  m_Name: Projectile_VFX_container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1080968775536860384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6770663298435406103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2624876563007947477}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8378779022571050922
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,6 +121,7 @@ Transform:
   - {fileID: 1473499422292221726}
   - {fileID: 982838544280296040}
   - {fileID: 5051965282798542037}
+  - {fileID: 1080968775536860384}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -116,6 +147,8 @@ MonoBehaviour:
   _powerUpPrefab: {fileID: 8669839817956141900, guid: 0a14f39be09684ef38f25eeec953af5e, type: 3}
   powerUpContainer: {fileID: 3833784988686036645}
   bossBulletMagazine: {fileID: 5346352272616832105}
+  _projectileVFXPrefab: {fileID: 0}
+  _projectileVFXContainer: {fileID: 6770663298435406103}
   _playerWeaponEvent: {fileID: 11400000, guid: dffd77a8754f64ed38d99bce70f2301f, type: 2}
 --- !u!1001 &9200870142050437888
 PrefabInstance:

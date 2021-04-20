@@ -38,6 +38,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private PlayerWeaponEvent _playerWeaponEvent;
         [SerializeField] private intEventSO _currentWeaponIDEvent;
         [SerializeField] private intEventSO _maxUpgradeChannel;
+        [SerializeField] private PoolGORequest _requestProjectile;
         [Header("Listening To")]
         [SerializeField] private WeaponChangeEvent _weaponChangeEvent;
         private void OnEnable()
@@ -79,7 +80,7 @@ namespace Veganimus.NovaStar
             if (Time.time > _canFire)
             {
                 _canFire = Time.time + _fireRate;
-                _projectilePrefab = PoolManager.Instance.RequestProjectile();
+               // _projectilePrefab = PoolManager.Instance.RequestProjectile();
                 _projectilePrefab.transform.position =  _fireOffset.transform.position;
                 _projectilePrefab.transform.rotation = Quaternion.identity;
                 _projectileRigidbody = _projectilePrefab.GetComponent<Rigidbody>();
@@ -98,7 +99,8 @@ namespace Veganimus.NovaStar
             {
                 if (hitInfo.collider != null)
                 {
-                    _projectilePrefab = PoolManager.Instance.RequestProjectile();
+                    //_projectilePrefab = PoolManager.Instance.RequestProjectile();
+                    _projectilePrefab = _requestProjectile.RequestGameObject();
                     _projectilePrefab.transform.position = _fireOffset.transform.position;
                     _projectilePrefab.transform.rotation = Quaternion.identity;
                     _playSFXEvent.RaiseSFXEvent("Player", _fireSound);

@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 
 namespace Veganimus.NovaStar
 {
@@ -12,7 +10,6 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class Enemy : MonoBehaviour
     {
-
         private AudioClip _shootSound => _enemyClass.shootSound;
         private AudioClip _damageSound => _enemyClass.damageSound;
         private AudioClip _deathSound => _enemyClass.deathSound;

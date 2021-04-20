@@ -74,7 +74,7 @@ namespace Veganimus.NovaStar
                 {
                     Debug.Log(hitInfo.collider.name);
                     //Request projectile from PoolManager
-                    _projectilePrefab = PoolManager.Instance.RequestProjectile();
+                    //_projectilePrefab = PoolManager.Instance.RequestProjectile();
 
                     _projectilePrefab.transform.position = _fireOffset.transform.position;
                     _projectilePrefab.transform.rotation = Quaternion.identity;

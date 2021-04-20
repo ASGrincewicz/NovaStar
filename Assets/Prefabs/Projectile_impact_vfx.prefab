@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6163786180219681259}
   - component: {fileID: 1516971624962003590}
   - component: {fileID: 6696016526737950234}
-  - component: {fileID: 2905601751178124681}
+  - component: {fileID: 3709974230694331448}
   m_Layer: 0
   m_Name: Projectile_impact_vfx
   m_TagString: Untagged
@@ -103,7 +103,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2905601751178124681
+--- !u!114 &3709974230694331448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,7 +112,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2581462059173570728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fb85407f66fb49bfb156271f88c41eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 068bb3e89483042ed93bac15e743b38f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destroyDelay: 0.5

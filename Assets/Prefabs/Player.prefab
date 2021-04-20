@@ -299,6 +299,7 @@ MonoBehaviour:
   _playerWeaponEvent: {fileID: 11400000, guid: dffd77a8754f64ed38d99bce70f2301f, type: 2}
   _currentWeaponIDEvent: {fileID: 11400000, guid: 21960657f946041089a3ee829a99bc75, type: 2}
   _maxUpgradeChannel: {fileID: 11400000, guid: 6bfc9308a479a4c83a9f957dc7e283c9, type: 2}
+  _requestProjectile: {fileID: 11400000, guid: 736ebb49090cb479593f93fc24c6cdd7, type: 2}
   _weaponChangeEvent: {fileID: 11400000, guid: f6defe545db134ce881251a43df5c5be, type: 2}
 --- !u!1 &3508733171879755656
 GameObject:

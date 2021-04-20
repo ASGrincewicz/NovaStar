@@ -12,7 +12,7 @@ namespace Veganimus.NovaStar
      
         private void OnDisable()=> PoolManager.clearChildren -= ClearChildObjects;
         
-        void ClearChildObjects()
+        private void ClearChildObjects()
         {
             if (transform.childCount > 0)
             {

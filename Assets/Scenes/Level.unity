@@ -5976,6 +5976,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7126750937861517065, guid: d0eac1c144bcb4f1d95d7f9e236c543f, type: 3}
+      propertyPath: _projectileRequest
+      value: 
+      objectReference: {fileID: 11400000, guid: 736ebb49090cb479593f93fc24c6cdd7, type: 2}
+    - target: {fileID: 7126750937861517065, guid: d0eac1c144bcb4f1d95d7f9e236c543f, type: 3}
+      propertyPath: _projectileVFXPrefab
+      value: 
+      objectReference: {fileID: 2581462059173570728, guid: d7b53bf753a4544b7b3a584fa73427d5, type: 3}
+    - target: {fileID: 7126750937861517065, guid: d0eac1c144bcb4f1d95d7f9e236c543f, type: 3}
+      propertyPath: _projectileVFXRequest
+      value: 
+      objectReference: {fileID: 11400000, guid: 613ea06b674204bb4956151a3d6974a5, type: 2}
     - target: {fileID: 8378779022571050922, guid: d0eac1c144bcb4f1d95d7f9e236c543f, type: 3}
       propertyPath: m_Name
       value: PoolManager

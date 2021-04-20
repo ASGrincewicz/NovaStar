@@ -77,6 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectileType: {fileID: 11400000, guid: 1067a227b63f748c99829abcaa6e36d2, type: 2}
   _impactVFX: {fileID: 2581462059173570728, guid: d7b53bf753a4544b7b3a584fa73427d5, type: 3}
+  _projVFXRequest: {fileID: 11400000, guid: 613ea06b674204bb4956151a3d6974a5, type: 2}
 --- !u!1 &4393104294075459105
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ namespace Veganimus.NovaStar
                 return _instance;
             }
         }
-        [Header("Projectile Pool")]
+        [Header("Player Projectile Pool")]
         [SerializeField] private GameObject _projectilePrefab;
         [SerializeField] private GameObject _projectileContiner;
         [SerializeField] private GameObject _bulletContainerPrefab;
@@ -33,28 +33,44 @@ namespace Veganimus.NovaStar
         [SerializeField] private GameObject _powerUpPrefab;
         public  GameObject powerUpContainer;
         public GameObject bossBulletMagazine;
+        [Header("VFX Pool")]
+        [SerializeField] private GameObject _projectileVFXPrefab;
+        [SerializeField] private GameObject _projectileVFXContainer;
+        [SerializeField] private List<GameObject> _projectileVFXPool;
         [Header("Listening to:")]
         [SerializeField] private PlayerWeaponEvent _playerWeaponEvent;
+        [SerializeField] private PoolGORequest _projectileRequest;
+        [SerializeField] private PoolGORequest _projectileVFXRequest;
+        
         public static Action clearChildren;
         void Awake() => _instance = this;
 
-        private void OnEnable() => _playerWeaponEvent.OnPlayerWeaponChangeEventRaised += GetCurrentWeapon;
-        
-        private void OnDisable() => _playerWeaponEvent.OnPlayerWeaponChangeEventRaised -= GetCurrentWeapon;
-        
-        void Start() => _powerUpPrefab = _powerUps[0];
-        
-        private void Update()
+        private void OnEnable()
         {
-            if (_projectilePrefab != null)
-             GenerateProjectile(10);
+            _playerWeaponEvent.OnPlayerWeaponChangeEventRaised += GetCurrentWeapon;
+            _projectileRequest.OnGameObjectRequested += RequestProjectile;
+            _projectileVFXRequest.OnGameObjectRequested += RequestProjectileVFX;
         }
 
+        private void OnDisable()
+        {
+            _playerWeaponEvent.OnPlayerWeaponChangeEventRaised -= GetCurrentWeapon;
+            _projectileRequest.OnGameObjectRequested -= RequestProjectile;
+            _projectileVFXRequest.OnGameObjectRequested -= RequestProjectileVFX;
+        }
+
+        private void Start()
+        {
+            _powerUpPrefab = _powerUps[0];
+            GenerateProjectileVFX(5);
+        }
         private void GetCurrentWeapon(WeaponType weapon)
         {
             clearChildren();
             _projectilePool.Clear();
             _projectilePrefab = weapon.projectilePrefab;
+            if(_projectilePrefab != null)
+             GenerateProjectile(10);
         }
        
        private List<GameObject> GenerateProjectile(int amount)
@@ -72,14 +88,29 @@ namespace Veganimus.NovaStar
             }
             return _projectilePool;
         }
-        public GameObject RequestProjectile()
+        private List<GameObject> GenerateProjectileVFX(int amount)
         {
-            foreach(var bullet in _projectilePool)
+            for(int i = 0; i< amount; i++)
             {
-                if (bullet.activeInHierarchy == false)
+                if (_projectileVFXPool.Count < amount)
                 {
-                    bullet.SetActive(true);
-                    return bullet;
+                    GameObject projVFX = Instantiate(_projectileVFXPrefab, _projectileVFXContainer.transform);
+                    projVFX.SetActive(false);
+                    _projectileVFXPool.Add(projVFX);
+                }
+                else
+                    return null;
+            }
+            return _projectileVFXPool;
+        }
+        private GameObject RequestProjectile()
+        {
+            foreach(GameObject obj in _projectilePool)
+            {
+                if (obj.activeInHierarchy == false)
+                {
+                    obj.SetActive(true);
+                    return obj;
                 }
             }
             GameObject newBullet = _projectilePrefab;
@@ -87,7 +118,24 @@ namespace Veganimus.NovaStar
             _projectilePool.Add(newBullet);
             return newBullet;
         }
-        public GameObject RequestPowerUp(int scoreTier)
+
+        private GameObject RequestProjectileVFX()
+        {
+            foreach(GameObject projVFX in _projectileVFXPool)
+            {
+                if (projVFX.activeInHierarchy == false)
+                {
+                    projVFX.SetActive(true);
+                    return projVFX;
+                }
+            }
+            GameObject newProjVFX = _projectileVFXPrefab;
+            newProjVFX.SetActive(true);
+            _projectileVFXPool.Add(newProjVFX);
+            return newProjVFX;
+        }
+
+        private GameObject RequestPowerUp(int scoreTier)
         {
            switch(scoreTier)
             {

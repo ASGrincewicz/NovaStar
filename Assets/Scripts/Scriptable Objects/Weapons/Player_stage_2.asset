@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a15faf9bd3e4daba577b07ff7f1aa1, type: 3}
+  m_Name: Player_stage_2
+  m_EditorClassIdentifier: 
+  weaponName: Stage 2
+  weaponID: 2
+  accuracyOffsetMin: -0.025
+  accuracyOffsetMax: 0.025
+  firePower: 8
+  fireRate: 0.35
+  projectilePrefab: {fileID: 1916826949785975365, guid: c94e27c1d1b6c4bbdb3f8dfbcf5d1ead, type: 3}
+  fireSound: {fileID: 0}

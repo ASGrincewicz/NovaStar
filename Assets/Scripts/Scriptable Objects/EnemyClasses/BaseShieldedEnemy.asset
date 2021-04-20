@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e297482de031478a89d9eac7e6e746f, type: 3}
+  m_Name: BaseShieldedEnemy
+  m_EditorClassIdentifier: 
+  enemyName: Base Shielded
+  scoreTier: 250
+  hp: 5
+  shieldHP: 1
+  speed: 2.5
+  fireRate: 5
+  hasShield: 1
+  hasWeapon: 1
+  weapon: {fileID: 1912985845912812047, guid: c52e5cd29fd2449049aadeb3b03f614f, type: 3}
+  itemDrop: {fileID: 7334643961800842593, guid: 8426fa5aa241745e69b231181a9f845b, type: 3}
+  explosionPrefab: {fileID: 3727974499667631976, guid: 5727a6f4e93ea41df94eec6ca947f1cc, type: 3}
+  shootSound: {fileID: 0}

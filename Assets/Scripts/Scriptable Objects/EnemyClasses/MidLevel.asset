@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e297482de031478a89d9eac7e6e746f, type: 3}
+  m_Name: MidLevel
+  m_EditorClassIdentifier: 
+  enemyName: Mid level
+  scoreTier: 500
+  hp: 10
+  shieldHP: 0
+  speed: 1.63
+  fireRate: 8
+  hasShield: 0
+  hasWeapon: 1
+  weapon: {fileID: 4140978072433156269, guid: ecb404e9dcc9a44f19ca2b20935f21e2, type: 3}
+  itemDrop: {fileID: 4054395830110364153, guid: ad5794fa723164468a47ff4a66a93f85, type: 3}
+  explosionPrefab: {fileID: 3727974499667631976, guid: 5727a6f4e93ea41df94eec6ca947f1cc, type: 3}
+  shootSound: {fileID: 0}

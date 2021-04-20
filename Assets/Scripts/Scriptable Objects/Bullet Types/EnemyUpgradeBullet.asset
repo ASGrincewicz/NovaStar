@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edb2c4edda1b4758a05fdd570da95d5, type: 3}
+  m_Name: EnemyUpgradeBullet
+  m_EditorClassIdentifier: 
+  bulletName: Enemy Upgrade Bullet
+  speed: 5
+  isPlayerBullet: 0
+  damage: 0
+  power: 2
+  impactVFXPrefab: {fileID: 2581462059173570728, guid: d7b53bf753a4544b7b3a584fa73427d5, type: 3}

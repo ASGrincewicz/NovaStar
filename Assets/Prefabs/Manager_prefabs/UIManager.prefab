@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2028625556790276038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2028625556790276036}
+  - component: {fileID: 2028625556790276037}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2028625556790276036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028625556790276038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2028625556790276037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028625556790276038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c47a2e21dfd734c51bc0948e88bc7b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hUD_Canvas: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  levelSummary: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  endOfGameScreen: {fileID: 0}
+  _levelText: {fileID: 0}
+  _scoreText: {fileID: 0}
+  _weaponText: {fileID: 0}
+  _powerUpTimer: {fileID: 0}
+  _incomingWaveText: {fileID: 0}
+  _incomingWaveTextGO: {fileID: 0}
+  _bossHealthBar: {fileID: 0}
+  _bossHealthUI: {fileID: 0}
+  _updateScoreChannel: {fileID: 11400000, guid: 162717f3763e646df8af5df4528deadf, type: 2}
+  _trackWaveEvent: {fileID: 11400000, guid: c2f66dcd5d3464ed698ae72af2602413, type: 2}
+  _bossHealthUIEvent: {fileID: 11400000, guid: 771c079859e0c4d3b91639545d7ad042, type: 2}
+  _trackLevelEvent: {fileID: 11400000, guid: 9ec8bd5dd652d46ecb70191a87e4f791, type: 2}
+  _trackBossWave: {fileID: 11400000, guid: faec6a1b8de114965bbdc2494a9acb34, type: 2}
+  _startCoolDownTimer: {fileID: 11400000, guid: 1c46226f10b634c748fbbe7f050bdad3, type: 2}
+  _playerWeaponEvent: {fileID: 11400000, guid: dffd77a8754f64ed38d99bce70f2301f, type: 2}
+  _inputReader: {fileID: 11400000, guid: 324a74f8cc92140b5bce154114f7b3af, type: 2}
+  _loadSceneEvent: {fileID: 11400000, guid: d27cb486527e849aeae2e1e3c195389c, type: 2}
+  _playerScore: 0

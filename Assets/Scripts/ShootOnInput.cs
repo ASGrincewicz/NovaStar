@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +11,7 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class ShootOnInput : MonoBehaviour
     {
+        [SerializeField] private AudioClip _fireSound;
         [SerializeField] private bool _autoShootRaycastOn;
         [SerializeField] private float _sphereCastRadius = 1f;
         [SerializeField] private float _sphereCastDistance = 20f;
@@ -34,12 +34,13 @@ namespace Veganimus.NovaStar
         private Rigidbody _projectileRigidbody;
         private WaitForSeconds _fireCoolDown;
         [Header("Broadcasting On")]
+        [SerializeField] private PlaySFXEvent _playSFXEvent;
         [SerializeField] private PlayerWeaponEvent _playerWeaponEvent;
         [SerializeField] private intEventSO _currentWeaponIDEvent;
         [SerializeField] private intEventSO _maxUpgradeChannel;
         [Header("Listening To")]
         [SerializeField] private WeaponChangeEvent _weaponChangeEvent;
-        void OnEnable()
+        private void OnEnable()
         {
             _inputReader.shootEvent += FireWeapon;
             _weaponChangeEvent.OnWeaponChanged += ChangeWeapon;
@@ -51,7 +52,7 @@ namespace Veganimus.NovaStar
             _inputReader.shootEvent -= FireWeapon;
             _weaponChangeEvent.OnWeaponChanged -= ChangeWeapon;
         }
-        void Start()
+        private void Start()
         {
             _maxUpgradeChannel.RaiseEvent(_weaponType.Count);
             _fireCoolDown = new WaitForSeconds(_fireRate);
@@ -73,7 +74,7 @@ namespace Veganimus.NovaStar
                 _currentWeaponID = _weaponType.Count - 1;
         }
 
-        void FireWeapon()
+        private void FireWeapon()
         {
             if (Time.time > _canFire)
             {
@@ -89,7 +90,7 @@ namespace Veganimus.NovaStar
             else
                 return;
         }
-        void AcquireTarget()
+        private void AcquireTarget()
         {
             _canFire = Time.time + _fireRate;
             RaycastHit hitInfo;
@@ -98,16 +99,16 @@ namespace Veganimus.NovaStar
                 if (hitInfo.collider != null)
                 {
                     _projectilePrefab = PoolManager.Instance.RequestProjectile();
-
                     _projectilePrefab.transform.position = _fireOffset.transform.position;
                     _projectilePrefab.transform.rotation = Quaternion.identity;
+                    _playSFXEvent.RaiseSFXEvent("Player", _fireSound);
                     StartCoroutine(FireCoolDownRoutine());
                 }
             }
             else
                 return;
         }
-        public void ChangeWeapon(bool isUpgrade, bool isPowerUp, int changeTo)
+        private void ChangeWeapon(bool isUpgrade, bool isPowerUp, int changeTo)
         {
             if (isUpgrade == true && isPowerUp == false)
             {
@@ -116,7 +117,6 @@ namespace Veganimus.NovaStar
                 else
                     return;
             }
-
             else if (isUpgrade == false && isPowerUp == false)
                 _currentWeaponID = 0;
 
@@ -125,7 +125,7 @@ namespace Veganimus.NovaStar
 
             WeaponStatUpdate();
         }
-        public void WeaponStatUpdate()
+        private void WeaponStatUpdate()
         {
             _currentWeaponIDEvent.RaiseEvent(_currentWeaponID);
             _currentWeapon = _weaponType[_currentWeaponID];
@@ -133,12 +133,12 @@ namespace Veganimus.NovaStar
             _weaponName = _weaponType[_currentWeaponID].weaponName;
             _accuracyOffsetMin = _weaponType[_currentWeaponID].accuracyOffsetMin;
             _accuracyOffsetMax = _weaponType[_currentWeaponID].accuracyOffsetMax;
-           
             _fireRate = _weaponType[_currentWeaponID].fireRate;
+            _fireSound = _weaponType[_currentWeaponID].fireSound;
             _playerWeaponEvent.RaiseWeaponNameEvent(_weaponType[_currentWeaponID].weaponName);
             _playerWeaponEvent.RaiseWeaponChangeEvent(_weaponType[_currentWeaponID]);
         }
-        IEnumerator FireCoolDownRoutine()
+       private IEnumerator FireCoolDownRoutine()
         {
             yield return _fireCoolDown;
         }

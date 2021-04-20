@@ -18,4 +18,4 @@ MonoBehaviour:
   accuracyOffsetMax: 0.1
   fireRate: 0.45
   projectilePrefab: {fileID: 670806353022106560, guid: 8ed38429270844c97a43a96ae1ae4519, type: 3}
-  fireSound: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: 41b780d68898b4920ab88f24e4b02c4c, type: 3}

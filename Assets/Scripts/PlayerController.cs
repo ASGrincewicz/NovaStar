@@ -16,6 +16,10 @@ namespace Veganimus.NovaStar
         private int _currentWeaponID;
         private int _lastWeaponID;
         private int _maxUpgrade;
+        [Header("Sound Effects")]
+        [SerializeField] private AudioClip _shieldSFX;
+        [SerializeField] private AudioClip _powerUpSFX;
+        [SerializeField] private AudioClip _damageSFX;
         [Header("Screen Bounds")]
         [SerializeField] private float _yTopBound;
         [SerializeField] private float _yBottomBound;
@@ -32,8 +36,9 @@ namespace Veganimus.NovaStar
         [SerializeField] private CollectEvent _collectEvent;
         [SerializeField] private intEventSO _maxUpgradeChannel;
         [Header("Broadcasting On")]
+        [SerializeField] private PlaySFXEvent _playSFXEvent;
         [SerializeField] private GameEvent _playerDeadEvent;
-        [SerializeField] private PlayerWeaponEvent _playerWeaponEvent;//replace with below
+        //[SerializeField] private PlayerWeaponEvent _playerWeaponEvent;//replace with below
         [SerializeField] private WeaponChangeEvent _weaponChangeEvent;
         [SerializeField] private CoRoutineEvent _startPowerUpCoolDown;
         private WaitForSeconds _damageCoolDown;
@@ -54,20 +59,20 @@ namespace Veganimus.NovaStar
             _currentWeaponIDEvent.OnEventRaised -= CurrentWeaponTracker;
         }
         
-        void Start()
+        private void Start()
         {
             _damageCoolDown = new WaitForSeconds(3.0f);
             _powerUpCoolDown = new WaitForSeconds(10.0f);
             _powerUpEffectTimer = new WaitForSeconds(1.0f);
         }
-        void Update()
+        private void Update()
         {
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, _xLeftBound, _xRightBound),
                 Mathf.Clamp(transform.position.y, _yBottomBound, _yTopBound), 0);
         }
-        void CurrentWeaponTracker(int current)=> _currentWeaponID = current;
+       private void CurrentWeaponTracker(int current)=> _currentWeaponID = current;
         
-        void PowerUpCollect(int id)
+       private void PowerUpCollect(int id)
         {
             if (_powerUpActive == false)
             {
@@ -76,12 +81,14 @@ namespace Veganimus.NovaStar
                     case 0:
                         if (_currentWeaponID < _maxUpgrade -1)
                         _weaponChangeEvent.RaiseWeaponChangeEvent(true, false, _currentWeaponID++);
+                        //play upgrade sound
                         break;
                     case 1:
                         if (_shieldActive == false)
                         {
                             _shield.SetActive(true);
                             _shieldActive = true;
+                            //play shield sound
                         }
                         else
                             return;
@@ -91,6 +98,7 @@ namespace Veganimus.NovaStar
                         _lastWeaponID = _currentWeaponID;
                         _weaponChangeEvent.RaiseWeaponChangeEvent(false, true, 3);
                         StartCoroutine(PowerUpCoolDown());
+                        //play powerup sound
                         break;
                 }
                 StartCoroutine(PowerUpFlicker());
@@ -104,6 +112,7 @@ namespace Veganimus.NovaStar
             {
                 _shield.SetActive(false);
                 _shieldActive = false;
+                //play deactivate sound
             }
             else
             {//Camera shake
@@ -118,6 +127,7 @@ namespace Veganimus.NovaStar
                         _weaponChangeEvent.RaiseWeaponChangeEvent(false, false, 0);
                         _canTakeDamage = false;
                         StartCoroutine(DamageCoolDown());
+                        //play damage sound
                     }
                 }
                 else
@@ -132,12 +142,12 @@ namespace Veganimus.NovaStar
                 return;
         }
 
-        IEnumerator DamageCoolDown()
+        private IEnumerator DamageCoolDown()
         {
             yield return _damageCoolDown;
             _canTakeDamage = true;
         }
-        IEnumerator PowerUpFlicker()
+        private IEnumerator PowerUpFlicker()
         {
             _powerUpEffect.SetActive(true);
             yield return _powerUpEffectTimer;
@@ -149,14 +159,14 @@ namespace Veganimus.NovaStar
             yield return null;
 
         }
-        IEnumerator PowerUpCoolDown()
+       private IEnumerator PowerUpCoolDown()
         {
             _startPowerUpCoolDown.RaiseEvent();
             yield return _powerUpCoolDown;
             _powerUpActive = false;
             _weaponChangeEvent.RaiseWeaponChangeEvent(false, true, _lastWeaponID);
         }
-        IEnumerator DeathRoutine()
+        private IEnumerator DeathRoutine()
         {
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             _shipModel.SetActive(false);

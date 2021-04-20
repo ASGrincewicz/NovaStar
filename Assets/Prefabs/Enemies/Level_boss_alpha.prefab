@@ -487,13 +487,12 @@ MonoBehaviour:
   - {fileID: 2428143189955965616}
   - {fileID: 3916556127482894662}
   - {fileID: 3691549332722649149}
-  _bossBulletPrefab: {fileID: 4140978072433156269, guid: ecb404e9dcc9a44f19ca2b20935f21e2, type: 3}
-  _bossBulletPool: []
   _explosionPrefab: {fileID: 8217003109968079750, guid: 42d342ef03f5e4756b49a209766eed83, type: 3}
   _anim: {fileID: 3718590433894912687}
   _updateScoreChannel: {fileID: 11400000, guid: 162717f3763e646df8af5df4528deadf, type: 2}
   _bossHealthUIEvent: {fileID: 11400000, guid: 771c079859e0c4d3b91639545d7ad042, type: 2}
   _nextLevelEvent: {fileID: 11400000, guid: a408d4b74580449c3b718cea134044eb, type: 2}
+  _bossProjRequest: {fileID: 11400000, guid: bcc2b09f5fdab4ef49ee285fa0653309, type: 2}
 --- !u!95 &3718590433894912687
 Animator:
   serializedVersion: 3

@@ -28,6 +28,10 @@ namespace Veganimus.NovaStar
         [SerializeField] private GameObject _projectileContiner;
         [SerializeField] private GameObject _bulletContainerPrefab;
         [SerializeField] private List<GameObject> _projectilePool;
+        [Header("Boss Projectile Pool")]
+        [SerializeField] private GameObject _bossProjectilePrefab;
+        [SerializeField] private GameObject _bossProjectileContainer;
+        [SerializeField] private List<GameObject> _bossProjectilePool;
         [Header("Power Up Pool")]
         [SerializeField] private List<GameObject> _powerUps;
         [SerializeField] private GameObject _powerUpPrefab;
@@ -41,7 +45,8 @@ namespace Veganimus.NovaStar
         [SerializeField] private PlayerWeaponEvent _playerWeaponEvent;
         [SerializeField] private PoolGORequest _projectileRequest;
         [SerializeField] private PoolGORequest _projectileVFXRequest;
-        
+        [SerializeField] private PoolGORequest _bossProjectileRequest;
+
         public static Action clearChildren;
         void Awake() => _instance = this;
 
@@ -50,6 +55,7 @@ namespace Veganimus.NovaStar
             _playerWeaponEvent.OnPlayerWeaponChangeEventRaised += GetCurrentWeapon;
             _projectileRequest.OnGameObjectRequested += RequestProjectile;
             _projectileVFXRequest.OnGameObjectRequested += RequestProjectileVFX;
+            _bossProjectileRequest.OnGameObjectRequested += RequestBossProjectile;
         }
 
         private void OnDisable()
@@ -57,12 +63,14 @@ namespace Veganimus.NovaStar
             _playerWeaponEvent.OnPlayerWeaponChangeEventRaised -= GetCurrentWeapon;
             _projectileRequest.OnGameObjectRequested -= RequestProjectile;
             _projectileVFXRequest.OnGameObjectRequested -= RequestProjectileVFX;
+            _bossProjectileRequest.OnGameObjectRequested -= RequestBossProjectile;
         }
 
         private void Start()
         {
             _powerUpPrefab = _powerUps[0];
             GenerateProjectileVFX(5);
+            GenerateBossProjectile(10);
         }
         private void GetCurrentWeapon(WeaponType weapon)
         {
@@ -88,6 +96,22 @@ namespace Veganimus.NovaStar
             }
             return _projectilePool;
         }
+        private List<GameObject> GenerateBossProjectile(int amount)
+        {
+            for(int i = 0; i < amount; i++)
+            {
+                if (_bossProjectilePool.Count < amount)
+                {
+                    var bossProj = Instantiate(_bossProjectilePrefab, _bossProjectileContainer.transform);
+                    bossProj.SetActive(false);
+                    _bossProjectilePool.Add(bossProj);
+                }
+                else
+                    return null;
+            }
+            return _bossProjectilePool;
+        }
+
         private List<GameObject> GenerateProjectileVFX(int amount)
         {
             for(int i = 0; i< amount; i++)
@@ -117,6 +141,21 @@ namespace Veganimus.NovaStar
             newBullet.SetActive(true);
             _projectilePool.Add(newBullet);
             return newBullet;
+        }
+        private GameObject RequestBossProjectile()
+        {
+            foreach(GameObject bossProj in _bossProjectilePool)
+            {
+                if(bossProj.activeInHierarchy == false)
+                {
+                    bossProj.SetActive(true);
+                    return bossProj;
+                }
+            }
+            GameObject newBossProj = _bossProjectilePrefab;
+            newBossProj.SetActive(true);
+            _bossProjectilePool.Add(newBossProj);
+            return newBossProj;
         }
 
         private GameObject RequestProjectileVFX()

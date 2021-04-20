@@ -106,6 +106,7 @@ MonoBehaviour:
   _moveDirection: {x: -1, y: 0, z: 0}
   _updateScoreChannel: {fileID: 11400000, guid: 162717f3763e646df8af5df4528deadf, type: 2}
   _enemyTracking: {fileID: 11400000, guid: f97016cdce5004efb98ce56800a41802, type: 2}
+  _playSFXEvent: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
 --- !u!54 &8377524274048239706
 Rigidbody:
   m_ObjectHideFlags: 0

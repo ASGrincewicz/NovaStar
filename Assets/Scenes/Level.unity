@@ -6244,22 +6244,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1115029657691054112, guid: d3a8687103ba54e8c9a2f48709b976d7, type: 3}
-      propertyPath: _playSFXEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
-    - target: {fileID: 1115029657691054112, guid: d3a8687103ba54e8c9a2f48709b976d7, type: 3}
-      propertyPath: _shootWeaponSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 41b780d68898b4920ab88f24e4b02c4c, type: 3}
-    - target: {fileID: 3508733170712618738, guid: d3a8687103ba54e8c9a2f48709b976d7, type: 3}
-      propertyPath: _playSFXEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
-    - target: {fileID: 3508733170712618738, guid: d3a8687103ba54e8c9a2f48709b976d7, type: 3}
-      propertyPath: _shootWeaponSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 41b780d68898b4920ab88f24e4b02c4c, type: 3}
     - target: {fileID: 3508733170712618740, guid: d3a8687103ba54e8c9a2f48709b976d7, type: 3}
       propertyPath: m_Name
       value: Player

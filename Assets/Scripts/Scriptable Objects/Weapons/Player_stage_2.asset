@@ -16,7 +16,6 @@ MonoBehaviour:
   weaponID: 2
   accuracyOffsetMin: -0.025
   accuracyOffsetMax: 0.025
-  firePower: 8
   fireRate: 0.35
   projectilePrefab: {fileID: 1916826949785975365, guid: c94e27c1d1b6c4bbdb3f8dfbcf5d1ead, type: 3}
-  fireSound: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: 5b5206c3d7c9a44e0a41b095595689b2, type: 3}

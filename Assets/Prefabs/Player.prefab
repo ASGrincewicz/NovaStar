@@ -212,6 +212,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be7d6afeea5b4071a30eba15010b9af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shieldSFX: {fileID: 8300000, guid: 9b46c26e275a749eea9f9b5d7090b8d2, type: 3}
+  _powerUpSFX: {fileID: 8300000, guid: 0938b1ddd1dbc4bcb81191088b669e52, type: 3}
+  _damageSFX: {fileID: 8300000, guid: 249a3628bba56495db54dfa5224a346c, type: 3}
+  _deathSFX: {fileID: 8300000, guid: 72c02987d7c9d429c983b8b8db77ee3e, type: 3}
   _yTopBound: 5
   _yBottomBound: -3
   _xLeftBound: -7.5
@@ -223,8 +227,8 @@ MonoBehaviour:
   _currentWeaponIDEvent: {fileID: 11400000, guid: 21960657f946041089a3ee829a99bc75, type: 2}
   _collectEvent: {fileID: 11400000, guid: a3390f0a7def544d69407db95f0a0843, type: 2}
   _maxUpgradeChannel: {fileID: 11400000, guid: 6bfc9308a479a4c83a9f957dc7e283c9, type: 2}
+  _playSFXEvent: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
   _playerDeadEvent: {fileID: 11400000, guid: 9fb927f1ef906403597f478cd24a5fef, type: 2}
-  _playerWeaponEvent: {fileID: 11400000, guid: dffd77a8754f64ed38d99bce70f2301f, type: 2}
   _weaponChangeEvent: {fileID: 11400000, guid: f6defe545db134ce881251a43df5c5be, type: 2}
   _startPowerUpCoolDown: {fileID: 11400000, guid: 1c46226f10b634c748fbbe7f050bdad3, type: 2}
 --- !u!54 &3508733170712618736
@@ -269,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f90ca842b844964bd352a8f974ffd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fireSound: {fileID: 0}
   _autoShootRaycastOn: 1
   _sphereCastRadius: 0.5
   _sphereCastDistance: 12
@@ -290,6 +295,7 @@ MonoBehaviour:
   _accuracyOffsetMax: 0
   _fireOffset: {fileID: 3508733171879755657}
   _firePower: 0
+  _playSFXEvent: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
   _playerWeaponEvent: {fileID: 11400000, guid: dffd77a8754f64ed38d99bce70f2301f, type: 2}
   _currentWeaponIDEvent: {fileID: 11400000, guid: 21960657f946041089a3ee829a99bc75, type: 2}
   _maxUpgradeChannel: {fileID: 11400000, guid: 6bfc9308a479a4c83a9f957dc7e283c9, type: 2}

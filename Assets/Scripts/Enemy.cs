@@ -12,8 +12,11 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class Enemy : MonoBehaviour
     {
+
+        private AudioClip _shootSound => _enemyClass.shootSound;
+        private AudioClip _damageSound => _enemyClass.damageSound;
+        private AudioClip _deathSound => _enemyClass.deathSound;
         private int _damageAmount;
-        
         [SerializeField] private EnemyClass _enemyClass;
         [SerializeField] private Transform _fireOffset;
         [SerializeField] private Vector3 _shootDirection;
@@ -40,22 +43,19 @@ namespace Veganimus.NovaStar
         [Header("Broadcasting on")]
         [SerializeField] private intEventSO _updateScoreChannel;
         [SerializeField] private EnemyTrackerChannel _enemyTracking;
-        public static Action damaged;
-       
-        
+        [SerializeField] private PlaySFXEvent _playSFXEvent;
+
         private void Awake()
         {
             _hp = _enemyClass.hp;
             
             _fireDelay = new WaitForSeconds(_enemyClass.fireRate);
             if (_hasWeapon == true)
-            {
-                _weapon = _enemyClass.weapon;
-            }
+            _weapon = _enemyClass.weapon;
+            
             else
-            {
-                _weapon = null;
-            }
+            _weapon = null;
+            
             if (_hasShield == true)
             {
                 //shield = _enemyClass.shield;
@@ -63,27 +63,25 @@ namespace Veganimus.NovaStar
                 _shieldOn = true;
             }
             else
-            {
-                _shield = null;
-            }
+            _shield = null;
+            
         }
-        void Start()
+        private void Start()
         {
             _chance = UnityEngine.Random.Range(0, 20);
             _rigidbody = GetComponent<Rigidbody>();
         }
-        void Update()
+        private void Update()
         {
             Movement();
             if (_hasWeapon)
             {
                 if (Time.time > _canFire)
-                {
-                    Shoot();
-                }
+                 Shoot();
             }
             if(_hp <= 0)
             {
+                _playSFXEvent.RaiseSFXEvent("Enemy", _deathSound);
                 _enemyTracking.EnemyDestroyedEvent();
                 if (_chance >= 10)
                 {
@@ -98,47 +96,38 @@ namespace Veganimus.NovaStar
                 _shieldOn = false;
             }
         }
-        void Movement()
+        private void Movement()
         {
             transform.Translate(Vector3.left * _speed * Time.deltaTime);
-           
           
             if (transform.position.x < -20f)
-            {
-                _hp -= _hp;
-            }
+            _hp -= _hp;
+            
         }
-        void Shoot()
+        private void Shoot()
         {
             _canFire = Time.time + _fireRate;
             GameObject enemyBullet = Instantiate(_weapon, this.gameObject.transform);
             enemyBullet.transform.position = _fireOffset.transform.position;
+            _playSFXEvent.RaiseSFXEvent("Enemy", _shootSound);
             StartCoroutine(EnemyFireRoutine());
         }
-        public void Damage()
+        private void Damage()
         {
-           
-           
             if (_enemyClass.hasShield == true && _shieldOn == true)
-            {
-                _shieldHP --;
-            }
+            _shieldHP --;
+            
             else
             {
+                _playSFXEvent.RaiseSFXEvent("Enemy", _damageSound);
                 _updateScoreChannel.RaiseEvent(scoreTier / 5);
                 _hp --;
             }
         }
         private void OnTriggerEnter(Collider other)
         {
-            if(other.tag == "Player")
-            {
-                Damage();
-            }
-            if (other.tag == "Player Projectile")
-            {
-                Damage();
-            }
+            if(other.tag == "Player"|| other.tag == "Player Projectile")
+             Damage();
         }
 
         private IEnumerator EnemyFireRoutine()

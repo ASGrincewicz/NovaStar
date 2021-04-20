@@ -20,6 +20,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private AudioClip _shieldSFX;
         [SerializeField] private AudioClip _powerUpSFX;
         [SerializeField] private AudioClip _damageSFX;
+        [SerializeField] private AudioClip _deathSFX;
         [Header("Screen Bounds")]
         [SerializeField] private float _yTopBound;
         [SerializeField] private float _yBottomBound;
@@ -44,6 +45,7 @@ namespace Veganimus.NovaStar
         private WaitForSeconds _damageCoolDown;
         private WaitForSeconds _powerUpCoolDown;
         private WaitForSeconds _powerUpEffectTimer;
+        private ShootOnInput _shootOnInput;
 
 
         private void OnEnable()
@@ -64,6 +66,7 @@ namespace Veganimus.NovaStar
             _damageCoolDown = new WaitForSeconds(3.0f);
             _powerUpCoolDown = new WaitForSeconds(10.0f);
             _powerUpEffectTimer = new WaitForSeconds(1.0f);
+            _shootOnInput = GetComponent<ShootOnInput>();
         }
         private void Update()
         {
@@ -81,14 +84,14 @@ namespace Veganimus.NovaStar
                     case 0:
                         if (_currentWeaponID < _maxUpgrade -1)
                         _weaponChangeEvent.RaiseWeaponChangeEvent(true, false, _currentWeaponID++);
-                        //play upgrade sound
+                         _playSFXEvent.OnSFXEventRaised("Player", _powerUpSFX);
                         break;
                     case 1:
                         if (_shieldActive == false)
                         {
                             _shield.SetActive(true);
                             _shieldActive = true;
-                            //play shield sound
+                            _playSFXEvent.RaiseSFXEvent("Player", _shieldSFX);
                         }
                         else
                             return;
@@ -97,8 +100,8 @@ namespace Veganimus.NovaStar
                         _powerUpActive = true;
                         _lastWeaponID = _currentWeaponID;
                         _weaponChangeEvent.RaiseWeaponChangeEvent(false, true, 3);
+                        _playSFXEvent.OnSFXEventRaised("Player", _powerUpSFX);
                         StartCoroutine(PowerUpCoolDown());
-                        //play powerup sound
                         break;
                 }
                 StartCoroutine(PowerUpFlicker());
@@ -112,7 +115,7 @@ namespace Veganimus.NovaStar
             {
                 _shield.SetActive(false);
                 _shieldActive = false;
-                //play deactivate sound
+                _playSFXEvent.RaiseSFXEvent("Player", _shieldSFX);
             }
             else
             {//Camera shake
@@ -124,10 +127,10 @@ namespace Veganimus.NovaStar
                     }
                     else
                     {
+                        _playSFXEvent.RaiseSFXEvent("Player", _damageSFX);
                         _weaponChangeEvent.RaiseWeaponChangeEvent(false, false, 0);
                         _canTakeDamage = false;
                         StartCoroutine(DamageCoolDown());
-                        //play damage sound
                     }
                 }
                 else
@@ -168,6 +171,8 @@ namespace Veganimus.NovaStar
         }
         private IEnumerator DeathRoutine()
         {
+            _shootOnInput.enabled = false;
+            _playSFXEvent.RaiseSFXEvent("Player", _deathSFX);
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             _shipModel.SetActive(false);
             yield return new WaitForSeconds(2.0f);

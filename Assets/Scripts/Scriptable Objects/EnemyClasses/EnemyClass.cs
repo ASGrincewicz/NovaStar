@@ -22,5 +22,7 @@ namespace Veganimus.NovaStar
         public GameObject itemDrop;
         public GameObject explosionPrefab;
         public AudioClip shootSound;
+        public AudioClip damageSound;
+        public AudioClip deathSound;
     }
 }

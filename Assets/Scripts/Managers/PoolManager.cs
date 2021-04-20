@@ -24,19 +24,13 @@ namespace Veganimus.NovaStar
             }
         }
         [Header("Projectile Pool")]
-        [SerializeField]
-        private GameObject _projectilePrefab;
-        [SerializeField]
-        private GameObject _projectileContiner;
-        [SerializeField]
-        private GameObject _bulletContainerPrefab;
-        [SerializeField]
-        private List<GameObject> _projectilePool;
+        [SerializeField] private GameObject _projectilePrefab;
+        [SerializeField] private GameObject _projectileContiner;
+        [SerializeField] private GameObject _bulletContainerPrefab;
+        [SerializeField] private List<GameObject> _projectilePool;
         [Header("Power Up Pool")]
-        [SerializeField]
-        private List<GameObject> _powerUps;
-        [SerializeField]
-        private GameObject _powerUpPrefab;
+        [SerializeField] private List<GameObject> _powerUps;
+        [SerializeField] private GameObject _powerUpPrefab;
         public  GameObject powerUpContainer;
         public GameObject bossBulletMagazine;
         [Header("Listening to:")]
@@ -53,9 +47,7 @@ namespace Veganimus.NovaStar
         private void Update()
         {
             if (_projectilePrefab != null)
-            {
-                GenerateProjectile(10);
-            }
+             GenerateProjectile(10);
         }
 
         private void GetCurrentWeapon(WeaponType weapon)
@@ -76,9 +68,7 @@ namespace Veganimus.NovaStar
                     _projectilePool.Add(bullet);
                 }
                 else
-                {
-                    return null;
-                }
+                 return null;
             }
             return _projectilePool;
         }

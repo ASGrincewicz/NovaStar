@@ -10,28 +10,22 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class PlayerController : MonoBehaviour
     {
-       
+        private bool _canTakeDamage = true;
         private bool _powerUpActive;
         private bool _shieldActive;
         private int _currentWeaponID;
         private int _lastWeaponID;
         private int _maxUpgrade;
-      
-        private bool _canTakeDamage = true;
         [Header("Screen Bounds")]
         [SerializeField] private float _yTopBound;
         [SerializeField] private float _yBottomBound;
         [SerializeField] private float _xLeftBound;
         [SerializeField] private float _xRightBound;
-        
-
+        [Space]
         [SerializeField] private GameObject _shipModel;
         [SerializeField] private GameObject _shield;
         [SerializeField] private GameObject _explosionPrefab;
         [SerializeField] private GameObject _powerUpEffect;
-        private WaitForSeconds _damageCoolDown;
-        private WaitForSeconds _powerUpCoolDown;
-        private WaitForSeconds _powerUpEffectTimer;
         [Header("Two-way Channels")]
         [SerializeField] private intEventSO _currentWeaponIDEvent;
         [Header("Listening On")]
@@ -42,8 +36,11 @@ namespace Veganimus.NovaStar
         [SerializeField] private PlayerWeaponEvent _playerWeaponEvent;//replace with below
         [SerializeField] private WeaponChangeEvent _weaponChangeEvent;
         [SerializeField] private CoRoutineEvent _startPowerUpCoolDown;
-      
-      
+        private WaitForSeconds _damageCoolDown;
+        private WaitForSeconds _powerUpCoolDown;
+        private WaitForSeconds _powerUpEffectTimer;
+
+
         private void OnEnable()
         {
             _collectEvent.OnPowerUpCollect += PowerUpCollect;

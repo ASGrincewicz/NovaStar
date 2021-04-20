@@ -105,9 +105,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fe92e6f40bab450dbfe06a9d2f4c8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _topBound: 5
+  _bottomBound: -3
+  _rightBound: 13
+  _leftBound: 0
   _waveComplete: 0
   _levelComplete: 0
-  _activeLevel: {fileID: 0}
+  _activeLevel: {fileID: 11400000, guid: 358799a3f2ec046f1a871e8a6f4cadcf, type: 2}
   _levels:
   - {fileID: 11400000, guid: 358799a3f2ec046f1a871e8a6f4cadcf, type: 2}
   _levelBossWave: {fileID: 0}

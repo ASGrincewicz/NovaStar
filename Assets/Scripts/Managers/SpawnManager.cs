@@ -13,24 +13,28 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class SpawnManager : MonoBehaviour
     {
-        [SerializeField] private bool _waveComplete = false;
-        [SerializeField] private bool _levelComplete = false;
-        //Reference to Level scriptable Object
+        [Header("Spawn Bounds")]
+        [SerializeField] private float _topBound;
+        [SerializeField] private float _bottomBound;
+        [SerializeField] private float _rightBound;
+        [SerializeField] private float _leftBound;
+        [Space]
+        [SerializeField] private bool _waveComplete;
+        [SerializeField] private bool _levelComplete;
         [SerializeField] private LevelStructure _activeLevel;
-        //List of Levels
         [SerializeField] private List<LevelStructure> _levels;
+        [Space]
         [SerializeField] private BossWave _levelBossWave;
         [SerializeField] private EnemyWave _enemyWave;
         [SerializeField] private List<EnemyWave> _enemyWaves;
+        [Space]
         [SerializeField] private List<Enemy> _enemies;
         [SerializeField] private GameObject _enemyContainer;
         [SerializeField] private GameObject _bossSpawnPos;
         [SerializeField] private int _enemyToSpawn;
+        [Space]
         [SerializeField] private int _currentWave = 1;
         [SerializeField] private int _currentLevel = 1;
-        //Coroutine Timers
-         private WaitForSeconds _spawnDelay;
-         private WaitForSeconds _nextWaveDelay;
         [Header("Broadcasting On")]
         [SerializeField] private EnemyTrackerChannel _enemyTracking;
         [SerializeField] private TrackLevelEventSO _trackLevelEvent;
@@ -40,7 +44,10 @@ namespace Veganimus.NovaStar
         [Header("Listening To")]
         [SerializeField] private GameEvent _startNextLevelEvent;
         [SerializeField] private GameEvent _nextLevelRoutineEvent;
-               
+        //Coroutine Timers
+        private WaitForSeconds _spawnDelay;
+        private WaitForSeconds _nextWaveDelay;
+
         private void OnEnable()
         {
             _startNextLevelEvent.OnEventRaised += StartNextLevel;
@@ -50,7 +57,7 @@ namespace Veganimus.NovaStar
         {
             _startNextLevelEvent.OnEventRaised -= StartNextLevel;
         }
-        void Start()
+        private void Start()
         {
             _spawnDelay = new WaitForSeconds(5f);
             _nextWaveDelay = new WaitForSeconds(10f);
@@ -60,7 +67,7 @@ namespace Veganimus.NovaStar
             RequestBossWave();
             _trackWaveEvent.RaiseEvent(_currentWave);
         }
-        //Game Manager will call function to get next level from list
+       
         public void StartNextLevel()
         {
             _activeLevel = _levels[_currentLevel];
@@ -86,15 +93,14 @@ namespace Veganimus.NovaStar
             }
             return _enemyWaves;
         }
-        void RequestEnemyWave()
+        private void RequestEnemyWave()
         {
             _enemyWave = _enemyWaves[_currentWave - 1];
             if (_enemyWave != null)
-            {
-                PopulateEnemies();
-            }
+            PopulateEnemies();
+            
         }
-        void PopulateEnemies()
+        private void PopulateEnemies()
         {
             if (_enemyWave != null)
             {
@@ -119,9 +125,8 @@ namespace Veganimus.NovaStar
         private BossWave RequestBossWave()
         {
             if(_activeLevel.bossWave != null)
-            {
-                _levelBossWave = _activeLevel.bossWave;
-            }
+            _levelBossWave = _activeLevel.bossWave;
+            
             return _levelBossWave;
         }
        
@@ -138,7 +143,7 @@ namespace Veganimus.NovaStar
             foreach (var enemy in _enemies)
             {
                 yield return _spawnDelay;
-                enemy.gameObject.transform.position = new Vector3(23.0f,UnityEngine.Random.Range(-7f,9f), 0);
+                enemy.gameObject.transform.position = new Vector3(_rightBound,UnityEngine.Random.Range(_bottomBound,_topBound), 0);
                 enemy.gameObject.SetActive(true);
                 _enemyTracking.EnemySpawnedEvent();
                 _enemyToSpawn--;

@@ -21,17 +21,17 @@ namespace Veganimus.NovaStar
         public Canvas gameOverScreen;
         public Canvas endOfGameScreen;
         [SerializeField] private TMP_Text _levelText, _scoreText, _weaponText;
-        [SerializeField] private GameObject _powerUpTimer;
         [SerializeField] private TMP_Text _incomingWaveText;
-        [SerializeField] private GameObject _incomingWaveTextGO;
         [SerializeField] private Image _bossHealthBar;
+        [SerializeField] private GameObject _incomingWaveTextGO;
+        [SerializeField] private GameObject _powerUpTimer;
         [SerializeField] private GameObject _bossHealthUI;
         private int _bossCurrentHealth = 100;
         private int _bossMaxHealth = 100;
-        private float _cooldownTime = 10.0f;
-        private bool _countdownStarted = false;
         private int _currentWave;
         private int _currentLevel;
+        private float _cooldownTime = 10.0f;
+        private bool _countdownStarted = false;
         private bool _bossWave;
         public static Action<Canvas> continueButton;
 

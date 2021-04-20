@@ -16,28 +16,22 @@ namespace Veganimus.NovaStar
         [SerializeField] private AudioSettingSO _audioSettings;
         [SerializeField] private AudioSource _audioSource;
 
-        void Awake()
+        private void Awake()
         {
             DontDestroyOnLoad(gameObject);
             if(_instance == null)
-            {
-                _instance = gameObject;
-            }
+             _instance = gameObject;
+            
             else
-            {
-                Destroy(gameObject);
-            }
-
+            Destroy(gameObject);
         }
-        void Start()
+        private void Start()
         {
             _audioSource = GetComponent<AudioSource>();
             _audioSource.volume = _audioSettings.volume;
             _audioSource.Play();
         }
-        void Update()
-        {
-            _audioSource.volume = _audioSettings.volume;
-        }
+        private void Update()=> _audioSource.volume = _audioSettings.volume;
+        
     }
 }

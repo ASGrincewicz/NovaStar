@@ -6,7 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/Scenes/Main_Menu.unity
+    guid: 82fd89fd4e0834c669b8136654314071
+  - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: fad59778f677645deb9ac1d42589db7f
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: 542d7ae2df32940908520db74a4b0d01
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: b3d27ed2dd0aa406285f5076bce5a554, type: 2}

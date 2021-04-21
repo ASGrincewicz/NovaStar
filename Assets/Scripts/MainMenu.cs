@@ -20,13 +20,16 @@ namespace Veganimus.NovaStar
         [SerializeField] private Toggle _fullScreenToggle;
         [SerializeField] private Resolution[] _availableRes;
         [SerializeField] private Slider _brightnessSlider;
+        [SerializeField] private Slider _volumeSlider;
         [Header("Listening To")]
         [SerializeField] private LoadSceneEventSO _loadSceneEventSO;
+
+        [SerializeField] private AudioSettingSO _audioSettingsSO;
         private void OnEnable()=> _loadSceneEventSO.OnEventRaised += SceneLoader; 
         
         private void OnDisable()=> _loadSceneEventSO.OnEventRaised -= SceneLoader;
 
-        //private void Start()/*=> _director.Play(); //GetScreenResolution();*/
+        private void Start()=> GetScreenResolution();
 
         private void SceneLoader(string value)
         {

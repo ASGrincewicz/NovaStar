@@ -46,6 +46,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private PoolGORequest _projectileRequest;
         [SerializeField] private PoolGORequest _projectileVFXRequest;
         [SerializeField] private PoolGORequest _bossProjectileRequest;
+        [SerializeField] private PoolGORequest _powerUpRequest;
 
         public static Action clearChildren;
         void Awake() => _instance = this;
@@ -56,6 +57,7 @@ namespace Veganimus.NovaStar
             _projectileRequest.OnGameObjectRequested += RequestProjectile;
             _projectileVFXRequest.OnGameObjectRequested += RequestProjectileVFX;
             _bossProjectileRequest.OnGameObjectRequested += RequestBossProjectile;
+            _powerUpRequest.OnGameObjectIntRequested += RequestPowerUp;
         }
 
         private void OnDisable()
@@ -64,6 +66,7 @@ namespace Veganimus.NovaStar
             _projectileRequest.OnGameObjectRequested -= RequestProjectile;
             _projectileVFXRequest.OnGameObjectRequested -= RequestProjectileVFX;
             _bossProjectileRequest.OnGameObjectRequested -= RequestBossProjectile;
+            _powerUpRequest.OnGameObjectIntRequested -= RequestPowerUp;
         }
 
         private void Start()
@@ -191,8 +194,8 @@ namespace Veganimus.NovaStar
                     _powerUpPrefab = _powerUps[3];
                     break;
             }
-            
-            return _powerUpPrefab;
+           GameObject powerUp = Instantiate(_powerUpPrefab, powerUpContainer.transform);
+           return powerUp;
         }
         
     }

@@ -13,11 +13,23 @@ namespace Veganimus.NovaStar
     {
         public Func<GameObject> OnGameObjectRequested;
 
+        public Func<int, GameObject> OnGameObjectIntRequested;
+
         public GameObject RequestGameObject()
         {
             if (OnGameObjectRequested != null)
             {
                 GameObject obj = OnGameObjectRequested.Invoke();
+                return obj;
+            }
+            else
+                return null;
+        }
+        public GameObject RequestGameObjectInt(int parameter)
+        {
+            if (OnGameObjectIntRequested != null)
+            {
+                GameObject obj = OnGameObjectIntRequested.Invoke(parameter);
                 return obj;
             }
             else

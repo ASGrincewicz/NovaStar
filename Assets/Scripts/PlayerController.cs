@@ -39,6 +39,7 @@ namespace Veganimus.NovaStar
         [Header("Broadcasting On")]
         [SerializeField] private PlaySFXEvent _playSFXEvent;
         [SerializeField] private GameEvent _playerDeadEvent;
+        [SerializeField] private BoolEventSO _shieldUIEvent;
         //[SerializeField] private PlayerWeaponEvent _playerWeaponEvent;//replace with below
         [SerializeField] private WeaponChangeEvent _weaponChangeEvent;
         [SerializeField] private CoRoutineEvent _startPowerUpCoolDown;
@@ -92,6 +93,7 @@ namespace Veganimus.NovaStar
                             _shield.SetActive(true);
                             _shieldActive = true;
                             _playSFXEvent.RaiseSFXEvent("Player", _shieldSFX);
+                            _shieldUIEvent.RaiseBoolEvent(true);
                         }
                         else
                             return;
@@ -116,6 +118,7 @@ namespace Veganimus.NovaStar
                 _shield.SetActive(false);
                 _shieldActive = false;
                 _playSFXEvent.RaiseSFXEvent("Player", _shieldSFX);
+                _shieldUIEvent.RaiseBoolEvent(false);
             }
             else
             {//Camera shake

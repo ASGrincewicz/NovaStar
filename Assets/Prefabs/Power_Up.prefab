@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8669839817956141900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.0273032, y: 4.6168585, z: 0.000000014901161}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 5929966178162456909}
@@ -58,10 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f1b1858062242c58f195901e979b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sphereCastRadius: 0.1
-  _targetLayer:
-    serializedVersion: 2
-    m_Bits: 128
   _powerUpType: {fileID: 11400000, guid: 34c1eab4f0b124289844880753eb1301, type: 2}
   _collectEvent: {fileID: 11400000, guid: a3390f0a7def544d69407db95f0a0843, type: 2}
 --- !u!1 &8913483140313820945

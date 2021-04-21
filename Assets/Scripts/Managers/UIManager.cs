@@ -26,6 +26,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private GameObject _incomingWaveTextGO;
         [SerializeField] private GameObject _powerUpTimer;
         [SerializeField] private GameObject _bossHealthUI;
+        [SerializeField] private GameObject _shieldImage;
         private int _bossCurrentHealth = 100;
         private int _bossMaxHealth = 100;
         private int _currentWave;
@@ -44,6 +45,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private CoRoutineEvent _startCoolDownTimer;
         [SerializeField] private PlayerWeaponEvent _playerWeaponEvent;
         [SerializeField] private InputReaderSO _inputReader;
+        [SerializeField] private BoolEventSO _shieldUIEvent;
         [Header("Broadcasting On")]
         [SerializeField] private LoadSceneEventSO _loadSceneEvent;
         [Space]
@@ -61,6 +63,7 @@ namespace Veganimus.NovaStar
             _inputReader.pauseEvent += OnPauseInput;
             _startCoolDownTimer.OnRoutineStart += StartTimer;
             _bossHealthUIEvent.OnEventRaised += UpdateBossHealth;
+            _shieldUIEvent.OnBoolEventRaised += UpdateShieldUI;
         }
         private void OnDisable()
         {
@@ -72,6 +75,7 @@ namespace Veganimus.NovaStar
             _inputReader.pauseEvent -= OnPauseInput;
             _startCoolDownTimer.OnRoutineStart -= StartTimer;
             _bossHealthUIEvent.OnEventRaised -= UpdateBossHealth;
+            _shieldUIEvent.OnBoolEventRaised -= UpdateShieldUI;
         }
         private void OnPauseInput()
         {
@@ -93,28 +97,30 @@ namespace Veganimus.NovaStar
             UpdateScore(0);
         }
        
-        void StartTimer() => _powerUpTimer.SetActive(true);
+       private void StartTimer() => _powerUpTimer.SetActive(true);
 
-        void UpdateScore(int amount)
+        private void UpdateScore(int amount)
         {
             _playerScore += amount;
             _scoreText.text = $"Score: { _playerScore}";
         }
-        void UpdateWeaponName(string name)=> _weaponText.text = $"Weapon: {name}";
-        void UpdateBossHealth(int bossHealth)
+        private void UpdateWeaponName(string name)=> _weaponText.text = $"Weapon: {name}";
+
+        private void UpdateBossHealth(int bossHealth)
         {
             _bossCurrentHealth = bossHealth;
             float normalizedValue = Mathf.Clamp((float)_bossCurrentHealth / (float)_bossMaxHealth, 0.0f, 1.0f);
             _bossHealthBar.fillAmount = normalizedValue;
         }
-        
-        void TrackWave(int wave)
+        private void UpdateShieldUI(bool shieldOn)=> _shieldImage.SetActive(shieldOn);
+
+        private void TrackWave(int wave)
         {
             _currentWave = wave;
             _levelText.text = $"Level:  { _currentLevel} - { _currentWave}";
             StartCoroutine(IncomingWaveText());
         }
-        void TrackBossWave()
+        private void TrackBossWave()
         {
             _levelText.text = $"Level: {_currentLevel} - Boss";
             _bossWave = true;
@@ -122,7 +128,7 @@ namespace Veganimus.NovaStar
             StartCoroutine(IncomingWaveText());
         }
         
-        void TrackLevel(int level)
+        private void TrackLevel(int level)
         {
             _currentLevel = level;
             _levelText.text = $"Level:  { _currentLevel } -  {_currentWave}";
@@ -144,7 +150,7 @@ namespace Veganimus.NovaStar
         }
         public void QuitGame() => Application.Quit();
 
-        IEnumerator IncomingWaveText()
+        private IEnumerator IncomingWaveText()
         {
             if(_bossWave == false)
              _incomingWaveText.text = $"Wave: {_currentWave} Incoming!";

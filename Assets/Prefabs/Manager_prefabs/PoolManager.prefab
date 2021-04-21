@@ -141,12 +141,13 @@ MonoBehaviour:
   _projectileContiner: {fileID: 1473499422292221727}
   _bulletContainerPrefab: {fileID: 0}
   _projectilePool: []
-  _bossProjectilePrefab: {fileID: 4140978072433156269, guid: ecb404e9dcc9a44f19ca2b20935f21e2, type: 3}
+  _bossProjectilePrefab: {fileID: 4140978072433156269, guid: 40beb55010da54294abcd0a045843c9a, type: 3}
   _bossProjectileContainer: {fileID: 5346352272616832105}
   _bossProjectilePool: []
   _powerUps:
   - {fileID: 4054395830110364153, guid: ad5794fa723164468a47ff4a66a93f85, type: 3}
   - {fileID: 8669839817956141900, guid: 0a14f39be09684ef38f25eeec953af5e, type: 3}
+  - {fileID: 7334643961800842593, guid: 8426fa5aa241745e69b231181a9f845b, type: 3}
   _powerUpPrefab: {fileID: 8669839817956141900, guid: 0a14f39be09684ef38f25eeec953af5e, type: 3}
   powerUpContainer: {fileID: 3833784988686036645}
   bossBulletMagazine: {fileID: 5346352272616832105}
@@ -157,6 +158,7 @@ MonoBehaviour:
   _projectileRequest: {fileID: 11400000, guid: 736ebb49090cb479593f93fc24c6cdd7, type: 2}
   _projectileVFXRequest: {fileID: 11400000, guid: 613ea06b674204bb4956151a3d6974a5, type: 2}
   _bossProjectileRequest: {fileID: 11400000, guid: bcc2b09f5fdab4ef49ee285fa0653309, type: 2}
+  _powerUpRequest: {fileID: 11400000, guid: 41378fe3a993c414881382123f8a622b, type: 2}
 --- !u!1001 &9200870142050437888
 PrefabInstance:
   m_ObjectHideFlags: 0

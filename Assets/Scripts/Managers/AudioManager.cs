@@ -10,11 +10,15 @@ namespace Veganimus.NovaStar
     {
         private static GameObject _instance;
         [SerializeField] private AudioSettingSO _audioSettings;
-        [SerializeField] private AudioSource _playerAudio;
-        [SerializeField] private AudioSource _enemyAudio;
-        [SerializeField] private AudioSource _backgroundMusic;
+        [SerializeField] private AudioSource _audio;
+        [Header("Background Music")]
+        [SerializeField] private AudioClip _mainBGMusic;
+        [SerializeField] private AudioClip _secondaryBGmusic;
+        [SerializeField] private AudioClip _bossMusic;
         [Header("Listening To")]
         [SerializeField] private PlaySFXEvent _playSFXEvent;
+        [SerializeField] private intEventSO _trackWaveEvent;
+        [SerializeField] private GameEvent _trackBossWave;
 
         private void Awake()
         {
@@ -28,40 +32,47 @@ namespace Veganimus.NovaStar
         private void OnEnable()
         {
             _playSFXEvent.OnSFXEventRaised += PlaySFX;
+            _trackWaveEvent.OnEventRaised += ChangeMusic;
+
+            _trackBossWave.OnEventRaised += () =>
+            {
+                _audio.clip = _bossMusic;
+                _audio.Play();
+            };
         }
         private void OnDisable()
         {
             _playSFXEvent.OnSFXEventRaised -= PlaySFX;
+            _trackWaveEvent.OnEventRaised -= ChangeMusic;
         }
         private void Start()
         {
-            _playerAudio= GetComponentInChildren<AudioSource>();
-            _enemyAudio = GetComponentInChildren<AudioSource>();
-            _backgroundMusic = GetComponentInChildren<AudioSource>();
-            _playerAudio.volume = _audioSettings.volume;
-            _enemyAudio.volume = _audioSettings.volume;
-            _backgroundMusic.volume = _audioSettings.volume;
-            _backgroundMusic.Play();
+            _audio = GetComponentInChildren<AudioSource>();
+            _audio.volume = _audioSettings.volume;
+            _audio.clip = _mainBGMusic;
+            _audio.Play();
         }
-        private void Update()
-        {
-            _playerAudio.volume = _audioSettings.volume;
-            _enemyAudio.volume = _audioSettings.volume;
-            _backgroundMusic.volume = _audioSettings.volume;
-        }
+        private void Update()=> _audio.volume = _audioSettings.volume;
 
-        private void PlaySFX(string source, AudioClip clipToPlay)
+        private void PlaySFX(string source, AudioClip clipToPlay) => _audio.PlayOneShot(clipToPlay);
+       
+        private void ChangeMusic(int wave)
         {
-            switch(source)
+            if (wave == 1 || wave == 4)
             {
-                case "Player":
-                    _playerAudio.PlayOneShot(clipToPlay);
-                    break;
-                case "Enemy":
-                    _enemyAudio.PlayOneShot(clipToPlay);
-                    break;
-                default:
-                    break;
+                switch (wave)
+                {
+                    case 1:
+                        _audio.clip = _mainBGMusic;
+                        _audio.Play();
+                        break;
+                    case 4:
+                        _audio.clip = _secondaryBGmusic;
+                        _audio.Play();
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         

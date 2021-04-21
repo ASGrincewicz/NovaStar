@@ -51,11 +51,12 @@ MonoBehaviour:
   _levelText: {fileID: 0}
   _scoreText: {fileID: 0}
   _weaponText: {fileID: 0}
-  _powerUpTimer: {fileID: 0}
   _incomingWaveText: {fileID: 0}
-  _incomingWaveTextGO: {fileID: 0}
   _bossHealthBar: {fileID: 0}
+  _incomingWaveTextGO: {fileID: 0}
+  _powerUpTimer: {fileID: 0}
   _bossHealthUI: {fileID: 0}
+  _shieldImage: {fileID: 0}
   _updateScoreChannel: {fileID: 11400000, guid: 162717f3763e646df8af5df4528deadf, type: 2}
   _trackWaveEvent: {fileID: 11400000, guid: c2f66dcd5d3464ed698ae72af2602413, type: 2}
   _bossHealthUIEvent: {fileID: 11400000, guid: 771c079859e0c4d3b91639545d7ad042, type: 2}
@@ -64,5 +65,6 @@ MonoBehaviour:
   _startCoolDownTimer: {fileID: 11400000, guid: 1c46226f10b634c748fbbe7f050bdad3, type: 2}
   _playerWeaponEvent: {fileID: 11400000, guid: dffd77a8754f64ed38d99bce70f2301f, type: 2}
   _inputReader: {fileID: 11400000, guid: 324a74f8cc92140b5bce154114f7b3af, type: 2}
+  _shieldUIEvent: {fileID: 11400000, guid: 123f106f1ea394ed8b52eb9fc72c1812, type: 2}
   _loadSceneEvent: {fileID: 11400000, guid: d27cb486527e849aeae2e1e3c195389c, type: 2}
   _playerScore: 0

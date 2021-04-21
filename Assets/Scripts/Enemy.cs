@@ -13,9 +13,12 @@ namespace Veganimus.NovaStar
         private AudioClip _shootSound => _enemyClass.shootSound;
         private AudioClip _damageSound => _enemyClass.damageSound;
         private AudioClip _deathSound => _enemyClass.deathSound;
+        [SerializeField] private List<GameObject> _damageVFX;
         private int _damageAmount;
         [SerializeField] private EnemyClass _enemyClass;
         [SerializeField] private Transform _fireOffset;
+        [SerializeField] private Transform _fireOffset2;
+        [SerializeField] private bool _hasAltWeapon;
         [SerializeField] private Vector3 _shootDirection;
         [SerializeField] private float _firePower;
         private string _enemyName => _enemyClass.enemyName;
@@ -41,6 +44,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private intEventSO _updateScoreChannel;
         [SerializeField] private EnemyTrackerChannel _enemyTracking;
         [SerializeField] private PlaySFXEvent _playSFXEvent;
+        [SerializeField] private PoolGORequest _requestPowerUpDrop;
 
         private void Awake()
         {
@@ -65,7 +69,8 @@ namespace Veganimus.NovaStar
         }
         private void Start()
         {
-            _chance = UnityEngine.Random.Range(0, 20);
+            _chance = Random.Range(0, 20);
+            Debug.Log($"Drop chance is{_chance}");
             _rigidbody = GetComponent<Rigidbody>();
         }
         private void Update()
@@ -74,7 +79,11 @@ namespace Veganimus.NovaStar
             if (_hasWeapon)
             {
                 if (Time.time > _canFire)
-                 Shoot();
+                {
+                    Shoot();
+                    if (_hasAltWeapon)
+                        AltShoot();
+                }
             }
             if(_hp <= 0)
             {
@@ -82,7 +91,9 @@ namespace Veganimus.NovaStar
                 _enemyTracking.EnemyDestroyedEvent();
                 if (_chance >= 10)
                 {
-                    Instantiate(_itemDrop, transform.position, Quaternion.identity, PoolManager.Instance.powerUpContainer.transform);
+                    GameObject itemDrop = _requestPowerUpDrop.RequestGameObjectInt(scoreTier);
+                    itemDrop.transform.position = transform.position;
+                    itemDrop.SetActive(true);
                 }
                 Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
@@ -96,9 +107,9 @@ namespace Veganimus.NovaStar
         private void Movement()
         {
             transform.Translate(Vector3.left * _speed * Time.deltaTime);
-          
+
             if (transform.position.x < -20f)
-            _hp -= _hp;
+                Destroy(this.gameObject);
             
         }
         private void Shoot()
@@ -109,6 +120,14 @@ namespace Veganimus.NovaStar
             _playSFXEvent.RaiseSFXEvent("Enemy", _shootSound);
             StartCoroutine(EnemyFireRoutine());
         }
+        private void AltShoot()
+        {
+            _canFire = Time.time + (_fireRate * 2);
+            GameObject enemyBullet = Instantiate(_weapon, this.gameObject.transform);
+            enemyBullet.transform.position = _fireOffset2.transform.position;
+            _playSFXEvent.RaiseSFXEvent("Enemy", _shootSound);
+            StartCoroutine(EnemyFireRoutine());
+        }
         private void Damage()
         {
             if (_enemyClass.hasShield == true && _shieldOn == true)
@@ -116,10 +135,28 @@ namespace Veganimus.NovaStar
             
             else
             {
+                int damageVFX_chance = Random.Range(0, 10);
+                if (damageVFX_chance > 5)
+                {
+                    GameObject dVFX = ActivateDamageVFX();
+                }
                 _playSFXEvent.RaiseSFXEvent("Enemy", _damageSound);
                 _updateScoreChannel.RaiseEvent(scoreTier / 5);
                 _hp --;
             }
+        }
+        private GameObject ActivateDamageVFX()
+        {
+            foreach (GameObject obj in _damageVFX)
+            {
+                if (obj.activeSelf == false)
+                {
+                    obj.SetActive(true);
+                    return obj;
+                }
+            }
+            GameObject go = null;
+            return null;
         }
         private void OnTriggerEnter(Collider other)
         {

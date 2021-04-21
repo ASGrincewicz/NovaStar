@@ -40,9 +40,10 @@ namespace Veganimus.NovaStar
         [SerializeField] private PlaySFXEvent _playSFXEvent;
         [SerializeField] private GameEvent _playerDeadEvent;
         [SerializeField] private BoolEventSO _shieldUIEvent;
-        //[SerializeField] private PlayerWeaponEvent _playerWeaponEvent;//replace with below
         [SerializeField] private WeaponChangeEvent _weaponChangeEvent;
         [SerializeField] private CoRoutineEvent _startPowerUpCoolDown;
+        [SerializeField] private intEventSO _upgradeTracker;
+        [SerializeField] private intEventSO _powerUpTracker;
         private WaitForSeconds _damageCoolDown;
         private WaitForSeconds _powerUpCoolDown;
         private WaitForSeconds _powerUpEffectTimer;
@@ -78,21 +79,24 @@ namespace Veganimus.NovaStar
         
        private void PowerUpCollect(int id)
         {
+            _playSFXEvent.OnSFXEventRaised("Player", _powerUpSFX);
             if (_powerUpActive == false)
             {
                 switch (id)
                 {
                     case 0:
-                        if (_currentWeaponID < _maxUpgrade -1)
+                        if (_currentWeaponID < _maxUpgrade -2)
                         _weaponChangeEvent.RaiseWeaponChangeEvent(true, false, _currentWeaponID++);
-                         _playSFXEvent.OnSFXEventRaised("Player", _powerUpSFX);
+                        _upgradeTracker.RaiseEvent(0);
+                        // _playSFXEvent.OnSFXEventRaised("Player", _powerUpSFX);
                         break;
                     case 1:
                         if (_shieldActive == false)
                         {
                             _shield.SetActive(true);
                             _shieldActive = true;
-                            _playSFXEvent.RaiseSFXEvent("Player", _shieldSFX);
+                            _powerUpTracker.RaiseEvent(0);
+                            //_playSFXEvent.RaiseSFXEvent("Player", _shieldSFX);
                             _shieldUIEvent.RaiseBoolEvent(true);
                         }
                         else
@@ -102,7 +106,7 @@ namespace Veganimus.NovaStar
                         _powerUpActive = true;
                         _lastWeaponID = _currentWeaponID;
                         _weaponChangeEvent.RaiseWeaponChangeEvent(false, true, 3);
-                        _playSFXEvent.OnSFXEventRaised("Player", _powerUpSFX);
+                        _powerUpTracker.RaiseEvent(0);
                         StartCoroutine(PowerUpCoolDown());
                         break;
                 }

@@ -13,6 +13,7 @@ namespace Veganimus.NovaStar
     public class EndGame : MonoBehaviour
     {
         [SerializeField] private Canvas _endGameScreen;
+        [SerializeField] private TMP_Text _finalScore;
         [SerializeField] private Slider _enemyKilledSlider;
         [SerializeField] private Slider _weaponUpgradesSlider;
         [SerializeField] private Slider _powerUpsCollectedSlider;
@@ -28,7 +29,13 @@ namespace Veganimus.NovaStar
 
         private void Start()
         {
-          
+            _finalScore.text = ($"Final Score:{_playerRecords.RecentScore}");
+            if (_playerRecords.RecentScore > _playerRecords.HighScore)
+                _playerRecords.HighScore = _playerRecords.RecentScore;
+
+            _enemyKilledSlider.value = _playerRecords.Kills / _playerRecords.Spawns;
+            _weaponUpgradesSlider.value = _playerRecords.Upgrades/100;
+            _powerUpsCollectedSlider.value = _playerRecords.PowerUps/100;
         }
 
 

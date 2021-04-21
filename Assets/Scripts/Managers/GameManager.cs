@@ -50,24 +50,24 @@ namespace Veganimus.NovaStar
             _loadSceneEventSO.OnEventRaised -= LoadSceneCalled;
             _endGameEvent.OnEventRaised -= EndGame;
         }
-        void Start()
+       private void Start()
         {
             Time.timeScale = 1.0f;
             _trackLevelEvent.OnEventRaised(_currentLevel);
         }
-        void Update()
+        private void Update()
         {
             if(_enemiesDestroyed == _enemiesSpawned && levelComplete == true)
             EndGame();
             
         }
-        void LoadSceneCalled(string scene)
+        private void LoadSceneCalled(string scene)
         {
             SceneManager.LoadScene(scene);
             Time.timeScale = 1;
         }
       
-        void ContinueInput(Canvas activeCanvas)
+        private void ContinueInput(Canvas activeCanvas)
         {
             switch(activeCanvas.name)
             {

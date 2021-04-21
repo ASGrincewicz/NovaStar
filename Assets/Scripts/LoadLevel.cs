@@ -2,13 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 namespace Veganimus.NovaStar
 {
     public class LoadLevel : MonoBehaviour
     {
 
         [SerializeField] private Image _progessBar;
-        [SerializeField] private Text _loadingProgress;
+        [SerializeField] private TMP_Text _loadingProgress;
 
         void Start()
         {

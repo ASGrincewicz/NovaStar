@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Playables;
+//using UnityEngine.Playables;
 using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class MainMenu : MonoBehaviour
     {
-        [SerializeField] private PlayableDirector _director;
+        //[SerializeField] private PlayableDirector _director;
         [Header("Main Menu UI")]
         [SerializeField] private GameObject _optionsMenu;
         [SerializeField] private TMP_Dropdown _resolutionDropDown;
@@ -26,14 +26,14 @@ namespace Veganimus.NovaStar
         
         private void OnDisable()=> _loadSceneEventSO.OnEventRaised -= SceneLoader;
 
-        void Start()=> _director.Play(); //GetScreenResolution();
+        //private void Start()/*=> _director.Play(); //GetScreenResolution();*/
 
-        void SceneLoader(string value)
+        private void SceneLoader(string value)
         {
             switch(value)
             {
                 case "Main_Menu":
-                    _director.Play();
+                    //_director.Play();
                     break;
                 case "Loading":
                     SceneManager.LoadScene("Loading");
@@ -41,16 +41,18 @@ namespace Veganimus.NovaStar
             }
         }
         public void QuitGame() => Application.Quit();
+
+        public void GameDevHQButton()
+        {
+            Application.OpenURL("http://www.GameDevHQ.com");
+        }
 #if UNITY_STANDALONE
         public void GetScreenResolution()
         {
             _availableRes = Screen.resolutions;
             List<string> reso = new List<string>();
             foreach (var res in _availableRes)
-            {
-                reso.Add(res.ToString());
-            }
-            Debug.Log(message: "Resolution:" + _availableRes.ToString());
+             reso.Add(res.ToString());
             _resolutionDropDown.AddOptions(reso);
         }
         public void ChangeResolution()
@@ -58,21 +60,15 @@ namespace Veganimus.NovaStar
             var height = _availableRes[_resolutionDropDown.value - 1].height;
             var width = _availableRes[_resolutionDropDown.value - 1].width;
             Screen.SetResolution(width, height, false);
-            Debug.Log(message: "Selected Res:" + width + height);
         }
         public void FullScreenToggle()
         {
             if (_fullScreenToggle.isOn == true)
-            {
-                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
-            }
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            
             else
-            {
-                Screen.fullScreenMode = FullScreenMode.Windowed;
-            }
-            Debug.Log(message: "Screeen mode: " + Screen.fullScreen + "Selected mode" + _fullScreenToggle.isOn); ;
+            Screen.fullScreenMode = FullScreenMode.Windowed;
         }
-
         public void ChangeBrightness() => Screen.brightness = _brightnessSlider.value;
 #endif
     }

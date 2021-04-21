@@ -338,10 +338,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7470909482686526579, guid: 79db0dd03e9d54790ae750a533fd6122, type: 3}
-      propertyPath: _currentWave
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 8989726957191764296, guid: 79db0dd03e9d54790ae750a533fd6122, type: 3}
       propertyPath: m_Name
       value: SpawnManager
@@ -5785,6 +5781,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 293365205}
     - target: {fileID: 2028625556790276037, guid: 903a44399027742668cd219674f00022, type: 3}
+      propertyPath: _shieldImage
+      value: 
+      objectReference: {fileID: 2146787046}
+    - target: {fileID: 2028625556790276037, guid: 903a44399027742668cd219674f00022, type: 3}
       propertyPath: _bossHealthUI
       value: 
       objectReference: {fileID: 479149017}
@@ -5908,10 +5908,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7114952896139399666, guid: 69bdc0daff04442c79ed0dfe685b6127, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69bdc0daff04442c79ed0dfe685b6127, type: 3}
 --- !u!1 &1576166805
@@ -6019,10 +6015,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 876093842627084324, guid: 95c1d9c96bbd1470d9616a2d5a44c117, type: 3}
-      propertyPath: m_Volume
-      value: 0.232
-      objectReference: {fileID: 0}
     - target: {fileID: 6146365228978456418, guid: 95c1d9c96bbd1470d9616a2d5a44c117, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -6461,18 +6453,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7126750937861517065, guid: d0eac1c144bcb4f1d95d7f9e236c543f, type: 3}
-      propertyPath: _powerUpRequest
-      value: 
-      objectReference: {fileID: 11400000, guid: 41378fe3a993c414881382123f8a622b, type: 2}
-    - target: {fileID: 7126750937861517065, guid: d0eac1c144bcb4f1d95d7f9e236c543f, type: 3}
-      propertyPath: _powerUps.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7126750937861517065, guid: d0eac1c144bcb4f1d95d7f9e236c543f, type: 3}
-      propertyPath: _powerUps.Array.data[2]
-      value: 
-      objectReference: {fileID: 7334643961800842593, guid: 8426fa5aa241745e69b231181a9f845b, type: 3}
     - target: {fileID: 8378779022571050922, guid: d0eac1c144bcb4f1d95d7f9e236c543f, type: 3}
       propertyPath: m_Name
       value: PoolManager
@@ -6746,6 +6726,11 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &2146787046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3389155498379521389, guid: 69bdc0daff04442c79ed0dfe685b6127, type: 3}
+  m_PrefabInstance: {fileID: 1389669763}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3694192783997212056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6753,6 +6738,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3508733170712618738, guid: d3a8687103ba54e8c9a2f48709b976d7, type: 3}
+      propertyPath: _shieldUIEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 123f106f1ea394ed8b52eb9fc72c1812, type: 2}
     - target: {fileID: 3508733170712618740, guid: d3a8687103ba54e8c9a2f48709b976d7, type: 3}
       propertyPath: m_Name
       value: Player

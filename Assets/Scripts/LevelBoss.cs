@@ -19,6 +19,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private int _hp = 100;
         [SerializeField] private int _scoreTier;
         [SerializeField] private List<Transform> _firePositions;
+        [SerializeField] private Vector3 _projectileShootPos;
         [SerializeField] private GameObject _explosionPrefab;
         [SerializeField] private Animator _anim;
         [Header("Sound Effects")]
@@ -40,6 +41,8 @@ namespace Veganimus.NovaStar
                     if(_anim == null)
                      Debug.LogError("Animator is null");
                 }
+            _projectileShootPos = new Vector3(_firePositions[_currentFirePositions].transform.position.x,
+                                            _firePositions[_currentFirePositions].transform.position.y, 0);
         }
         private void Damage()
         {
@@ -60,8 +63,8 @@ namespace Veganimus.NovaStar
         private void Shoot()//Called with Animation Events
         {
             GameObject bossBullet = _bossProjRequest.RequestGameObject();
-            _currentFirePositions = UnityEngine.Random.Range(0, 3);
-            bossBullet.transform.position = _firePositions[_currentFirePositions].transform.position;
+            _currentFirePositions = Random.Range(0, 3);
+            bossBullet.transform.position = _projectileShootPos;
             _playSFXEvent.RaiseSFXEvent("Enemy",_shootSound);
         }
         private void OnTriggerEnter(Collider other)

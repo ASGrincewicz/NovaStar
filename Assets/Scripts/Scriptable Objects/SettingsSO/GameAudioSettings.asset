@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GameAudioSettings
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: e538739eb4c154daeb03f862e3628c15, type: 2}
-  _audioSource: {fileID: 0}
+  volume: 0.096

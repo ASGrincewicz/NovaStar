@@ -4787,6 +4787,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1581954742534845144, guid: 642a9eb9f67d14eedbf240b475853d4e, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: db5a99617357e40509eaa2d1eabdda4d, type: 3}
+    - target: {fileID: 1581954742534845144, guid: 642a9eb9f67d14eedbf240b475853d4e, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: db5a99617357e40509eaa2d1eabdda4d, type: 3}
+    - target: {fileID: 1581954742534845144, guid: 642a9eb9f67d14eedbf240b475853d4e, type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: db5a99617357e40509eaa2d1eabdda4d, type: 3}
+    - target: {fileID: 1581954742534845144, guid: 642a9eb9f67d14eedbf240b475853d4e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -4806,5 +4818,9 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Veganimus.NovaStar.MainMenu, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 1581954742534845145, guid: 642a9eb9f67d14eedbf240b475853d4e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: eaaceb91695444650a348cdb5389f6b4, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 642a9eb9f67d14eedbf240b475853d4e, type: 3}

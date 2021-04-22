@@ -20,6 +20,8 @@ namespace Veganimus.NovaStar
         [SerializeField] private int _scoreTier;
         [SerializeField] private List<Transform> _firePositions;
         [SerializeField] private Vector3 _projectileShootPos;
+        [SerializeField] private GameObject _cannonFireVFX;
+        [SerializeField] private List<GameObject> _damageVFX;
         [SerializeField] private GameObject _explosionPrefab;
         [SerializeField] private Animator _anim;
         [Header("Sound Effects")]
@@ -41,11 +43,17 @@ namespace Veganimus.NovaStar
                     if(_anim == null)
                      Debug.LogError("Animator is null");
                 }
-            //_projectileShootPos = new Vector3(_firePositions[_currentFirePositions].transform.position.x,
-            //                                _firePositions[_currentFirePositions].transform.position.y, 0);
         }
         private void Damage()
         {
+
+            int damageVFX_chance = Random.Range(0, 10);
+            if (damageVFX_chance > 5)
+            {
+                GameObject dVFX = ActivateDamageVFX();
+            }
+
+
             _playSFXEvent.RaiseSFXEvent("Enemy", _damageSound);
             _hp--;
             _updateScoreChannel.RaiseEvent(_scoreTier / 40);
@@ -58,12 +66,26 @@ namespace Veganimus.NovaStar
                 Destroy(this.gameObject);
             }
         }
+        private GameObject ActivateDamageVFX()
+        {
+            foreach (GameObject obj in _damageVFX)
+            {
+                if (obj.activeSelf == false)
+                {
+                    obj.SetActive(true);
+                    return obj;
+                }
+            }
+            GameObject go = null;
+            return null;
+        }
         private void TriggerAttackPattern(AttackPattern pattern) => _anim.SetInteger("Pattern", (int)pattern);
 
         private void Shoot()//Called with Animation Events
         {
             GameObject bossBullet = _bossProjRequest.RequestGameObject();
             _currentFirePositions = Random.Range(0, 3);
+            GameObject cannonVFX = Instantiate(_cannonFireVFX, _firePositions[_currentFirePositions].transform.position, Quaternion.identity);
             bossBullet.transform.position = _firePositions[_currentFirePositions].transform.position;
             _playSFXEvent.RaiseSFXEvent("Enemy",_shootSound);
         }

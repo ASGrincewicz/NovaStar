@@ -41,8 +41,8 @@ namespace Veganimus.NovaStar
                     if(_anim == null)
                      Debug.LogError("Animator is null");
                 }
-            _projectileShootPos = new Vector3(_firePositions[_currentFirePositions].transform.position.x,
-                                            _firePositions[_currentFirePositions].transform.position.y, 0);
+            //_projectileShootPos = new Vector3(_firePositions[_currentFirePositions].transform.position.x,
+            //                                _firePositions[_currentFirePositions].transform.position.y, 0);
         }
         private void Damage()
         {
@@ -64,7 +64,7 @@ namespace Veganimus.NovaStar
         {
             GameObject bossBullet = _bossProjRequest.RequestGameObject();
             _currentFirePositions = Random.Range(0, 3);
-            bossBullet.transform.position = _projectileShootPos;
+            bossBullet.transform.position = _firePositions[_currentFirePositions].transform.position;
             _playSFXEvent.RaiseSFXEvent("Enemy",_shootSound);
         }
         private void OnTriggerEnter(Collider other)

@@ -417,7 +417,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -75, y: 0}
-  m_SizeDelta: {x: 500, y: 600}
+  m_SizeDelta: {x: 550, y: 600}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &414613112
 CanvasRenderer:
@@ -3027,12 +3027,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endGameScreen: {fileID: 6192229304069373198}
+  _finalScore: {fileID: 6031828818621478977}
   _enemyKilledSlider: {fileID: 1647459950}
   _weaponUpgradesSlider: {fileID: 2125386573}
   _powerUpsCollectedSlider: {fileID: 708764826}
-  _enemyReward: {fileID: 0}
-  _powerUpReward: {fileID: 0}
-  _upgradeReward: {fileID: 0}
+  _enemyReward: {fileID: 1082049372}
+  _powerUpReward: {fileID: 430536889}
+  _upgradeReward: {fileID: 94786798}
+  _scoreMultiplier: {fileID: 5574575356904658462}
+  _totalReward: {fileID: 1640112308}
   _loadSceneEvent: {fileID: 11400000, guid: d27cb486527e849aeae2e1e3c195389c, type: 2}
   _playerRecords: {fileID: 11400000, guid: 84a44c0af272b49deb981536a4821fa2, type: 2}
 --- !u!1 &8350211344886014677
@@ -3047,7 +3050,7 @@ GameObject:
   - component: {fileID: 3303169416367038704}
   - component: {fileID: 5574575356904658462}
   m_Layer: 5
-  m_Name: Upgrade_reward_text (1)
+  m_Name: Score_bonus_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3100,7 +3103,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score Multiplier:'
+  m_text: 'Score Bonus:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3381,8 +3384,36 @@ PrefabInstance:
       value: 0.053800277
       objectReference: {fileID: 0}
     - target: {fileID: 2668565598113360094, guid: 568511344f33f40669f6befb754e59c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668565598113360094, guid: 568511344f33f40669f6befb754e59c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668565598113360094, guid: 568511344f33f40669f6befb754e59c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 84a44c0af272b49deb981536a4821fa2, type: 2}
+    - target: {fileID: 2668565598113360094, guid: 568511344f33f40669f6befb754e59c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668565598113360094, guid: 568511344f33f40669f6befb754e59c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: NewGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668565598113360094, guid: 568511344f33f40669f6befb754e59c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Veganimus.NovaStar.PlayerStats, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668565598113360094, guid: 568511344f33f40669f6befb754e59c5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: Main_Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2668565598113360094, guid: 568511344f33f40669f6befb754e59c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 568511344f33f40669f6befb754e59c5, type: 3}

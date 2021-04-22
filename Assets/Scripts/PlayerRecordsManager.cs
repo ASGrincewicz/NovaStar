@@ -34,6 +34,16 @@ namespace Veganimus.NovaStar
             _updateScoreChannel.OnEventRaised += TrackScore;
             _enemyTracking.OnEnemyDestroyed += TrackKills;
             _enemyTracking.OnEnemySpawned += TrackSpawns;
+            _upgradeTracker.OnEventRaised += TrackUpgrade;
+            _powerUpTracker.OnEventRaised += TrackPowerUp;
+        }
+        private void OnDisable()
+        {
+            _updateScoreChannel.OnEventRaised -= TrackScore;
+            _enemyTracking.OnEnemyDestroyed -= TrackKills;
+            _enemyTracking.OnEnemySpawned -= TrackSpawns;
+            _upgradeTracker.OnEventRaised -= TrackUpgrade;
+            _powerUpTracker.OnEventRaised -= TrackPowerUp;
         }
         private void TrackScore(int score)=> _playerRecords.RecentScore += score;
 
@@ -41,9 +51,9 @@ namespace Veganimus.NovaStar
 
         private void TrackSpawns() => _playerRecords.Spawns++;
 
-        private void TrackUpgrade() => _playerRecords.Upgrades++;
+        private void TrackUpgrade(int value) => _playerRecords.Upgrades++;
 
-        private void TrackPowerUp() => _playerRecords.PowerUps++;
+        private void TrackPowerUp(int value) => _playerRecords.PowerUps++;
         
     }
 }

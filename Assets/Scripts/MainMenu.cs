@@ -21,15 +21,22 @@ namespace Veganimus.NovaStar
         [SerializeField] private Resolution[] _availableRes;
         [SerializeField] private Slider _brightnessSlider;
         [SerializeField] private Slider _volumeSlider;
+        [SerializeField] private TMP_Text _highScoreText;
+        [SerializeField] private TMP_Text _availableCurrency;
         [Header("Listening To")]
         [SerializeField] private LoadSceneEventSO _loadSceneEventSO;
-
+        [SerializeField] private PlayerStats _playerRecords;
         [SerializeField] private AudioSettingSO _audioSettingsSO;
         private void OnEnable()=> _loadSceneEventSO.OnEventRaised += SceneLoader; 
         
         private void OnDisable()=> _loadSceneEventSO.OnEventRaised -= SceneLoader;
 
-        private void Start()=> GetScreenResolution();
+        private void Start()
+        {
+            _highScoreText.text = $"High Score:{_playerRecords.HighScore}";
+            _availableCurrency.text = $"Credits: ${_playerRecords.Currency}";
+            GetScreenResolution();
+        }
 
         private void SceneLoader(string value)
         {

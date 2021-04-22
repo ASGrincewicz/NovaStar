@@ -23,5 +23,12 @@ namespace Veganimus.NovaStar
             HighScore = 0;
             RecentScore = 0;
         }
+        public void NewGame()
+        {
+            Kills = 0;
+            Spawns = 0;
+            Upgrades = 0;
+            PowerUps = 0;
+        }
     }
 }

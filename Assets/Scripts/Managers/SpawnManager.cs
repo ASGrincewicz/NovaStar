@@ -53,10 +53,8 @@ namespace Veganimus.NovaStar
             _startNextLevelEvent.OnEventRaised += StartNextLevel;
             _nextLevelRoutineEvent.OnEventRaised += () => StartCoroutine(NextLevelRoutine(true));
         }
-        private void OnDisable()
-        {
-            _startNextLevelEvent.OnEventRaised -= StartNextLevel;
-        }
+        private void OnDisable()=> _startNextLevelEvent.OnEventRaised -= StartNextLevel;
+        
         private void Start()
         {
             _spawnDelay = new WaitForSeconds(5f);
@@ -68,7 +66,7 @@ namespace Veganimus.NovaStar
             _trackWaveEvent.RaiseEvent(_currentWave);
         }
        
-        public void StartNextLevel()
+        private void StartNextLevel()
         {
             _activeLevel = _levels[_currentLevel];
             _trackLevelEvent.OnEventRaised(_currentLevel);
@@ -138,7 +136,7 @@ namespace Veganimus.NovaStar
                 boss.transform.position = _bossSpawnPos.transform.position;
             }
         }
-        public IEnumerator SpawnEnemy()
+       private IEnumerator SpawnEnemy()
         {
             foreach (var enemy in _enemies)
             {
@@ -154,9 +152,8 @@ namespace Veganimus.NovaStar
                 }
             }
         }
-        public IEnumerator NextWaveRoutine()
+        private IEnumerator NextWaveRoutine()
         {
-            Debug.Log("Next Wave");
             _enemies.Clear();
             _waveComplete = true;
             _enemyWave = null;
@@ -173,7 +170,7 @@ namespace Veganimus.NovaStar
                 RequestEnemyWave();
             }
         }
-       public IEnumerator NextLevelRoutine(bool bossDead)
+       private IEnumerator NextLevelRoutine(bool bossDead)
         {
             if (bossDead == true)
             {

@@ -76,7 +76,6 @@ namespace Veganimus.NovaStar
                     return obj;
                 }
             }
-            GameObject go = null;
             return null;
         }
         private void TriggerAttackPattern(AttackPattern pattern) => _anim.SetInteger("Pattern", (int)pattern);

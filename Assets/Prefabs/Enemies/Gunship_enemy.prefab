@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62736ead0c18f4b1080402356b1ef443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyMovementSO: {fileID: 11400000, guid: 169075e5b76e34083961bc8809842e18, type: 2}
   _damageVFX:
   - {fileID: 3430867437251621681}
   - {fileID: 8806254254588578635}
@@ -114,7 +115,6 @@ MonoBehaviour:
   _shieldOn: 0
   _weapon: {fileID: 4140978072433156269, guid: ecb404e9dcc9a44f19ca2b20935f21e2, type: 3}
   _shield: {fileID: 0}
-  _moveDirection: {x: -1, y: 0, z: 0}
   _updateScoreChannel: {fileID: 11400000, guid: 162717f3763e646df8af5df4528deadf, type: 2}
   _enemyTracking: {fileID: 11400000, guid: f97016cdce5004efb98ce56800a41802, type: 2}
   _playSFXEvent: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}

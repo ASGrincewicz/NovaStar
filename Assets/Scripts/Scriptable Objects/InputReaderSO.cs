@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -31,9 +30,7 @@ namespace Veganimus
            // _controls.Player.Roll.performed += OnRoll;
             _controls.Player.Shoot.performed += OnShoot;
             _controls.Player.Pause.performed += OnPause;
-
         }
-
         
         private void OnDisable()
         {

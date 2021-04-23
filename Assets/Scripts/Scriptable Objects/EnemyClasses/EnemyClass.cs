@@ -13,8 +13,8 @@ namespace Veganimus.NovaStar
         public string enemyName;
         public int scoreTier;
         public int hp;
-        public int shieldHP;
         public float speed;
+        public int shieldHP;
         public float fireRate;
         public bool hasShield;
         public bool hasWeapon;

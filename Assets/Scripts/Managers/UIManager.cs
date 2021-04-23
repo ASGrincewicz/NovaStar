@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 namespace Veganimus.NovaStar
 {
@@ -141,7 +139,7 @@ namespace Veganimus.NovaStar
             activeCanvas.gameObject.SetActive(false);
             continueButton(activeCanvas);
         }
-        public void GameOver(bool isOver)
+        private void GameOver(bool isOver)
         {
             gameOverScreen.gameObject.SetActive(isOver);
             _hUD_Canvas.gameObject.SetActive(false);

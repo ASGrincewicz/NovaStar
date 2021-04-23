@@ -184,7 +184,7 @@ namespace Veganimus.NovaStar
             _shipModel.SetActive(false);
             yield return new WaitForSeconds(2.0f);
             _playerDeadEvent.RaiseEvent();
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

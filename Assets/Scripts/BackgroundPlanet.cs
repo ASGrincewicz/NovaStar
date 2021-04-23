@@ -14,10 +14,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private GameObject _currentPlanet;
         private int _planetToSpawn = 0;
 
-        private void Start()
-        {
-            _currentPlanet = _planets[0];
-        }
+        private void Start()=> _currentPlanet = _planets[0];
 
         private void Update()
         {
@@ -38,8 +35,6 @@ namespace Veganimus.NovaStar
                 _planetToSpawn++;
                 GameObject planet = _planets[_planetToSpawn];
                 planet.transform.position = transform.position;
-                float yPos = planet.transform.position.y;
-                yPos = Random.Range(-3, 5);
                 planet.transform.rotation = Quaternion.identity;
                 planet.SetActive(true);
                 _currentPlanet = planet;

@@ -493,6 +493,8 @@ MonoBehaviour:
   _damageVFX:
   - {fileID: 8048753642388582449}
   - {fileID: 4046788513689954771}
+  - {fileID: 7028866480759764509}
+  - {fileID: 1233243807604695158}
   _explosionPrefab: {fileID: 8217003109968079750, guid: 42d342ef03f5e4756b49a209766eed83, type: 3}
   _anim: {fileID: 3718590433894912687}
   _shootSound: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}
@@ -788,6 +790,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49022d407a0e455088ccdc86fa4f222, type: 3}
+--- !u!1 &1233243807604695158 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 830886878802667378, guid: e49022d407a0e455088ccdc86fa4f222, type: 3}
+  m_PrefabInstance: {fileID: 1917050763958978308}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &277664728509987726 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1819679762073042058, guid: e49022d407a0e455088ccdc86fa4f222, type: 3}
@@ -2505,6 +2512,11 @@ PrefabInstance:
 --- !u!4 &8308199023174594021 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1819679762073042058, guid: e49022d407a0e455088ccdc86fa4f222, type: 3}
+  m_PrefabInstance: {fileID: 7641601295086063983}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7028866480759764509 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 830886878802667378, guid: e49022d407a0e455088ccdc86fa4f222, type: 3}
   m_PrefabInstance: {fileID: 7641601295086063983}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8320268199669927238

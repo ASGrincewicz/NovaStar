@@ -10,6 +10,7 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class Enemy : MonoBehaviour
     {
+        //[SerializeField] private EnemyMovement _enemyMovementSO;
         private AudioClip _shootSound => _enemyClass.shootSound;
         private AudioClip _damageSound => _enemyClass.damageSound;
         private AudioClip _deathSound => _enemyClass.deathSound;
@@ -70,7 +71,7 @@ namespace Veganimus.NovaStar
         private void Start()
         {
             _chance = Random.Range(0, 20);
-            Debug.Log($"Drop chance is{_chance}");
+            //Debug.Log($"Drop chance is{_chance}");
             _rigidbody = GetComponent<Rigidbody>();
         }
         private void Update()
@@ -107,6 +108,7 @@ namespace Veganimus.NovaStar
         private void Movement()
         {
             transform.Translate(Vector3.left * _speed * Time.deltaTime);
+            //_enemyMovementSO.Movement(this.gameObject);
 
             if (transform.position.x < -20f)
                 Destroy(this.gameObject);
@@ -155,7 +157,6 @@ namespace Veganimus.NovaStar
                     return obj;
                 }
             }
-            GameObject go = null;
             return null;
         }
         private void OnTriggerEnter(Collider other)
@@ -168,7 +169,5 @@ namespace Veganimus.NovaStar
         {
             yield return _fireRate;
         }
-       
-        
     }
 }

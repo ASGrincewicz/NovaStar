@@ -21,6 +21,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private Resolution[] _availableRes;
         [SerializeField] private Slider _brightnessSlider;
         [SerializeField] private Slider _volumeSlider;
+        [SerializeField] private TMP_Text _playerName;
         [SerializeField] private TMP_Text _highScoreText;
         [SerializeField] private TMP_Text _availableCurrency;
         [Header("Listening To")]
@@ -33,9 +34,14 @@ namespace Veganimus.NovaStar
 
         private void Start()
         {
+            UpdateRecords();
+            GetScreenResolution();
+        }
+        public void UpdateRecords()
+        {
+            _playerName.text = $"Pilot Name: {_playerRecords.PlayerName}";
             _highScoreText.text = $"High Score:{_playerRecords.HighScore}";
             _availableCurrency.text = $"Credits: ${_playerRecords.Currency}";
-            GetScreenResolution();
         }
 
         private void SceneLoader(string value)

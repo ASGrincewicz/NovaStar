@@ -10,7 +10,10 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class Enemy : MonoBehaviour
     {
-        //[SerializeField] private EnemyMovement _enemyMovementSO;
+        [SerializeField] private MirrorMoveSO _mirrorMoveSO;
+        [SerializeField] private bool _mirror;
+        private bool _mirrorMoveOn;
+        [SerializeField] private float _sceneEntryTime;
         private AudioClip _shootSound => _enemyClass.shootSound;
         private AudioClip _damageSound => _enemyClass.damageSound;
         private AudioClip _deathSound => _enemyClass.deathSound;
@@ -20,6 +23,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private Transform _fireOffset;
         [SerializeField] private Transform _fireOffset2;
         [SerializeField] private bool _hasAltWeapon;
+        
         [SerializeField] private Vector3 _shootDirection;
         [SerializeField] private float _firePower;
         private string _enemyName => _enemyClass.enemyName;
@@ -71,12 +75,18 @@ namespace Veganimus.NovaStar
         private void Start()
         {
             _chance = Random.Range(0, 20);
-            //Debug.Log($"Drop chance is{_chance}");
             _rigidbody = GetComponent<Rigidbody>();
+            if (_mirror)
+                StartCoroutine(ActivateMirrorMovementRoutine());
         }
         private void Update()
         {
-            Movement();
+            if (_mirrorMoveOn)
+             MirrorMovement();
+
+            else
+                Movement();
+
             if (_hasWeapon)
             {
                 if (Time.time > _canFire)
@@ -108,11 +118,15 @@ namespace Veganimus.NovaStar
         private void Movement()
         {
             transform.Translate(Vector3.left * _speed * Time.deltaTime);
-            //_enemyMovementSO.Movement(this.gameObject);
 
             if (transform.position.x < -20f)
                 Destroy(this.gameObject);
-            
+        }
+
+        private void MirrorMovement()
+        {
+            _mirrorMoveSO.Pitch(this.gameObject);
+            _mirrorMoveSO.MirrorMovement(this.gameObject, _rigidbody);
         }
         private void Shoot()
         {
@@ -124,7 +138,7 @@ namespace Veganimus.NovaStar
         }
         private void AltShoot()
         {
-            _canFire = Time.time + (_fireRate * 2);
+            _canFire = Time.time + (_fireRate);
             GameObject enemyBullet = Instantiate(_weapon, this.gameObject.transform);
             enemyBullet.transform.position = _fireOffset2.transform.position;
             _playSFXEvent.RaiseSFXEvent("Enemy", _shootSound);
@@ -168,6 +182,11 @@ namespace Veganimus.NovaStar
         private IEnumerator EnemyFireRoutine()
         {
             yield return _fireRate;
+        }
+        private IEnumerator ActivateMirrorMovementRoutine()
+        {
+            yield return new WaitForSeconds(_sceneEntryTime);
+            _mirrorMoveOn = true;
         }
     }
 }

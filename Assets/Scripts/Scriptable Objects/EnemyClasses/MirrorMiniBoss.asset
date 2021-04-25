@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e297482de031478a89d9eac7e6e746f, type: 3}
+  m_Name: MirrorMiniBoss
+  m_EditorClassIdentifier: 
+  enemyName: Mirror Boss
+  scoreTier: 1000
+  hp: 20
+  speed: 4
+  shieldHP: 0
+  fireRate: 2
+  hasShield: 0
+  hasWeapon: 1
+  weapon: {fileID: 4140978072433156269, guid: ecb404e9dcc9a44f19ca2b20935f21e2, type: 3}
+  itemDrop: {fileID: 0}
+  explosionPrefab: {fileID: 5579367099580505458, guid: 94e7d82d2888d4afdb3febea21412b51, type: 3}
+  shootSound: {fileID: 8300000, guid: 4fc4ab2d6fff744bb880d9168a20d2ab, type: 3}
+  damageSound: {fileID: 8300000, guid: 73c05b4558b0f4852a970c9611e42cb5, type: 3}
+  deathSound: {fileID: 8300000, guid: b2ea1857628bb4255983c50ce65f86a2, type: 3}

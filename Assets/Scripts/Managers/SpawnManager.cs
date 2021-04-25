@@ -32,6 +32,8 @@ namespace Veganimus.NovaStar
         [SerializeField] private GameObject _enemyContainer;
         [SerializeField] private GameObject _bossSpawnPos;
         [SerializeField] private int _enemyToSpawn;
+        private int _enemyDestroyed;
+        private int _enemySpawns;
         [Space]
         [SerializeField] private int _currentWave = 1;
         [SerializeField] private int _currentLevel = 1;
@@ -52,6 +54,8 @@ namespace Veganimus.NovaStar
         {
             _startNextLevelEvent.OnEventRaised += StartNextLevel;
             _nextLevelRoutineEvent.OnEventRaised += () => StartCoroutine(NextLevelRoutine(true));
+            _enemyTracking.OnEnemyDestroyed += () => _enemyDestroyed++;
+            _enemyTracking.OnEnemySpawned += () => _enemySpawns++;
         }
         private void OnDisable()=> _startNextLevelEvent.OnEventRaised -= StartNextLevel;
         
@@ -65,7 +69,8 @@ namespace Veganimus.NovaStar
             RequestBossWave();
             _trackWaveEvent.RaiseEvent(_currentWave);
         }
-       
+        private void Update() => KillTracking();
+
         private void StartNextLevel()
         {
             _activeLevel = _levels[_currentLevel];
@@ -80,6 +85,11 @@ namespace Veganimus.NovaStar
                 }
                 RequestBossWave();
             }
+        }
+        private void KillTracking()
+        {
+            if (_enemyDestroyed == _enemySpawns)
+                StartCoroutine(NextWaveRoutine());
         }
           
         private List<EnemyWave> GetWaveFromLevel()
@@ -145,11 +155,11 @@ namespace Veganimus.NovaStar
                 enemy.gameObject.SetActive(true);
                 _enemyTracking.EnemySpawnedEvent();
                 _enemyToSpawn--;
-                if (_enemyToSpawn == 0)
-                {
-                    StartCoroutine(NextWaveRoutine());
-                    yield break;
-                }
+                //if (_enemyToSpawn == 0)
+                //{
+                //    StartCoroutine(NextWaveRoutine());
+                //    yield break;
+                //}
             }
         }
         private IEnumerator NextWaveRoutine()

@@ -99,12 +99,16 @@ namespace Veganimus.NovaStar
             {
                 if (hitInfo.collider != null)
                 {
-                    //_projectilePrefab = PoolManager.Instance.RequestProjectile();
                     _projectilePrefab = _requestProjectile.RequestGameObject();
-                    _projectilePrefab.transform.position = _fireOffset.transform.position;
-                    _projectilePrefab.transform.rotation = Quaternion.identity;
-                    _playSFXEvent.RaiseSFXEvent("Player", _fireSound);
-                    StartCoroutine(FireCoolDownRoutine());
+                    if (_projectilePrefab != null)
+                    {
+                        _projectilePrefab.transform.position = _fireOffset.transform.position;
+                        _projectilePrefab.transform.rotation = Quaternion.identity;
+                        _playSFXEvent.RaiseSFXEvent("Player", _fireSound);
+                        StartCoroutine(FireCoolDownRoutine());
+                    }
+                    else
+                        return;
                 }
             }
             else

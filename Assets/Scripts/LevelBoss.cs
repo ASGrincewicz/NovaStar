@@ -17,6 +17,7 @@ namespace Veganimus.NovaStar
        }
         [SerializeField] private AttackPattern _attackPattern;
         [SerializeField] private int _hp = 100;
+        [SerializeField] private int _damageTaken;
         [SerializeField] private int _scoreTier;
         [SerializeField] private List<Transform> _firePositions;
         [SerializeField] private Vector3 _projectileShootPos;
@@ -44,16 +45,19 @@ namespace Veganimus.NovaStar
                      Debug.LogError("Animator is null");
                 }
         }
+        private void Update()
+        {
+            if (_hp < 25)
+                _anim.SetInteger("Pattern", 4);
+        }
         private void Damage()
         {
-
-            int damageVFX_chance = Random.Range(0, 10);
-            if (damageVFX_chance > 5)
+            _damageTaken++;
+            if (_damageTaken == 25)
             {
-                GameObject dVFX = ActivateDamageVFX();
+                _damageTaken = 0;
+                ActivateDamageVFX();
             }
-
-
             _playSFXEvent.RaiseSFXEvent("Enemy", _damageSound);
             _hp--;
             _updateScoreChannel.RaiseEvent(_scoreTier / 40);
@@ -61,6 +65,8 @@ namespace Veganimus.NovaStar
             if(_hp <= 0)
             {
                 _playSFXEvent.RaiseSFXEvent("Enemy", _deathSound);
+                //play boss explosion cutscene
+                //Boss leaves permanenet upgrade// reward?
                 Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
                 _nextLevelEvent.RaiseEvent();
                 Destroy(this.gameObject);
@@ -78,9 +84,11 @@ namespace Veganimus.NovaStar
             }
             return null;
         }
-        private void TriggerAttackPattern(AttackPattern pattern) => _anim.SetInteger("Pattern", (int)pattern);
+        // Attack Patterns trigger through Animation Event.
+        private void TriggerAttackPattern(AttackPattern pattern)=> _anim.SetInteger("Pattern", (int)pattern);
 
-        private void Shoot()//Called with Animation Events
+        // Shoot is called through Animation Event.
+        private void Shoot()
         {
             GameObject bossBullet = _bossProjRequest.RequestGameObject();
             _currentFirePositions = Random.Range(0, 3);

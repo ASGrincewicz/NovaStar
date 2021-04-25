@@ -29,9 +29,14 @@ namespace Veganimus.NovaStar
             if (other.tag == _target)
             {
                 GameObject impact = _projVFXRequest.RequestGameObject();
-                impact.transform.position = transform.position;
-                impact.transform.rotation = transform.rotation;
-                this.gameObject.SetActive(false);
+                if (impact != null)
+                {
+                    impact.transform.position = transform.position;
+                    impact.transform.rotation = transform.rotation;
+                    this.gameObject.SetActive(false);
+                }
+                else
+                 impact = null;
             }
             else
                 return;

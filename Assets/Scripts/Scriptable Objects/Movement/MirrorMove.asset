@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 068f28203138a46c8a5fdc5afacdaaa1, type: 3}
+  m_Name: MirrorMove
+  m_EditorClassIdentifier: 
+  speed: 4
+  vertical: 0
+  horizontal: 0
+  moveDirection: {x: -0, y: -0, z: 0}
+  tiltAngle: 15
+  smooth: 4
+  inputReader: {fileID: 11400000, guid: 324a74f8cc92140b5bce154114f7b3af, type: 2}

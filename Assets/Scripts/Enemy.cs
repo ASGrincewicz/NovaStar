@@ -98,7 +98,7 @@ namespace Veganimus.NovaStar
             }
             if(_hp <= 0)
             {
-                _playSFXEvent.RaiseSFXEvent("Enemy", _deathSound);
+                _playSFXEvent.RaiseSFXEvent(_deathSound);
                 _enemyTracking.EnemyDestroyedEvent();
                 if (_chance >= 10)
                 {
@@ -138,7 +138,7 @@ namespace Veganimus.NovaStar
             _canFire = Time.time + _fireRate;
             GameObject enemyBullet = Instantiate(_weapon, this.gameObject.transform);
             enemyBullet.transform.position = _fireOffset.transform.position;
-            _playSFXEvent.RaiseSFXEvent("Enemy", _shootSound);
+            _playSFXEvent.RaiseSFXEvent(_shootSound);
             StartCoroutine(EnemyFireRoutine());
         }
         private void AltShoot()
@@ -146,7 +146,7 @@ namespace Veganimus.NovaStar
             _canFire = Time.time + (_fireRate);
             GameObject enemyBullet = Instantiate(_weapon, this.gameObject.transform);
             enemyBullet.transform.position = _fireOffset2.transform.position;
-            _playSFXEvent.RaiseSFXEvent("Enemy", _shootSound);
+            _playSFXEvent.RaiseSFXEvent(_shootSound);
             StartCoroutine(EnemyFireRoutine());
         }
         private void Damage()
@@ -161,7 +161,7 @@ namespace Veganimus.NovaStar
                 {
                     GameObject dVFX = ActivateDamageVFX();
                 }
-                _playSFXEvent.RaiseSFXEvent("Enemy", _damageSound);
+                _playSFXEvent.RaiseSFXEvent(_damageSound);
                 _updateScoreChannel.RaiseEvent(scoreTier / 5);
                 _hp --;
             }

@@ -58,13 +58,13 @@ namespace Veganimus.NovaStar
                 _damageTaken = 0;
                 ActivateDamageVFX();
             }
-            _playSFXEvent.RaiseSFXEvent("Enemy", _damageSound);
+            _playSFXEvent.RaiseSFXEvent(_damageSound);
             _hp--;
             _updateScoreChannel.RaiseEvent(_scoreTier / 40);
             _bossHealthUIEvent.RaiseEvent(_hp);
             if(_hp <= 0)
             {
-                _playSFXEvent.RaiseSFXEvent("Enemy", _deathSound);
+                _playSFXEvent.RaiseSFXEvent( _deathSound);
                 //play boss explosion cutscene
                 //Boss leaves permanenet upgrade// reward?
                 Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
@@ -94,7 +94,7 @@ namespace Veganimus.NovaStar
             _currentFirePositions = Random.Range(0, 3);
             GameObject cannonVFX = Instantiate(_cannonFireVFX, _firePositions[_currentFirePositions].transform.position, Quaternion.identity);
             bossBullet.transform.position = _firePositions[_currentFirePositions].transform.position;
-            _playSFXEvent.RaiseSFXEvent("Enemy",_shootSound);
+            _playSFXEvent.RaiseSFXEvent(_shootSound);
         }
         private void OnTriggerEnter(Collider other)
         {

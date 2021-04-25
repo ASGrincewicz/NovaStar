@@ -79,7 +79,7 @@ namespace Veganimus.NovaStar
         
        private void PowerUpCollect(int id)
         {
-            _playSFXEvent.OnSFXEventRaised("Player", _powerUpSFX);
+            _playSFXEvent.OnSFXEventRaised(_powerUpSFX);
             if (_powerUpActive == false)
             {
                 switch (id)
@@ -121,7 +121,7 @@ namespace Veganimus.NovaStar
             {
                 _shield.SetActive(false);
                 _shieldActive = false;
-                _playSFXEvent.RaiseSFXEvent("Player", _shieldSFX);
+                _playSFXEvent.RaiseSFXEvent(_shieldSFX);
                 _shieldUIEvent.RaiseBoolEvent(false);
             }
             else
@@ -134,7 +134,7 @@ namespace Veganimus.NovaStar
                     }
                     else
                     {
-                        _playSFXEvent.RaiseSFXEvent("Player", _damageSFX);
+                        _playSFXEvent.RaiseSFXEvent( _damageSFX);
                         _weaponChangeEvent.RaiseWeaponChangeEvent(false, false, 0);
                         _canTakeDamage = false;
                         StartCoroutine(DamageCoolDown());
@@ -179,7 +179,7 @@ namespace Veganimus.NovaStar
         private IEnumerator DeathRoutine()
         {
             _shootOnInput.enabled = false;
-            _playSFXEvent.RaiseSFXEvent("Player", _deathSFX);
+            _playSFXEvent.RaiseSFXEvent(_deathSFX);
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             _shipModel.SetActive(false);
             yield return new WaitForSeconds(2.0f);

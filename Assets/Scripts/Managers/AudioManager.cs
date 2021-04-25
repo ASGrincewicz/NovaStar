@@ -53,8 +53,6 @@ namespace Veganimus.NovaStar
             _audio.Play();
         }
         private void Update()=> _audio.volume = _audioSettings.volume;
-
-        private void PlaySFX(string source, AudioClip clipToPlay) => _audio.PlayOneShot(clipToPlay);
        
         private void ChangeMusic(int wave)
         {
@@ -75,6 +73,6 @@ namespace Veganimus.NovaStar
                 }
             }
         }
-        
+        public void PlaySFX(AudioClip clipToPlay) => _audio.PlayOneShot(clipToPlay);
     }
 }

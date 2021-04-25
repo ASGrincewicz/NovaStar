@@ -46,9 +46,12 @@ namespace Veganimus.NovaStar
         [SerializeField] private BoolEventSO _shieldUIEvent;
         [Header("Broadcasting On")]
         [SerializeField] private LoadSceneEventSO _loadSceneEvent;
+        [SerializeField] private PlaySFXEvent _playSFXEvent;
         [Space]
         [SerializeField] private int _playerScore;
         private bool _gamePaused;
+        [SerializeField] private AudioClip _pauseSound;
+        [SerializeField] private AudioClip _gameOverSound;
 
         private void OnEnable()
         {
@@ -77,6 +80,7 @@ namespace Veganimus.NovaStar
         }
         private void OnPauseInput()
         {
+            _playSFXEvent.RaiseSFXEvent(_pauseSound);
             switch (_gamePaused)
             {
                 case true:
@@ -141,6 +145,7 @@ namespace Veganimus.NovaStar
         }
         private void GameOver(bool isOver)
         {
+            _playSFXEvent.RaiseSFXEvent(_gameOverSound);
             gameOverScreen.gameObject.SetActive(isOver);
             _hUD_Canvas.gameObject.SetActive(false);
             _playerScore = 0;

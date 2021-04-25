@@ -11,13 +11,13 @@ namespace Veganimus.NovaStar
     [CreateAssetMenu(menuName =("Audio Events/ SFX Event"))]
     public class PlaySFXEvent : ScriptableObject
     {
-        public UnityAction<string ,AudioClip> OnSFXEventRaised;
+        public UnityAction<AudioClip> OnSFXEventRaised;
 
-        public void RaiseSFXEvent(string source, AudioClip clipToPlay)
+        public void RaiseSFXEvent(AudioClip clipToPlay)
         {
             if(OnSFXEventRaised!= null)
             {
-                OnSFXEventRaised.Invoke(source, clipToPlay);
+                OnSFXEventRaised.Invoke(clipToPlay);
             }
         }
     }

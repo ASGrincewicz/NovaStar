@@ -67,4 +67,6 @@ MonoBehaviour:
   _inputReader: {fileID: 11400000, guid: 324a74f8cc92140b5bce154114f7b3af, type: 2}
   _shieldUIEvent: {fileID: 11400000, guid: 123f106f1ea394ed8b52eb9fc72c1812, type: 2}
   _loadSceneEvent: {fileID: 11400000, guid: d27cb486527e849aeae2e1e3c195389c, type: 2}
+  _playSFXEvent: {fileID: 0}
   _playerScore: 0
+  _pauseSound: {fileID: 8300000, guid: d8d04c6f80a1140db85ede568dab1f51, type: 3}

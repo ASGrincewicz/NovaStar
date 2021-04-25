@@ -26,12 +26,16 @@ namespace Veganimus.NovaStar
         [Space]
         [SerializeField] private LoadSceneEventSO _loadSceneEvent;
         [SerializeField] private PlayerStats _playerRecords;
+        [SerializeField] private PlaySFXEvent _playSFXEvent;
         private float _sliderMax = 100f;
+        [SerializeField] private AudioClip _winSound;
+
         private void OnEnable() => _loadSceneEvent.OnEventRaised += LoadScene;
         private void OnDisable() => _loadSceneEvent.OnEventRaised -= LoadScene;
 
         private void Start()
         {
+            _playSFXEvent.RaiseSFXEvent(_winSound);
             _finalScore.text = ($"Final Score:{_playerRecords.RecentScore}");
             if (_playerRecords.RecentScore > _playerRecords.HighScore)
                 _playerRecords.HighScore = _playerRecords.RecentScore;

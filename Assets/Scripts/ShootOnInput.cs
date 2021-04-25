@@ -80,7 +80,6 @@ namespace Veganimus.NovaStar
             if (Time.time > _canFire)
             {
                 _canFire = Time.time + _fireRate;
-               // _projectilePrefab = PoolManager.Instance.RequestProjectile();
                 _projectilePrefab.transform.position =  _fireOffset.transform.position;
                 _projectilePrefab.transform.rotation = Quaternion.identity;
                 _projectileRigidbody = _projectilePrefab.GetComponent<Rigidbody>();
@@ -104,7 +103,7 @@ namespace Veganimus.NovaStar
                     {
                         _projectilePrefab.transform.position = _fireOffset.transform.position;
                         _projectilePrefab.transform.rotation = Quaternion.identity;
-                        _playSFXEvent.RaiseSFXEvent("Player", _fireSound);
+                        _playSFXEvent.RaiseSFXEvent(_fireSound);
                         StartCoroutine(FireCoolDownRoutine());
                     }
                     else

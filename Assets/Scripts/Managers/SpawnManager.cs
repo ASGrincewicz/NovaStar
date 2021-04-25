@@ -33,6 +33,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private GameObject _bossSpawnPos;
         [SerializeField] private int _enemyToSpawn;
         [SerializeField] private int _enemyDestroyed;
+        private bool _isBossWave;
         [SerializeField] private int _enemySpawns;
         [Space]
         [SerializeField] private int _currentWave = 1;
@@ -90,7 +91,7 @@ namespace Veganimus.NovaStar
         
         private void KillTracking()
         {
-            if (_enemyDestroyed == _enemies.Count)
+            if (_enemyDestroyed == _enemies.Count && _isBossWave == false)
                 StartCoroutine(NextWaveRoutine());
 
             else
@@ -167,15 +168,17 @@ namespace Veganimus.NovaStar
             _enemies.Clear();
             _waveComplete = true;
             _enemyWave = null;
-            _currentWave++;
+            //_currentWave++;
            
-             if (_currentWave > _enemyWaves.Count)
+             if (_currentWave == _enemyWaves.Count)
             {
+                _isBossWave = true;
                 StartCoroutine(BossWaveRoutine());
                 yield break;
             }
             else
             {
+                _currentWave++;
                 yield return _nextWaveDelay;
                 _trackWaveEvent.RaiseEvent(_currentWave);
                 RequestEnemyWave();

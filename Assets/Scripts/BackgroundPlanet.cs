@@ -35,7 +35,6 @@ namespace Veganimus.NovaStar
                 _planetToSpawn++;
                 GameObject planet = _planets[_planetToSpawn];
                 planet.transform.position = transform.position;
-                planet.transform.rotation = Quaternion.identity;
                 planet.SetActive(true);
                 _currentPlanet = planet;
             }

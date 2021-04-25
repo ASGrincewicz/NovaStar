@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Mirror Boss
   scoreTier: 1000
   hp: 20
-  speed: 4
+  speed: 2
   shieldHP: 0
   fireRate: 2
   hasShield: 0

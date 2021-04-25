@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2599ac70b8743c486b64975604ef13, type: 3}
   m_Name: SeventhWave
   m_EditorClassIdentifier: 
-  enemySequence: []
-  waveNumber: 0
+  enemySequence:
+  - {fileID: 6053056587011272375, guid: 40582617a86fe4b76942471a887ab686, type: 3}
+  waveNumber: 7

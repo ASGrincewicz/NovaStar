@@ -21,7 +21,7 @@ MonoBehaviour:
   hasShield: 0
   hasWeapon: 1
   weapon: {fileID: 4140978072433156269, guid: ecb404e9dcc9a44f19ca2b20935f21e2, type: 3}
-  itemDrop: {fileID: 0}
+  itemDrop: {fileID: 7334643961800842593, guid: 8426fa5aa241745e69b231181a9f845b, type: 3}
   explosionPrefab: {fileID: 5579367099580505458, guid: 94e7d82d2888d4afdb3febea21412b51, type: 3}
   shootSound: {fileID: 8300000, guid: 4fc4ab2d6fff744bb880d9168a20d2ab, type: 3}
   damageSound: {fileID: 8300000, guid: 73c05b4558b0f4852a970c9611e42cb5, type: 3}

@@ -176,7 +176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7470909482686526579, guid: 79db0dd03e9d54790ae750a533fd6122, type: 3}
       propertyPath: _currentWave
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8989726957191764296, guid: 79db0dd03e9d54790ae750a533fd6122, type: 3}
       propertyPath: m_Name

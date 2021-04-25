@@ -15,7 +15,7 @@ MonoBehaviour:
   enemySequence:
   - {fileID: 7823151458983795955, guid: f27e83d05944e4469b4a8d51050a135a, type: 3}
   - {fileID: 7823151458983795955, guid: f27e83d05944e4469b4a8d51050a135a, type: 3}
-  - {fileID: 7823151458983795955, guid: f27e83d05944e4469b4a8d51050a135a, type: 3}
+  - {fileID: 8152830376136294644, guid: 150d5a5ccc24341c9985c30fa6bfd533, type: 3}
   - {fileID: 8152830376136294644, guid: 150d5a5ccc24341c9985c30fa6bfd533, type: 3}
   - {fileID: 4577068224845401608, guid: 1d11aefdc5f8c41119cf470fe250e359, type: 3}
   waveNumber: 2

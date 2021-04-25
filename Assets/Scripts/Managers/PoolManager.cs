@@ -191,7 +191,7 @@ namespace Veganimus.NovaStar
                     _powerUpPrefab = _powerUps[2];
                     break;
                 case 1000:
-                    _powerUpPrefab = _powerUps[3];
+                    _powerUpPrefab = _powerUps[UnityEngine.Random.Range(0,3)];
                     break;
             }
            GameObject powerUp = Instantiate(_powerUpPrefab, powerUpContainer.transform);

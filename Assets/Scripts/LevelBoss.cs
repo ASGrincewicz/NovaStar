@@ -47,8 +47,8 @@ namespace Veganimus.NovaStar
         }
         private void Update()
         {
-            if (_hp < 25)
-                _anim.SetInteger("Pattern", 4);
+            //if (_hp < 25)
+            //    _anim.SetInteger("Pattern", 4);
         }
         private void Damage()
         {

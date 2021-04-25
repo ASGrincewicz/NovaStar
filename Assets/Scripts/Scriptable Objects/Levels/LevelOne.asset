@@ -19,4 +19,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7f32b5492ad2d46528f504b18569fe47, type: 2}
   - {fileID: 11400000, guid: a8610cb36a6df410c854132de48512b8, type: 2}
   - {fileID: 11400000, guid: a112a92e90adc4a2684c70b8e4d3099e, type: 2}
+  - {fileID: 11400000, guid: 43c7b8743f05b4667a8f2b24da7b7b10, type: 2}
+  - {fileID: 11400000, guid: 60d218c4948c241ebbdb58ccaa614448, type: 2}
   bossWave: {fileID: 11400000, guid: 1c14dd9d966844a1fae710bbf726f9a0, type: 2}

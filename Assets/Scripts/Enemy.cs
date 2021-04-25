@@ -103,8 +103,13 @@ namespace Veganimus.NovaStar
                 if (_chance >= 10)
                 {
                     GameObject itemDrop = _requestPowerUpDrop.RequestGameObjectInt(scoreTier);
-                    itemDrop.transform.position = transform.position;
-                    itemDrop.SetActive(true);
+                    if (itemDrop != null)
+                    {
+                        itemDrop.transform.position = transform.position;
+                        itemDrop.SetActive(true);
+                    }
+                    else
+                        return;
                 }
                 Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
@@ -120,7 +125,7 @@ namespace Veganimus.NovaStar
             transform.Translate(Vector3.left * _speed * Time.deltaTime);
 
             if (transform.position.x < -20f)
-                Destroy(this.gameObject);
+               transform.position = new Vector3(13f, Random.Range(-3f, 5f), 0);
         }
 
         private void MirrorMovement()

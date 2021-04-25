@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-
 namespace Veganimus.NovaStar
 {
     ///<summary>
@@ -44,6 +43,7 @@ namespace Veganimus.NovaStar
             _weaponUpgradesSlider.value = (float)_playerRecords.Upgrades/_sliderMax;
             _powerUpsCollectedSlider.value = (float)_playerRecords.PowerUps/_sliderMax;
             CalculateRewards();
+            SaveSystem.SaveRecords(_playerRecords);
         }
         private void CalculateRewards()
         {
@@ -68,6 +68,5 @@ namespace Veganimus.NovaStar
         {
             SceneManager.LoadScene(scene);
         }
-
     }
 }

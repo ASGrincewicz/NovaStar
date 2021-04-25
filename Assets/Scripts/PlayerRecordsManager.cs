@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -19,7 +16,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private EnemyTrackerChannel _enemyTracking;
         [SerializeField] private intEventSO _upgradeTracker;
         [SerializeField] private intEventSO _powerUpTracker;
-        
+        private SaveData _saveData;
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
@@ -45,6 +42,23 @@ namespace Veganimus.NovaStar
             _upgradeTracker.OnEventRaised -= TrackUpgrade;
             _powerUpTracker.OnEventRaised -= TrackPowerUp;
         }
+        private void Start()=> LoadRecords();
+
+        private void LoadRecords()
+        {
+            SaveData data = SaveSystem.LoadData();
+            if(data != null)
+            {
+                _playerRecords.PlayerName = data.PlayerName;
+                _playerRecords.HighScore = data.HighScore;
+                _playerRecords.Currency = data.Currency;
+            }
+            else
+            {
+                SaveSystem.SaveRecords(_playerRecords);
+            }
+
+        }
         private void TrackScore(int score)=> _playerRecords.RecentScore += score;
 
         private void TrackKills() => _playerRecords.Kills++;
@@ -54,6 +68,7 @@ namespace Veganimus.NovaStar
         private void TrackUpgrade(int value) => _playerRecords.Upgrades++;
 
         private void TrackPowerUp(int value) => _playerRecords.PowerUps++;
-        
+
+        public void SaveRecords()=> SaveSystem.SaveRecords(_playerRecords);
     }
 }

@@ -10,6 +10,7 @@ namespace Veganimus.NovaStar
     [CreateAssetMenu(menuName =("Settings/ Player Records"))]
     public class PlayerStats : ScriptableObject
     {
+        public string PlayerName { get; set; }
         public int HighScore { get; set; }
         public int RecentScore { get; set; }
         public int Currency { get; set; }
@@ -20,6 +21,7 @@ namespace Veganimus.NovaStar
 
         public void ResetRecords()
         {
+            PlayerName = " ";
             HighScore = 0;
             RecentScore = 0;
         }

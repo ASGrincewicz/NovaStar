@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
 
 namespace Veganimus.NovaStar
@@ -24,6 +25,8 @@ namespace Veganimus.NovaStar
         [SerializeField] private GameEvent _nextLevelEvent;
         [Space]
         [SerializeField] private InputReaderSO _inputReader;
+        [SerializeField] PlayableDirector _director;
+        [SerializeField] GameObject _bossCutscene;
 
         public static Action<bool> isPaused;
         public static Action<bool> gameOver;
@@ -108,9 +111,11 @@ namespace Veganimus.NovaStar
             }
         }
         public void NextLevel()=> _nextLevelEvent.RaiseEvent();
-        
-        public void EndGame() => _loadSceneEventSO.RaiseEvent("EndGame");
-        
+
+        public void EndGame()=> _bossCutscene.SetActive(true);
+
+        private void LoadEndGame() => _loadSceneEventSO.RaiseEvent("EndGame");
+
         public void EnemyDestroyed()=> _enemiesDestroyed++;
        
         public void EnemySpawns() => _enemiesSpawned++;

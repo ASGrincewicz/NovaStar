@@ -67,7 +67,7 @@ namespace Veganimus.NovaStar
                 _playSFXEvent.RaiseSFXEvent( _deathSound);
                 //play boss explosion cutscene
                 //Boss leaves permanenet upgrade// reward?
-                Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+                //Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
                 _nextLevelEvent.RaiseEvent();
                 Destroy(this.gameObject);
             }

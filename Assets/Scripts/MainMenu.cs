@@ -28,12 +28,17 @@ namespace Veganimus.NovaStar
         [SerializeField] private LoadSceneEventSO _loadSceneEventSO;
         [SerializeField] private PlayerStats _playerRecords;
         [SerializeField] private AudioSettingSO _audioSettingsSO;
+        [Header("Broadcasting On")]
+        [SerializeField] private PlaySFXEvent _playSFXEvent;
+        [SerializeField] private AudioClip _mainMusic;
+
         private void OnEnable()=> _loadSceneEventSO.OnEventRaised += SceneLoader; 
         
         private void OnDisable()=> _loadSceneEventSO.OnEventRaised -= SceneLoader;
 
         private void Start()
         {
+            _playSFXEvent.RaiseSFXEvent(_mainMusic);
             UpdateRecords();
             GetScreenResolution();
         }

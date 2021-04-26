@@ -15,10 +15,12 @@ namespace Veganimus.NovaStar
         [SerializeField] private AudioClip _mainBGMusic;
         [SerializeField] private AudioClip _secondaryBGmusic;
         [SerializeField] private AudioClip _bossMusic;
+        [SerializeField] private AudioClip _endMusic;
         [Header("Listening To")]
         [SerializeField] private PlaySFXEvent _playSFXEvent;
         [SerializeField] private intEventSO _trackWaveEvent;
         [SerializeField] private GameEvent _trackBossWave;
+        [SerializeField] private GameEvent _endGameEvent;
 
         private void Awake()
         {
@@ -33,6 +35,11 @@ namespace Veganimus.NovaStar
         {
             _playSFXEvent.OnSFXEventRaised += PlaySFX;
             _trackWaveEvent.OnEventRaised += ChangeMusic;
+            _endGameEvent.OnEventRaised += () =>
+            {
+                _audio.clip = _endMusic;
+                _audio.Play();
+            };
 
             _trackBossWave.OnEventRaised += () =>
             {

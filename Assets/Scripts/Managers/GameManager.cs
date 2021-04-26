@@ -114,8 +114,6 @@ namespace Veganimus.NovaStar
 
         public void EndGame()=> _bossCutscene.SetActive(true);
 
-        private void LoadEndGame() => _loadSceneEventSO.RaiseEvent("EndGame");
-
         public void EnemyDestroyed()=> _enemiesDestroyed++;
        
         public void EnemySpawns() => _enemiesSpawned++;

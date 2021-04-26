@@ -167,7 +167,7 @@ MonoBehaviour:
   _playerRecords: {fileID: 11400000, guid: 84a44c0af272b49deb981536a4821fa2, type: 2}
   _audioSettingsSO: {fileID: 11400000, guid: 4ef79351ad5d14368893bc6f25dcc04a, type: 2}
   _playSFXEvent: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
-  _mainMusic: {fileID: 8300000, guid: a866d25650cbd4f28ae108d9bcabd54d, type: 3}
+  _mainMusic: {fileID: 0}
 --- !u!114 &130673562
 MonoBehaviour:
   m_ObjectHideFlags: 0

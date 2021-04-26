@@ -41,6 +41,11 @@ namespace Veganimus.NovaStar
         [SerializeField] private PoolGORequest _requestProjectile;
         [Header("Listening To")]
         [SerializeField] private WeaponChangeEvent _weaponChangeEvent;
+
+        [SerializeField] private bool _multiShotOn;
+        [SerializeField] private GameObject _multiShotOffset;
+        [SerializeField] private GameObject _multiShotOffset2;
+
         private void OnEnable()
         {
             _inputReader.shootEvent += FireWeapon;
@@ -87,8 +92,6 @@ namespace Veganimus.NovaStar
                 _projectileRigidbody.AddForce(_shootDirection * _firePower, ForceMode.Impulse);
                 StartCoroutine(FireCoolDownRoutine());
             }
-            else
-                return;
         }
         private void AcquireTarget()
         {
@@ -98,20 +101,34 @@ namespace Veganimus.NovaStar
             {
                 if (hitInfo.collider != null)
                 {
-                    _projectilePrefab = _requestProjectile.RequestGameObject();
-                    if (_projectilePrefab != null)
+                    if (_multiShotOn == false)
                     {
-                        _projectilePrefab.transform.position = _fireOffset.transform.position;
-                        _projectilePrefab.transform.rotation = Quaternion.identity;
-                        _playSFXEvent.RaiseSFXEvent(_fireSound);
-                        StartCoroutine(FireCoolDownRoutine());
+                        _projectilePrefab = _requestProjectile.RequestGameObject();
+                        if (_projectilePrefab != null)
+                        {
+                            _projectilePrefab.transform.position = _fireOffset.transform.position;
+                            _projectilePrefab.transform.rotation = Quaternion.identity;
+                            _playSFXEvent.RaiseSFXEvent(_fireSound);
+                            StartCoroutine(FireCoolDownRoutine());
+                        }
                     }
                     else
-                        return;
+                    {
+                        GameObject proj1 = _requestProjectile.RequestGameObject();
+                        GameObject proj2 = _requestProjectile.RequestGameObject();
+                        if (proj1 != null && proj2 != null)
+                        {
+                            proj1.transform.position = _multiShotOffset.transform.position;
+                            proj1.transform.rotation = _multiShotOffset.transform.rotation;
+                            _playSFXEvent.RaiseSFXEvent(_fireSound);
+                            proj2.transform.position = _multiShotOffset2.transform.position;
+                            proj2.transform.rotation = _multiShotOffset2.transform.rotation;
+                            _playSFXEvent.RaiseSFXEvent(_fireSound);
+                            StartCoroutine(FireCoolDownRoutine());
+                        }
+                    }
                 }
             }
-            else
-                return;
         }
         private void ChangeWeapon(bool isUpgrade, bool isPowerUp, int changeTo)
         {
@@ -140,6 +157,7 @@ namespace Veganimus.NovaStar
             _accuracyOffsetMax = _weaponType[_currentWeaponID].accuracyOffsetMax;
             _fireRate = _weaponType[_currentWeaponID].fireRate;
             _fireSound = _weaponType[_currentWeaponID].fireSound;
+            _multiShotOn = _weaponType[_currentWeaponID].isMultiShot;
             _playerWeaponEvent.RaiseWeaponNameEvent(_weaponType[_currentWeaponID].weaponName);
             _playerWeaponEvent.RaiseWeaponChangeEvent(_weaponType[_currentWeaponID]);
         }

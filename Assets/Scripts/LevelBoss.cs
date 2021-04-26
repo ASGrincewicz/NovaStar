@@ -9,7 +9,7 @@ namespace Veganimus.NovaStar
     ///Aaron Grincewicz
     ///</summary>
 
-    public class LevelBoss : MonoBehaviour
+    public class LevelBoss : MonoBehaviour, IDamageable
     {
        public enum AttackPattern
        {
@@ -45,44 +45,37 @@ namespace Veganimus.NovaStar
                      Debug.LogError("Animator is null");
                 }
         }
-        private void Update()
+        // private void Update()
+        // {
+        //     //if (_hp < 25)
+        //     //    _anim.SetInteger("Pattern", 4);
+        // }
+        public void Damage(int amount)
         {
-            //if (_hp < 25)
-            //    _anim.SetInteger("Pattern", 4);
-        }
-        private void Damage()
-        {
-            _damageTaken++;
-            if (_damageTaken == 25)
+            _damageTaken+= amount;
+            if (_damageTaken >= 25)
             {
                 _damageTaken = 0;
                 ActivateDamageVFX();
             }
             _playSFXEvent.RaiseSFXEvent(_damageSound);
-            _hp--;
+            _hp-= amount;
             _updateScoreChannel.RaiseEvent(_scoreTier / 40);
             _bossHealthUIEvent.RaiseEvent(_hp);
             if(_hp <= 0)
             {
                 _playSFXEvent.RaiseSFXEvent( _deathSound);
-                //play boss explosion cutscene
-                //Boss leaves permanenet upgrade// reward?
-                //Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
                 _nextLevelEvent.RaiseEvent();
                 Destroy(this.gameObject);
             }
         }
-        private GameObject ActivateDamageVFX()
+        private void ActivateDamageVFX()
         {
             foreach (GameObject obj in _damageVFX)
             {
                 if (obj.activeSelf == false)
-                {
                     obj.SetActive(true);
-                    return obj;
-                }
             }
-            return null;
         }
         // Attack Patterns trigger through Animation Event.
         private void TriggerAttackPattern(AttackPattern pattern)=> _anim.SetInteger("Pattern", (int)pattern);
@@ -96,10 +89,10 @@ namespace Veganimus.NovaStar
             bossBullet.transform.position = _firePositions[_currentFirePositions].transform.position;
             _playSFXEvent.RaiseSFXEvent(_shootSound);
         }
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.tag == "Player Projectile")
-                Damage();
-        }
+        // private void OnTriggerEnter(Collider other)
+        // {
+        //     if (other.CompareTag("Player Projectile"))
+        //         Damage();
+        // }
     }
 }

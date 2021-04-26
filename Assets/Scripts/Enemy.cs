@@ -8,7 +8,7 @@ namespace Veganimus.NovaStar
     ///@author
     ///Aaron Grincewicz
     ///</summary>
-    public class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour, IDamageable
     {
         [SerializeField] private MirrorMoveSO _mirrorMoveSO;
         [SerializeField] private bool _mirror;
@@ -54,23 +54,24 @@ namespace Veganimus.NovaStar
         private void Awake()
         {
             _hp = _enemyClass.hp;
-            
             _fireDelay = new WaitForSeconds(_enemyClass.fireRate);
-            if (_hasWeapon == true)
-            _weapon = _enemyClass.weapon;
-            
-            else
-            _weapon = null;
-            
-            if (_hasShield == true)
+            _weapon = _hasWeapon switch
             {
-                //shield = _enemyClass.shield;
-                _shieldHP = _enemyClass.shieldHP;
-                _shieldOn = true;
+                true => _enemyClass.weapon,
+                _ => null
+            };
+
+            switch (_hasShield)
+            {
+                case true:
+                    //shield = _enemyClass.shield;
+                    _shieldHP = _enemyClass.shieldHP;
+                    _shieldOn = true;
+                    break;
+                default:
+                    _shield = null;
+                    break;
             }
-            else
-            _shield = null;
-            
         }
         private void Start()
         {
@@ -114,7 +115,7 @@ namespace Veganimus.NovaStar
                 Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
-            if(_shieldHP <= 0 && _shield != null)
+            if(_shieldHP <= 0 && _shield == true)
             {
                 _shield.SetActive(false);
                 _shieldOn = false;
@@ -122,7 +123,7 @@ namespace Veganimus.NovaStar
         }
         private void Movement()
         {
-            transform.Translate(Vector3.left * _speed * Time.deltaTime);
+            transform.Translate(Vector3.left * (_speed * Time.deltaTime));
 
             if (transform.position.x < -20f)
                transform.position = new Vector3(13f, Random.Range(-3f, 5f), 0);
@@ -149,10 +150,10 @@ namespace Veganimus.NovaStar
             _playSFXEvent.RaiseSFXEvent(_shootSound);
             StartCoroutine(EnemyFireRoutine());
         }
-        private void Damage()
+        public void Damage(int amount)
         {
             if (_enemyClass.hasShield == true && _shieldOn == true)
-            _shieldHP --;
+                _shieldHP -= amount;
             
             else
             {
@@ -163,7 +164,7 @@ namespace Veganimus.NovaStar
                 }
                 _playSFXEvent.RaiseSFXEvent(_damageSound);
                 _updateScoreChannel.RaiseEvent(scoreTier / 5);
-                _hp --;
+                _hp -= amount;
             }
         }
         private GameObject ActivateDamageVFX()
@@ -180,8 +181,9 @@ namespace Veganimus.NovaStar
         }
         private void OnTriggerEnter(Collider other)
         {
-            if(other.tag == "Player"|| other.tag == "Player Projectile")
-             Damage();
+            if (other.tag == "Player")
+               Damage(5);
+            
         }
 
         private IEnumerator EnemyFireRoutine()

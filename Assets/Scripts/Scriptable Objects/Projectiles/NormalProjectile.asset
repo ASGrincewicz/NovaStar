@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: NormalProjectile
   m_EditorClassIdentifier: 
   projectileName: Base Player Proj
+  damageAmount: 1
   speed: 5
   target: Enemy
   moveDirection: {x: 1, y: 0}

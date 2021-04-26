@@ -6086,7 +6086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playSFXEvent: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
-  _UITextSound: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
+  _UITextSound: {fileID: 8300000, guid: dc6614beca09347ec9b258f12d154bdd, type: 3}
 --- !u!114 &1581509207 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4229311986215121135, guid: 69bdc0daff04442c79ed0dfe685b6127, type: 3}
@@ -6790,13 +6790,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1652345507425155139, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652345507425155143, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652345507425444961, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652345507881828112, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652345508091440647, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
+      propertyPath: _startPosition.x
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1652345508091440760, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1652345508091440760, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.39
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1652345508091440760, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6837,6 +6857,14 @@ PrefabInstance:
     - target: {fileID: 1652345508091440761, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
       propertyPath: m_Name
       value: Planets
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652345508252008962, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652345509415783245, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
@@ -8033,10 +8061,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3508733170712618738, guid: d3a8687103ba54e8c9a2f48709b976d7, type: 3}
-      propertyPath: _shieldUIEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 123f106f1ea394ed8b52eb9fc72c1812, type: 2}
     - target: {fileID: 3508733170712618740, guid: d3a8687103ba54e8c9a2f48709b976d7, type: 3}
       propertyPath: m_Name
       value: Player
@@ -8085,10 +8109,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8176026018011347619, guid: d3a8687103ba54e8c9a2f48709b976d7, type: 3}
-      propertyPath: _playerMovementSO
-      value: 
-      objectReference: {fileID: 11400000, guid: 6cf2651c4712342718e946ee94925d3a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3a8687103ba54e8c9a2f48709b976d7, type: 3}
 --- !u!1 &3694192783997212057 stripped

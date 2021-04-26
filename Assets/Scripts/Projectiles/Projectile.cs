@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 namespace Veganimus.NovaStar
 {
@@ -11,8 +12,9 @@ namespace Veganimus.NovaStar
         [SerializeField] private ProjectileTypeSO _projectileType;
         [SerializeField] private GameObject _impactVFX;
         [SerializeField] private PoolGORequest _projVFXRequest;
-        private string _target => _projectileType.target;
-        private float _speed => _projectileType.speed;
+        private string Target => _projectileType.target;
+        private float Speed => _projectileType.speed;
+        private int DamageAmount => _projectileType.damageAmount;
 
         private void Update()=> Movement();
 
@@ -21,22 +23,26 @@ namespace Veganimus.NovaStar
             if (transform.position.x < -20.0f || transform.position.x > 25.0f)
                 gameObject.SetActive(false);
         }
-
-        private void Movement()=> transform.Translate(_projectileType.moveDirection * _speed * Time.deltaTime);
+        private void Movement()=> transform.Translate(_projectileType.moveDirection * (Speed * Time.deltaTime));
         
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == _target)
+            if (other.tag == Target)
             {
-                GameObject impact = _projVFXRequest.RequestGameObject();
-                if (impact != null)
+                IDamageable obj = other.GetComponentInParent<IDamageable>();
+                if (obj != null)
                 {
-                    impact.transform.position = transform.position;
-                    impact.transform.rotation = transform.rotation;
-                    this.gameObject.SetActive(false);
+                    obj.Damage(DamageAmount);
+                    GameObject impact = _projVFXRequest.RequestGameObject();
+                    if (impact != null)
+                    {
+                        impact.transform.position = transform.position;
+                        impact.transform.rotation = transform.rotation;
+                        this.gameObject.SetActive(false);
+                    }
+                    else
+                        impact = null;
                 }
-                else
-                 impact = null;
             }
             else
                 return;

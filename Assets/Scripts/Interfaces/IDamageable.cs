@@ -1,4 +1,4 @@
-namespace Veganimus
+namespace Veganimus.NovaStar
 {
     ///<summary>
     ///@author
@@ -6,6 +6,6 @@ namespace Veganimus
     ///</summary>
     public interface IDamageable 
     {
-        void Damage(IAttacker attacker);
+        void Damage(int amount);
     }
 }

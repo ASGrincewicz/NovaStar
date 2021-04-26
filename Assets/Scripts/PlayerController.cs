@@ -8,7 +8,7 @@ namespace Veganimus.NovaStar
     ///@author
     ///Aaron Grincewicz
     ///</summary>
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IDamageable
     {
         private bool _canTakeDamage = true;
         private bool _powerUpActive;
@@ -53,7 +53,7 @@ namespace Veganimus.NovaStar
         private void OnEnable()
         {
             _collectEvent.OnPowerUpCollect += PowerUpCollect;
-            _maxUpgradeChannel.OnEventRaised += (int max) => _maxUpgrade = max;
+            _maxUpgradeChannel.OnEventRaised += max => _maxUpgrade = max;
             _currentWeaponIDEvent.OnEventRaised += CurrentWeaponTracker;
         }
 
@@ -72,8 +72,10 @@ namespace Veganimus.NovaStar
         }
         private void Update()
         {
-            transform.position = new Vector3(Mathf.Clamp(transform.position.x, _xLeftBound, _xRightBound),
-                Mathf.Clamp(transform.position.y, _yBottomBound, _yTopBound), 0);
+            var position = transform.position;
+            position = new Vector3(Mathf.Clamp(position.x, _xLeftBound, _xRightBound),
+                Mathf.Clamp(position.y, _yBottomBound, _yTopBound), 0);
+            transform.position = position;
         }
        private void CurrentWeaponTracker(int current)=> _currentWeaponID = current;
         
@@ -86,7 +88,7 @@ namespace Veganimus.NovaStar
                 {
                     case 0:
                         if (_currentWeaponID < _maxUpgrade -2)
-                        _weaponChangeEvent.RaiseWeaponChangeEvent(true, false, _currentWeaponID++);
+                            _weaponChangeEvent.RaiseWeaponChangeEvent(true, false, _currentWeaponID++);
                         _upgradeTracker.RaiseEvent(0);
                         // _playSFXEvent.OnSFXEventRaised("Player", _powerUpSFX);
                         break;
@@ -112,10 +114,8 @@ namespace Veganimus.NovaStar
                 }
                 StartCoroutine(PowerUpFlicker());
             }
-            else
-                return;
         }
-        public void Damage()
+        public void Damage(int amount)
         {
             if (_shieldActive)
             {
@@ -140,18 +140,14 @@ namespace Veganimus.NovaStar
                         StartCoroutine(DamageCoolDown());
                     }
                 }
-                else
-                    return;
             }
         }
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Enemy")|| other.CompareTag("Enemy Projectile"))
-                Damage();
-            else
-                return;
+            if (other.tag == "Enemy")
+                Damage(0);
+            
         }
-
         private IEnumerator DamageCoolDown()
         {
             yield return _damageCoolDown;

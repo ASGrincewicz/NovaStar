@@ -15,6 +15,7 @@ namespace Veganimus.NovaStar
         public float accuracyOffsetMin ;
         public float accuracyOffsetMax ;
         public float fireRate ;
+        public bool isMultiShot;
         public GameObject projectilePrefab;
         public AudioClip fireSound;
     }

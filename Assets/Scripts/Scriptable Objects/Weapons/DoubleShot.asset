@@ -17,5 +17,6 @@ MonoBehaviour:
   accuracyOffsetMin: 0
   accuracyOffsetMax: 0
   fireRate: 0.35
-  projectilePrefab: {fileID: 8813786460362376539, guid: 4cb036b87f25f44569f69e0d5ff18cb0, type: 3}
+  isMultiShot: 1
+  projectilePrefab: {fileID: 670806353022106560, guid: 8ed38429270844c97a43a96ae1ae4519, type: 3}
   fireSound: {fileID: 8300000, guid: 099f4b1efcd2840e4bdd367030b560ca, type: 3}

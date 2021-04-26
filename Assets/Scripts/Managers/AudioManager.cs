@@ -25,11 +25,12 @@ namespace Veganimus.NovaStar
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            if(_instance == null)
-             _instance = gameObject;
-            
+            if (_instance == null)
+                _instance = gameObject;
+
             else
-            Destroy(gameObject);
+             Destroy(gameObject);
+            
         }
         private void OnEnable()
         {
@@ -37,7 +38,6 @@ namespace Veganimus.NovaStar
             _trackWaveEvent.OnEventRaised += ChangeMusic;
             _endGameEvent.OnEventRaised += () =>
             {
-                _audio.Stop();
                 _audio.clip = _endMusic;
                 _audio.Play();
             };
@@ -50,6 +50,7 @@ namespace Veganimus.NovaStar
         }
         private void OnDisable()
         {
+            _audio.clip = null;
             _playSFXEvent.OnSFXEventRaised -= PlaySFX;
             _trackWaveEvent.OnEventRaised -= ChangeMusic;
         }

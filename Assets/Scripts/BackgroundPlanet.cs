@@ -9,6 +9,7 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class BackgroundPlanet : MonoBehaviour
     {
+        [SerializeField] private Vector3 _startPosition;
         [SerializeField] private float _speed;
         [SerializeField] private List<GameObject> _planets = new List<GameObject>();
         [SerializeField] private GameObject _currentPlanet;
@@ -18,9 +19,10 @@ namespace Veganimus.NovaStar
 
         private void Update()
         {
-            _currentPlanet.transform.Translate(Vector3.left * _speed * Time.deltaTime);
-            if (_currentPlanet.transform.position.x < -15f)
+            transform.Translate(Vector3.left * _speed * Time.deltaTime);
+            if (transform.position.x < -15f)
             {
+                transform.position = _startPosition;
                 _currentPlanet.SetActive(false);
                 SpawnPlanet();
             }
@@ -34,7 +36,7 @@ namespace Veganimus.NovaStar
             {
                 _planetToSpawn++;
                 GameObject planet = _planets[_planetToSpawn];
-                planet.transform.position = transform.position;
+                //planet.transform.position = transform.position;
                 planet.SetActive(true);
                 _currentPlanet = planet;
             }

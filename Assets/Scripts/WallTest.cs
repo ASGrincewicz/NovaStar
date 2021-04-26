@@ -1,5 +1,7 @@
 using UnityEngine;
 using Veganimus.GDHQcert;
+using Veganimus.NovaStar;
+
 namespace Veganimus
 {
     ///<summary>
@@ -8,19 +10,13 @@ namespace Veganimus
     ///</summary>
     public class WallTest : MonoBehaviour, IDamageable
     {
-        
+        [SerializeField] private int _hp;
+
         private void OnCollisionEnter(Collision other)
         {
             if (other.transform.CompareTag("Bullet"))
-            {
-                other.gameObject.SetActive(false);
-            }
-           
+             other.gameObject.SetActive(false);
         }
-
-        public void Damage(IAttacker attacker)
-        {
-            Debug.Log("Damage Taken" + attacker.DamageAmount);
-        }
+        public void Damage(int amount) => _hp -= amount;
     }
 }

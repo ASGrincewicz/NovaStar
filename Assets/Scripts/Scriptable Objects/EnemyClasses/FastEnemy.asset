@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e297482de031478a89d9eac7e6e746f, type: 3}
+  m_Name: FastEnemy
+  m_EditorClassIdentifier: 
+  enemyName: Fast Enemy
+  scoreTier: 250
+  hp: 5
+  speed: 5
+  shieldHP: 0
+  fireRate: 8
+  hasShield: 0
+  hasWeapon: 1
+  weapon: {fileID: 1912985845912812047, guid: c52e5cd29fd2449049aadeb3b03f614f, type: 3}
+  itemDrop: {fileID: 8669839817956141900, guid: 0a14f39be09684ef38f25eeec953af5e, type: 3}
+  explosionPrefab: {fileID: 3727974499667631976, guid: 5727a6f4e93ea41df94eec6ca947f1cc, type: 3}
+  shootSound: {fileID: 8300000, guid: e53216c18934c41b1a16e12ecc46b351, type: 3}
+  damageSound: {fileID: 8300000, guid: d68d2580bc4ab4711a2440f422ab2cba, type: 3}
+  deathSound: {fileID: 8300000, guid: 788cb3fa888f1431ca124d7379ff9ac7, type: 3}

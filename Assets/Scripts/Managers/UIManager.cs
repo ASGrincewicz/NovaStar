@@ -52,6 +52,7 @@ namespace Veganimus.NovaStar
         private bool _gamePaused;
         [SerializeField] private AudioClip _pauseSound;
         [SerializeField] private AudioClip _gameOverSound;
+       
 
         private void OnEnable()
         {

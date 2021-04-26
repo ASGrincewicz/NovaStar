@@ -37,6 +37,7 @@ namespace Veganimus.NovaStar
             _trackWaveEvent.OnEventRaised += ChangeMusic;
             _endGameEvent.OnEventRaised += () =>
             {
+                _audio.Stop();
                 _audio.clip = _endMusic;
                 _audio.Play();
             };
@@ -55,6 +56,7 @@ namespace Veganimus.NovaStar
         private void Start()
         {
             _audio = GetComponentInChildren<AudioSource>();
+            _audio.clip = null;
             _audio.volume = _audioSettings.volume;
             _audio.clip = _mainBGMusic;
             _audio.Play();
@@ -80,6 +82,8 @@ namespace Veganimus.NovaStar
                 }
             }
         }
+        public void StopTrack()=> _audio.Stop();
+        
         public void PlaySFX(AudioClip clipToPlay) => _audio.PlayOneShot(clipToPlay);
     }
 }

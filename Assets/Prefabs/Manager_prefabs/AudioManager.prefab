@@ -49,9 +49,11 @@ MonoBehaviour:
   _mainBGMusic: {fileID: 8300000, guid: 9468c608966ff40ad8724a542a0c5bf5, type: 3}
   _secondaryBGmusic: {fileID: 8300000, guid: 358f3fc126f944ee38575c3cd292ff04, type: 3}
   _bossMusic: {fileID: 8300000, guid: e590c6b8e0aa34096af2343e8e53ffcb, type: 3}
+  _endMusic: {fileID: 8300000, guid: a866d25650cbd4f28ae108d9bcabd54d, type: 3}
   _playSFXEvent: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
   _trackWaveEvent: {fileID: 11400000, guid: c2f66dcd5d3464ed698ae72af2602413, type: 2}
   _trackBossWave: {fileID: 11400000, guid: faec6a1b8de114965bbdc2494a9acb34, type: 2}
+  _endGameEvent: {fileID: 11400000, guid: e32fd50f623d54a86a5641bfc1099503, type: 2}
 --- !u!1 &8067633448003327721
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +95,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1e26a0c62c6a2468f9001347fa7e7169, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.232
   m_Pitch: 1

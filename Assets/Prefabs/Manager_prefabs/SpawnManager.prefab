@@ -121,7 +121,9 @@ MonoBehaviour:
   _enemyContainer: {fileID: 7054396880743300025}
   _bossSpawnPos: {fileID: 2040640481768337844}
   _enemyToSpawn: 0
-  _currentWave: 5
+  _enemyDestroyed: 0
+  _enemySpawns: 0
+  _currentWave: 12
   _currentLevel: 1
   _enemyTracking: {fileID: 11400000, guid: f97016cdce5004efb98ce56800a41802, type: 2}
   _trackLevelEvent: {fileID: 11400000, guid: 9ec8bd5dd652d46ecb70191a87e4f791, type: 2}

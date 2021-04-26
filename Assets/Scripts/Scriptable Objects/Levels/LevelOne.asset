@@ -21,4 +21,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a112a92e90adc4a2684c70b8e4d3099e, type: 2}
   - {fileID: 11400000, guid: 43c7b8743f05b4667a8f2b24da7b7b10, type: 2}
   - {fileID: 11400000, guid: 60d218c4948c241ebbdb58ccaa614448, type: 2}
+  - {fileID: 11400000, guid: eebb9a1e14518444d8968dfcf954bc34, type: 2}
+  - {fileID: 11400000, guid: 7618b60f836254a4a86d9cfc2fdc6caa, type: 2}
+  - {fileID: 11400000, guid: 141c3c32159c640e793bda994f0050e3, type: 2}
+  - {fileID: 11400000, guid: 516633849b1064be0a7d36042c72f112, type: 2}
+  - {fileID: 11400000, guid: 45ba7fd89fc69410ba526381b3f65ef1, type: 2}
+  - {fileID: 11400000, guid: 989e138bc3d794d60a4a59306b47dd5c, type: 2}
+  - {fileID: 11400000, guid: 54b6b537993384a38b0c847afd0bcd24, type: 2}
+  - {fileID: 11400000, guid: a6ca96b56f88c4642bd91d9817dcd7fa, type: 2}
+  - {fileID: 11400000, guid: 87f77bc444ad4417882294600fc110bd, type: 2}
   bossWave: {fileID: 11400000, guid: 1c14dd9d966844a1fae710bbf726f9a0, type: 2}

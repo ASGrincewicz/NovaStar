@@ -551,18 +551,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2668565598692118893, guid: c9ff3bbb87f4e4f87836bf5dc28306b0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
-    - target: {fileID: 2668565598692118893, guid: c9ff3bbb87f4e4f87836bf5dc28306b0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: RaiseSFXEvent
-      objectReference: {fileID: 0}
-    - target: {fileID: 2668565598692118893, guid: c9ff3bbb87f4e4f87836bf5dc28306b0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Veganimus.NovaStar.PlaySFXEvent, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 4382623839693074458, guid: c9ff3bbb87f4e4f87836bf5dc28306b0, type: 3}
       propertyPath: m_Pivot.x
       value: 0

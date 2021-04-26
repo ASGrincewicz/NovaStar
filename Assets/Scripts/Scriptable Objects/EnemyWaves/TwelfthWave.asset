@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2599ac70b8743c486b64975604ef13, type: 3}
+  m_Name: TwelfthWave
+  m_EditorClassIdentifier: 
+  enemySequence:
+  - {fileID: 7823151458983795955, guid: f27e83d05944e4469b4a8d51050a135a, type: 3}
+  - {fileID: 7823151458983795955, guid: f27e83d05944e4469b4a8d51050a135a, type: 3}
+  - {fileID: 7823151458983795955, guid: f27e83d05944e4469b4a8d51050a135a, type: 3}
+  - {fileID: 7823151458983795955, guid: f27e83d05944e4469b4a8d51050a135a, type: 3}
+  - {fileID: 7823151458983795955, guid: f27e83d05944e4469b4a8d51050a135a, type: 3}
+  waveNumber: 12

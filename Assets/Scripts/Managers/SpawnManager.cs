@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,14 +62,13 @@ namespace Veganimus.NovaStar
         private void Start()
         {
             _spawnDelay = new WaitForSeconds(5f);
-            _nextWaveDelay = new WaitForSeconds(10f);
+            _nextWaveDelay = new WaitForSeconds(5f);
             _activeLevel = _levels[0];
             GetWaveFromLevel();
             RequestEnemyWave();
             RequestBossWave();
             _trackWaveEvent.RaiseEvent(_currentWave);
         }
-        //private void Update() => KillTracking();
 
         private void StartNextLevel()
         {

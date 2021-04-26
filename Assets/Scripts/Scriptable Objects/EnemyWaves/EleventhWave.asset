@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2599ac70b8743c486b64975604ef13, type: 3}
+  m_Name: EleventhWave
+  m_EditorClassIdentifier: 
+  enemySequence:
+  - {fileID: 4111562270175663790, guid: 694d3e60eec1348b796bcec3d5a5db50, type: 3}
+  - {fileID: 8152830376136294644, guid: 150d5a5ccc24341c9985c30fa6bfd533, type: 3}
+  - {fileID: 4111562270175663790, guid: 694d3e60eec1348b796bcec3d5a5db50, type: 3}
+  - {fileID: 8152830376136294644, guid: 63b4a6f103e7b4460b94a880d638a9f5, type: 3}
+  - {fileID: 8152830376136294644, guid: 63b4a6f103e7b4460b94a880d638a9f5, type: 3}
+  waveNumber: 11

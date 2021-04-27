@@ -137,8 +137,6 @@ namespace Veganimus.NovaStar
             _levelText.text = $"Level:  { _currentLevel } -  {_currentWave}";
         }
         public void RestartGame()=> _loadSceneEvent.RaiseEvent("Main_Menu");
-            
-        
         public void ContinueButton(Canvas activeCanvas)
         {
             activeCanvas.gameObject.SetActive(false);
@@ -160,7 +158,7 @@ namespace Veganimus.NovaStar
              _incomingWaveText.text = $"Wave: {_currentWave} Incoming!";
             
             else if(_bossWave == true)
-            _incomingWaveText.text = $"Enemy Boss Incoming!";
+                _incomingWaveText.text = $"Enemy Boss Incoming!";
            
             _incomingWaveTextGO.SetActive(true);
             yield return new WaitForSeconds(3.0f);

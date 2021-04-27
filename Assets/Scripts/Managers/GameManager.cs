@@ -25,7 +25,6 @@ namespace Veganimus.NovaStar
         [SerializeField] private GameEvent _nextLevelEvent;
         [Space]
         [SerializeField] private InputReaderSO _inputReader;
-        [SerializeField] PlayableDirector _director;
         [SerializeField] GameObject _bossCutscene;
 
         public static Action<bool> isPaused;
@@ -61,15 +60,13 @@ namespace Veganimus.NovaStar
         private void Update()
         {
             if(_enemiesDestroyed == _enemiesSpawned && levelComplete == true)
-            EndGame();
-            
+                EndGame();
         }
         private void LoadSceneCalled(string scene)
         {
             SceneManager.LoadScene(scene);
             Time.timeScale = 1;
         }
-      
         private void ContinueInput(Canvas activeCanvas)
         {
             switch(activeCanvas.name)
@@ -82,40 +79,32 @@ namespace Veganimus.NovaStar
                     break;
             }
         }
-       
         public void OnPauseInput()
         {
             if(Time.timeScale != 0)
-             Time.timeScale = 0;
+                Time.timeScale = 0;
             
             else if(Time.timeScale == 0 )
-            Time.timeScale = 1;
-            
+                Time.timeScale = 1;
         }
-        public void GameOver()
+        private void GameOver()
         {
             gameOver(true);
             Time.timeScale = 0;
         }
-       
-        public void LevelComplete(bool isComplete)
+
+        private void LevelComplete(bool isComplete)
         {
             if (isComplete == true)
             {
                 levelComplete = true;
                 Time.timeScale = 0;
             }
-            else
-            {
-                return;
-            }
         }
-        public void NextLevel()=> _nextLevelEvent.RaiseEvent();
 
-        public void EndGame()=> _bossCutscene.SetActive(true);
-
-        public void EnemyDestroyed()=> _enemiesDestroyed++;
-       
-        public void EnemySpawns() => _enemiesSpawned++;
+        private void NextLevel()=> _nextLevelEvent.RaiseEvent();
+        private void EndGame()=> _bossCutscene.SetActive(true);
+        private void EnemyDestroyed()=> _enemiesDestroyed++;
+        private void EnemySpawns() => _enemiesSpawned++;
     }
 }

@@ -16,13 +16,13 @@ namespace Veganimus.NovaStar
         [SerializeField] private EnemyTrackerChannel _enemyTracking;
         [SerializeField] private intEventSO _upgradeTracker;
         [SerializeField] private intEventSO _powerUpTracker;
+        [SerializeField] private intEventSO _trackCheckpoint;
         private SaveData _saveData;
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
             if (_instance == null)
                 _instance = gameObject;
-
             else
                 Destroy(gameObject);
         }
@@ -33,6 +33,7 @@ namespace Veganimus.NovaStar
             _enemyTracking.OnEnemySpawned += TrackSpawns;
             _upgradeTracker.OnEventRaised += TrackUpgrade;
             _powerUpTracker.OnEventRaised += TrackPowerUp;
+            _trackCheckpoint.OnEventRaised += TrackCheckpoint;
         }
         private void OnDisable()
         {
@@ -41,6 +42,7 @@ namespace Veganimus.NovaStar
             _enemyTracking.OnEnemySpawned -= TrackSpawns;
             _upgradeTracker.OnEventRaised -= TrackUpgrade;
             _powerUpTracker.OnEventRaised -= TrackPowerUp;
+            _trackCheckpoint.OnEventRaised -= TrackCheckpoint;
         }
         private void Start()=> LoadRecords();
 
@@ -54,10 +56,7 @@ namespace Veganimus.NovaStar
                 _playerRecords.Currency = data.Currency;
             }
             else
-            {
-                SaveSystem.SaveRecords(_playerRecords);
-            }
-
+             SaveSystem.SaveRecords(_playerRecords);
         }
         private void TrackScore(int score)=> _playerRecords.RecentScore += score;
 
@@ -68,7 +67,7 @@ namespace Veganimus.NovaStar
         private void TrackUpgrade(int value) => _playerRecords.Upgrades++;
 
         private void TrackPowerUp(int value) => _playerRecords.PowerUps++;
-
+        private void TrackCheckpoint(int wave) => _playerRecords.Checkpoint = wave;
         public void SaveRecords()=> SaveSystem.SaveRecords(_playerRecords);
     }
 }

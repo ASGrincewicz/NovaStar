@@ -13,7 +13,8 @@ namespace Veganimus.NovaStar
         [SerializeField] private AudioSource _audio;
         [Header("Background Music")]
         [SerializeField] private AudioClip _mainBGMusic;
-        [SerializeField] private AudioClip _secondaryBGmusic;
+        [SerializeField] private AudioClip _secondaryBGMusic;
+        [SerializeField] private AudioClip _thirdBGMusic;
         [SerializeField] private AudioClip _bossMusic;
         [SerializeField] private AudioClip _endMusic;
         [Header("Listening To")]
@@ -27,10 +28,8 @@ namespace Veganimus.NovaStar
             DontDestroyOnLoad(gameObject);
             if (_instance == null)
                 _instance = gameObject;
-
             else
              Destroy(gameObject);
-            
         }
         private void OnEnable()
         {
@@ -41,7 +40,6 @@ namespace Veganimus.NovaStar
                 _audio.clip = _endMusic;
                 _audio.Play();
             };
-
             _trackBossWave.OnEventRaised += () =>
             {
                 _audio.clip = _bossMusic;
@@ -66,25 +64,25 @@ namespace Veganimus.NovaStar
        
         private void ChangeMusic(int wave)
         {
-            if (wave == 1 || wave == 4)
-            {
-                switch (wave)
+            switch (wave)
                 {
                     case 1:
                         _audio.clip = _mainBGMusic;
                         _audio.Play();
                         break;
-                    case 4:
-                        _audio.clip = _secondaryBGmusic;
+                    case 6:
+                        _audio.clip = _secondaryBGMusic;
+                        _audio.Play();
+                        break;
+                    case 12:
+                        _audio.clip = _thirdBGMusic;
                         _audio.Play();
                         break;
                     default:
                         break;
                 }
-            }
         }
         public void StopTrack()=> _audio.Stop();
-        
         public void PlaySFX(AudioClip clipToPlay) => _audio.PlayOneShot(clipToPlay);
     }
 }

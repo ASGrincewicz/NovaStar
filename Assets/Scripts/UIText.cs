@@ -14,7 +14,6 @@ namespace Veganimus.NovaStar
     {
         [SerializeField] private PlaySFXEvent _playSFXEvent;
         [SerializeField] private AudioClip _UITextSound;
-
-        public void PlaySound()=> _playSFXEvent.RaiseSFXEvent(_UITextSound);
+       public void PlaySound() => _playSFXEvent.RaiseSFXEvent(_UITextSound);
     }
 }

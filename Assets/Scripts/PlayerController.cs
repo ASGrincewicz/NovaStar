@@ -16,6 +16,7 @@ namespace Veganimus.NovaStar
         private int _currentWeaponID;
         private int _lastWeaponID;
         private int _maxUpgrade;
+        [SerializeField] private int _lives = 3;
         [Header("Sound Effects")]
         [SerializeField] private AudioClip _shieldSFX;
         [SerializeField] private AudioClip _powerUpSFX;
@@ -44,6 +45,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private CoRoutineEvent _startPowerUpCoolDown;
         [SerializeField] private intEventSO _upgradeTracker;
         [SerializeField] private intEventSO _powerUpTracker;
+      
         private WaitForSeconds _damageCoolDown;
         private WaitForSeconds _powerUpCoolDown;
         private WaitForSeconds _powerUpEffectTimer;
@@ -90,7 +92,6 @@ namespace Veganimus.NovaStar
                         if (_currentWeaponID < _maxUpgrade -2)
                             _weaponChangeEvent.RaiseWeaponChangeEvent(true, false, _currentWeaponID++);
                         _upgradeTracker.RaiseEvent(0);
-                        // _playSFXEvent.OnSFXEventRaised("Player", _powerUpSFX);
                         break;
                     case 1:
                         if (_shieldActive == false)
@@ -98,7 +99,6 @@ namespace Veganimus.NovaStar
                             _shield.SetActive(true);
                             _shieldActive = true;
                             _powerUpTracker.RaiseEvent(0);
-                            //_playSFXEvent.RaiseSFXEvent("Player", _shieldSFX);
                             _shieldUIEvent.RaiseBoolEvent(true);
                         }
                         else
@@ -146,7 +146,6 @@ namespace Veganimus.NovaStar
         {
             if (other.tag == "Enemy")
                 Damage(0);
-            
         }
         private IEnumerator DamageCoolDown()
         {
@@ -174,6 +173,7 @@ namespace Veganimus.NovaStar
         }
         private IEnumerator DeathRoutine()
         {
+            _lives--;
             _shootOnInput.enabled = false;
             _playSFXEvent.RaiseSFXEvent(_deathSFX);
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);

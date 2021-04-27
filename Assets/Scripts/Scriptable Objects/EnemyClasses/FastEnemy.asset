@@ -17,7 +17,7 @@ MonoBehaviour:
   hp: 5
   speed: 5
   shieldHP: 0
-  fireRate: 8
+  fireRate: 3
   hasShield: 0
   hasWeapon: 1
   weapon: {fileID: 1912985845912812047, guid: c52e5cd29fd2449049aadeb3b03f614f, type: 3}

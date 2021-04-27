@@ -11,18 +11,6 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class PoolManager : MonoBehaviour
     {
-        private static PoolManager _instance;
-        public static PoolManager Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    Debug.LogError("Pool Manager is Null");
-                }
-                return _instance;
-            }
-        }
         [Header("Player Projectile Pool")]
         [SerializeField] private GameObject _projectilePrefab;
         [SerializeField] private GameObject _projectileContiner;
@@ -49,8 +37,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private PoolGORequest _powerUpRequest;
 
         public static Action clearChildren;
-        void Awake() => _instance = this;
-
+       
         private void OnEnable()
         {
             _playerWeaponEvent.OnPlayerWeaponChangeEventRaised += GetCurrentWeapon;
@@ -81,9 +68,8 @@ namespace Veganimus.NovaStar
             _projectilePool.Clear();
             _projectilePrefab = weapon.projectilePrefab;
             if(_projectilePrefab != null)
-             GenerateProjectile(10);
+             GenerateProjectile(20);
         }
-       
        private List<GameObject> GenerateProjectile(int amount)
         {
             for(int i = 0; i< amount; i++)
@@ -160,7 +146,6 @@ namespace Veganimus.NovaStar
             _bossProjectilePool.Add(newBossProj);
             return newBossProj;
         }
-
         private GameObject RequestProjectileVFX()
         {
             foreach(GameObject projVFX in _projectileVFXPool)

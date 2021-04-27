@@ -200,7 +200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6285906801255868605
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1875,6 +1875,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Veganimus.NovaStar.GameManager, Assembly-CSharp
+        m_MethodName: LoadCheckpoint
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3648835774479063749
 GameObject:
   m_ObjectHideFlags: 0
@@ -3084,6 +3096,7 @@ GameObject:
   - component: {fileID: 3069701865071021387}
   - component: {fileID: 4229311986215121135}
   - component: {fileID: 1366480486916481539}
+  - component: {fileID: 1581509205}
   m_Layer: 5
   m_Name: Wave_incoming_text
   m_TagString: Untagged
@@ -3226,6 +3239,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1581509205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6297814887015865995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae9ff2ffb9fc4388b80b929303f090e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playSFXEvent: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
+  _UITextSound: {fileID: 8300000, guid: dc6614beca09347ec9b258f12d154bdd, type: 3}
 --- !u!1 &6550744986754885106
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ namespace Veganimus.NovaStar
         public int Spawns { get; set; }
         public int Upgrades { get; set; }
         public int PowerUps { get; set; }
+        public int Checkpoint { get; set; }
 
         public void ResetRecords()
         {

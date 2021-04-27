@@ -39,24 +39,17 @@ namespace Veganimus.NovaStar
 
         private void Start()
         {
-                _anim = GetComponent<Animator>();
-                {
-                    if(_anim == null)
-                     Debug.LogError("Animator is null");
-                }
+            _anim = GetComponent<Animator>();
+            if (_anim == null)
+                Debug.LogError("Animator is null");
         }
-        // private void Update()
-        // {
-        //     //if (_hp < 25)
-        //     //    _anim.SetInteger("Pattern", 4);
-        // }
         public void Damage(int amount)
         {
             _damageTaken+= amount;
             if (_damageTaken >= 25)
             {
                 _damageTaken = 0;
-                ActivateDamageVFX();
+                GameObject dvfx = ActivateDamageVFX();
             }
             _playSFXEvent.RaiseSFXEvent(_damageSound);
             _hp-= amount;
@@ -68,16 +61,23 @@ namespace Veganimus.NovaStar
                 _nextLevelEvent.RaiseEvent();
                 Destroy(this.gameObject);
             }
+            else if (_hp <= 66)
+             TriggerAttackPattern(AttackPattern.Second);
+            else if(_hp <= 33)
+                TriggerAttackPattern(AttackPattern.Third);
         }
-        private void ActivateDamageVFX()
+        private GameObject ActivateDamageVFX()
         {
             foreach (GameObject obj in _damageVFX)
             {
                 if (obj.activeSelf == false)
+                {
                     obj.SetActive(true);
+                    return obj;
+                }
             }
+            return null;
         }
-        // Attack Patterns trigger through Animation Event.
         private void TriggerAttackPattern(AttackPattern pattern)=> _anim.SetInteger("Pattern", (int)pattern);
 
         // Shoot is called through Animation Event.
@@ -89,10 +89,5 @@ namespace Veganimus.NovaStar
             bossBullet.transform.position = _firePositions[_currentFirePositions].transform.position;
             _playSFXEvent.RaiseSFXEvent(_shootSound);
         }
-        // private void OnTriggerEnter(Collider other)
-        // {
-        //     if (other.CompareTag("Player Projectile"))
-        //         Damage();
-        // }
     }
 }

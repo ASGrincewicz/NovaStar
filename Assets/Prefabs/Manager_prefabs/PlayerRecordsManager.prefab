@@ -48,3 +48,4 @@ MonoBehaviour:
   _enemyTracking: {fileID: 11400000, guid: f97016cdce5004efb98ce56800a41802, type: 2}
   _upgradeTracker: {fileID: 11400000, guid: f6b49aafe779f4a34bad26635ac3d570, type: 2}
   _powerUpTracker: {fileID: 11400000, guid: f8a12ff2bf30044a8bd0482a604a75c8, type: 2}
+  _trackCheckpoint: {fileID: 11400000, guid: c2f66dcd5d3464ed698ae72af2602413, type: 2}

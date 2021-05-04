@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Veganimus.NovaStar
 {
@@ -23,9 +24,6 @@ namespace Veganimus.NovaStar
         [SerializeField] private Transform _fireOffset;
         [SerializeField] private Transform _fireOffset2;
         [SerializeField] private bool _hasAltWeapon;
-        
-        [SerializeField] private Vector3 _shootDirection;
-        [SerializeField] private float _firePower;
         private string _enemyName => _enemyClass.enemyName;
         private int scoreTier => _enemyClass.scoreTier;
         [SerializeField] private int _hp;
@@ -41,7 +39,7 @@ namespace Veganimus.NovaStar
         private bool _hasShield => _enemyClass.hasShield;
         [SerializeField] private GameObject _weapon;
         [SerializeField] private GameObject _shield;
-        [SerializeField] private GameObject _explosionPrefab => _enemyClass.explosionPrefab;
+        private GameObject _explosionPrefab => _enemyClass.explosionPrefab;
         private List<GameObject> _enemyBullets;
         private Rigidbody _rigidbody;
         [SerializeField] private Vector3 _moveDirection;
@@ -54,7 +52,6 @@ namespace Veganimus.NovaStar
         private void Awake()
         {
             _hp = _enemyClass.hp;
-            _fireDelay = new WaitForSeconds(_enemyClass.fireRate);
             _weapon = _hasWeapon switch
             {
                 true => _enemyClass.weapon,
@@ -64,7 +61,6 @@ namespace Veganimus.NovaStar
             switch (_hasShield)
             {
                 case true:
-                    //shield = _enemyClass.shield;
                     _shieldHP = _enemyClass.shieldHP;
                     _shieldOn = true;
                     break;
@@ -73,9 +69,11 @@ namespace Veganimus.NovaStar
                     break;
             }
         }
-        private void Start()
+        private IEnumerator Start()
         {
-            _chance = Random.Range(0, 20);
+            yield return null;
+            _fireDelay = new WaitForSeconds(_enemyClass.fireRate);
+            _chance = Random.Range(0, 100);
             _rigidbody = GetComponent<Rigidbody>();
             if (_mirror)
                 StartCoroutine(ActivateMirrorMovementRoutine());
@@ -99,21 +97,7 @@ namespace Veganimus.NovaStar
             }
             if(_hp <= 0)
             {
-                _playSFXEvent.RaiseSFXEvent(_deathSound);
-                _enemyTracking.EnemyDestroyedEvent();
-                if (_chance >= 10)
-                {
-                    GameObject itemDrop = _requestPowerUpDrop.RequestGameObjectInt(scoreTier);
-                    if (itemDrop != null)
-                    {
-                        itemDrop.transform.position = transform.position;
-                        itemDrop.SetActive(true);
-                    }
-                    else
-                        return;
-                }
-                Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-                Destroy(this.gameObject);
+               Die();
             }
             if(_shieldHP <= 0 && _shield == true)
             {
@@ -128,7 +112,6 @@ namespace Veganimus.NovaStar
             if (transform.position.x < -20f)
                transform.position = new Vector3(13f, Random.Range(-3f, 5f), 0);
         }
-
         private void MirrorMovement()
         {
             _mirrorMoveSO.Pitch(this.gameObject);
@@ -150,11 +133,28 @@ namespace Veganimus.NovaStar
             _playSFXEvent.RaiseSFXEvent(_shootSound);
             StartCoroutine(EnemyFireRoutine());
         }
+        private void Die()
+        {
+            _playSFXEvent.RaiseSFXEvent(_deathSound);
+            _enemyTracking.EnemyDestroyedEvent();
+            if (_chance >= 75)
+            {
+                GameObject itemDrop = _requestPowerUpDrop.RequestGameObjectInt(scoreTier);
+                if (itemDrop != null)
+                {
+                    itemDrop.transform.position = transform.position;
+                    itemDrop.SetActive(true);
+                }
+                else
+                    return;
+            }
+            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
         public void Damage(int amount)
         {
-            if (_enemyClass.hasShield == true && _shieldOn == true)
+            if (_enemyClass.hasShield && _shieldOn)
                 _shieldHP -= amount;
-            
             else
             {
                 int damageVFX_chance = Random.Range(0, 10);
@@ -183,9 +183,7 @@ namespace Veganimus.NovaStar
         {
             if (other.tag == "Player")
                Damage(5);
-            
         }
-
         private IEnumerator EnemyFireRoutine()
         {
             yield return _fireRate;

@@ -32,22 +32,22 @@ namespace Veganimus.NovaStar
 
         private void OnEnable()
         {
-            _inputReader.pauseEvent += OnPauseInput;
+            //_inputReader.pauseEvent += OnPauseInput;
             _enemyTracking.OnEnemySpawned += EnemySpawns;
             _enemyTracking.OnEnemyDestroyed += EnemyDestroyed;
             _trackLevelEvent.OnBoolEventRaised += LevelComplete;
-            UIManager.continueButton += ContinueInput;
+           // UIManager.continueButton += ContinueInput;
             _playerDeadEvent.OnEventRaised += GameOver;
             _loadSceneEventSO.OnEventRaised += LoadSceneCalled;
             _endGameEvent.OnEventRaised += EndGame;
         }
         private void OnDisable()
         {
-            _inputReader.pauseEvent -= OnPauseInput;
+            //_inputReader.pauseEvent -= OnPauseInput;
             _enemyTracking.OnEnemySpawned -= EnemySpawns;
             _enemyTracking.OnEnemyDestroyed -= EnemyDestroyed;
             _trackLevelEvent.OnBoolEventRaised -= LevelComplete;
-            UIManager.continueButton -= ContinueInput;
+           // UIManager.continueButton -= ContinueInput;
             _playerDeadEvent.OnEventRaised -= GameOver;
             _loadSceneEventSO.OnEventRaised -= LoadSceneCalled;
             _endGameEvent.OnEventRaised -= EndGame;
@@ -67,7 +67,7 @@ namespace Veganimus.NovaStar
             SceneManager.LoadScene(scene);
             Time.timeScale = 1;
         }
-        private void ContinueInput(Canvas activeCanvas)
+        /*private void ContinueInput(Canvas activeCanvas)
         {
             switch(activeCanvas.name)
             {
@@ -78,15 +78,15 @@ namespace Veganimus.NovaStar
                     OnPauseInput();
                     break;
             }
-        }
-        public void OnPauseInput()
-        {
-            if(Time.timeScale != 0)
-                Time.timeScale = 0;
-            
-            else if(Time.timeScale == 0 )
-                Time.timeScale = 1;
-        }
+        }*/
+        // public void OnPauseInput()
+        // {
+        //     if(Time.timeScale == 1)
+        //         Time.timeScale = 0;
+        //     
+        //     else if(Time.timeScale == 0 )
+        //         Time.timeScale = 1;
+        // }
         private void GameOver()
         {
             gameOver(true);

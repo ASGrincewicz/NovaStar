@@ -55,7 +55,7 @@ GameObject:
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &2466365354971400545
 Transform:
@@ -483,6 +483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackPattern: 0
   _hp: 100
+  _damageTaken: 0
   _scoreTier: 4000
   _firePositions:
   - {fileID: 2428143189955965616}

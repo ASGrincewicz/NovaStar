@@ -79,7 +79,7 @@ namespace Veganimus.NovaStar
             _bossHealthUIEvent.OnEventRaised -= UpdateBossHealth;
             _shieldUIEvent.OnBoolEventRaised -= UpdateShieldUI;
         }
-        private void OnPauseInput()
+        public void OnPauseInput()
         {
             _playSFXEvent.RaiseSFXEvent(_pauseSound);
             switch (_gamePaused)
@@ -87,10 +87,12 @@ namespace Veganimus.NovaStar
                 case true:
                     pauseMenu.gameObject.SetActive(false);
                     _gamePaused = false;
+                    Time.timeScale = 1;
                     break;
                 case false:
                     pauseMenu.gameObject.SetActive(true);
                     _gamePaused = true;
+                    Time.timeScale = 0;
                     break;
             }
         }
@@ -99,7 +101,6 @@ namespace Veganimus.NovaStar
             _playerScore = 0;
             UpdateScore(0);
         }
-       
        private void StartTimer() => _powerUpTimer.SetActive(true);
 
         private void UpdateScore(int amount)

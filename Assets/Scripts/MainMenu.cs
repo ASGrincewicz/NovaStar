@@ -13,7 +13,6 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class MainMenu : MonoBehaviour
     {
-        //[SerializeField] private PlayableDirector _director;
         [Header("Main Menu UI")]
         [SerializeField] private GameObject _optionsMenu;
         [SerializeField] private TMP_Dropdown _resolutionDropDown;
@@ -49,23 +48,12 @@ namespace Veganimus.NovaStar
 
         private void SceneLoader(string value)
         {
-            switch(value)
-            {
-                case "Main_Menu":
-                    //_director.Play();
-                    break;
-                case "Loading":
-                    SceneManager.LoadScene("Loading");
-                    break;
-            }
+            SceneManager.LoadScene("Loading");
         }
         public void QuitGame() => Application.Quit();
-
-        public void GameDevHQButton()
-        {
-            Application.OpenURL("http://www.GameDevHQ.com");
-        }
+        public void GameDevHQButton() => Application.OpenURL("http://www.GameDevHQ.com");
 #if UNITY_STANDALONE
+#elif PLATFORM_WEBGL
         public void GetScreenResolution()
         {
             _availableRes = Screen.resolutions;
@@ -83,10 +71,9 @@ namespace Veganimus.NovaStar
         public void FullScreenToggle()
         {
             if (_fullScreenToggle.isOn == true)
-            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
-            
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
             else
-            Screen.fullScreenMode = FullScreenMode.Windowed;
+                Screen.fullScreenMode = FullScreenMode.Windowed;
         }
         public void ChangeBrightness() => Screen.brightness = _brightnessSlider.value;
 #endif

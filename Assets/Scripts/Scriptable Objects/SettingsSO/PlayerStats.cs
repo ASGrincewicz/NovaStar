@@ -25,6 +25,7 @@ namespace Veganimus.NovaStar
             PlayerName = " ";
             HighScore = 0;
             RecentScore = 0;
+            Currency = 0;
         }
         public void NewGame()
         {

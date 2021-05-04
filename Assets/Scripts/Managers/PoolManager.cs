@@ -1,21 +1,21 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 namespace Veganimus.NovaStar
 {
     ///<summary>
     ///@author
     ///Aaron Grincewicz
+    /// @info: Holds and instantiates frequently needed destructible game objects.
     ///</summary>
     public class PoolManager : MonoBehaviour
     {
         [Header("Player Projectile Pool")]
         [SerializeField] private GameObject _projectilePrefab;
-        [SerializeField] private GameObject _projectileContiner;
-        [SerializeField] private GameObject _bulletContainerPrefab;
+        [SerializeField] private GameObject _projectileContainer;
         [SerializeField] private List<GameObject> _projectilePool;
+        [Header("Enemy Projectiles")] [SerializeField]
+        private GameObject _enemyProjectileContainer;
         [Header("Boss Projectile Pool")]
         [SerializeField] private GameObject _bossProjectilePrefab;
         [SerializeField] private GameObject _bossProjectileContainer;
@@ -23,8 +23,7 @@ namespace Veganimus.NovaStar
         [Header("Power Up Pool")]
         [SerializeField] private List<GameObject> _powerUps;
         [SerializeField] private GameObject _powerUpPrefab;
-        public  GameObject powerUpContainer;
-        public GameObject bossBulletMagazine;
+        [SerializeField] private GameObject powerUpContainer;
         [Header("VFX Pool")]
         [SerializeField] private GameObject _projectileVFXPrefab;
         [SerializeField] private GameObject _projectileVFXContainer;
@@ -76,7 +75,7 @@ namespace Veganimus.NovaStar
             {
                 if (_projectilePool.Count < amount)
                 {
-                    GameObject bullet = Instantiate(_projectilePrefab, _projectileContiner.transform);
+                    GameObject bullet = Instantiate(_projectilePrefab, _projectileContainer.transform);
                     bullet.SetActive(false);
                     _projectilePool.Add(bullet);
                 }
@@ -161,27 +160,11 @@ namespace Veganimus.NovaStar
             _projectileVFXPool.Add(newProjVFX);
             return newProjVFX;
         }
-
         private GameObject RequestPowerUp(int scoreTier)
         {
-           switch(scoreTier)
-            {
-                case 250:
-                    _powerUpPrefab = _powerUps[0];
-                    break;
-                case 500:
-                    _powerUpPrefab = _powerUps[1];
-                    break;
-                case 750:
-                    _powerUpPrefab = _powerUps[2];
-                    break;
-                case 1000:
-                    _powerUpPrefab = _powerUps[UnityEngine.Random.Range(0,3)];
-                    break;
-            }
+            _powerUpPrefab = _powerUps[UnityEngine.Random.Range(0,3)];
            GameObject powerUp = Instantiate(_powerUpPrefab, powerUpContainer.transform);
            return powerUp;
         }
-        
     }
 }

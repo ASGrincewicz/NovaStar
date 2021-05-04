@@ -97,7 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62736ead0c18f4b1080402356b1ef443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyMovementSO: {fileID: 11400000, guid: 169075e5b76e34083961bc8809842e18, type: 2}
+  _mirrorMoveSO: {fileID: 0}
+  _mirror: 0
+  _sceneEntryTime: 0
   _damageVFX:
   - {fileID: 2960787540045278103}
   - {fileID: 8988110372881634285}
@@ -106,17 +108,17 @@ MonoBehaviour:
   _fireOffset: {fileID: 5277382118050052605}
   _fireOffset2: {fileID: 0}
   _hasAltWeapon: 0
-  _shootDirection: {x: -1, y: 0, z: 0}
-  _firePower: 5
   _hp: 0
   _shieldHP: 0
   _shieldOn: 0
   _weapon: {fileID: 4140978072433156269, guid: ecb404e9dcc9a44f19ca2b20935f21e2, type: 3}
   _shield: {fileID: 0}
+  _moveDirection: {x: 0, y: 0, z: 0}
   _updateScoreChannel: {fileID: 11400000, guid: 162717f3763e646df8af5df4528deadf, type: 2}
   _enemyTracking: {fileID: 11400000, guid: f97016cdce5004efb98ce56800a41802, type: 2}
   _playSFXEvent: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
-  _requestPowerUpDrop: {fileID: 11400000, guid: 41378fe3a993c414881382123f8a622b, type: 2}
+  _requestPowerUpDrop: {fileID: 11400000, guid: e67f09d5876ca433795ac8e65bef09a3, type: 2}
+  _requestProjectile: {fileID: 0}
 --- !u!54 &8377524274048239706
 Rigidbody:
   m_ObjectHideFlags: 0

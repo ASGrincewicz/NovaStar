@@ -6046,7 +6046,7 @@ GameObject:
   - component: {fileID: 1290650512}
   m_Layer: 0
   m_Name: --Managers--
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6414,14 +6414,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 876093842627084324, guid: 95c1d9c96bbd1470d9616a2d5a44c117, type: 3}
-      propertyPath: m_Pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 876093842627084324, guid: 95c1d9c96bbd1470d9616a2d5a44c117, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: e538739eb4c154daeb03f862e3628c15, type: 2}
     - target: {fileID: 6146365228978456418, guid: 95c1d9c96bbd1470d9616a2d5a44c117, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -6568,6 +6560,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7126750937861517065, guid: d0eac1c144bcb4f1d95d7f9e236c543f, type: 3}
+      propertyPath: _enemyProjectileRequest
+      value: 
+      objectReference: {fileID: 11400000, guid: e67f09d5876ca433795ac8e65bef09a3, type: 2}
     - target: {fileID: 8378779022571050922, guid: d0eac1c144bcb4f1d95d7f9e236c543f, type: 3}
       propertyPath: m_Name
       value: PoolManager
@@ -7115,26 +7111,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1652345507425155139, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1652345507425155143, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1652345507425444961, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1652345507881828112, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1652345508091440647, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
-      propertyPath: _startPosition.x
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 1652345508091440760, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -7182,14 +7158,6 @@ PrefabInstance:
     - target: {fileID: 1652345508091440761, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
       propertyPath: m_Name
       value: Planets
-      objectReference: {fileID: 0}
-    - target: {fileID: 1652345508252008962, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1652345509415783245, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}

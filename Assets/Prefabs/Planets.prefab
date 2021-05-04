@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192eee01f23f342ca9850bc33819610c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startPosition: {x: 15, y: 0, z: 50}
-  _speed: 0.3
+  _startPosition: {x: 12, y: 0, z: 50}
+  _speed: 0.5
   _planets:
   - {fileID: 1652345508252008962}
   - {fileID: 1652345507881828112}
@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 067b1440d2a28423bb23619454c78035, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 067b1440d2a28423bb23619454c78035, type: 3}
       propertyPath: m_RootOrder
@@ -142,7 +142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 067b1440d2a28423bb23619454c78035, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067b1440d2a28423bb23619454c78035, type: 3}

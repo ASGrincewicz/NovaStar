@@ -13,10 +13,10 @@ namespace Veganimus.NovaStar
     {
         [SerializeField] private AudioClip _fireSound;
         [SerializeField] private bool _autoShootRaycastOn;
+        [SerializeField] private bool _aIAutoShootOn;
         [SerializeField] private float _sphereCastRadius = 1f;
         [SerializeField] private float _sphereCastDistance = 20f;
         [SerializeField] private LayerMask _targetLayer;
-        [SerializeField] private bool _aIAutoShootOn;
         [SerializeField] private InputReaderSO _inputReader;
         [SerializeField] private List<WeaponType> _weaponType = new List<WeaponType>();
         [SerializeField] private WeaponType _currentWeapon;
@@ -67,17 +67,17 @@ namespace Veganimus.NovaStar
         private void Update()
         {
            if(_autoShootRaycastOn == true)
-            {
-                if (Time.time > _canFire)
-                AcquireTarget();
-            }
+           {
+               if (Time.time > _canFire)
+                   AcquireTarget();
+           }
            else if(_aIAutoShootOn)
-            {
-                if (Time.time > _canFire)
-                 FireWeapon();
-            }
-            if (_currentWeaponID > _weaponType.Count - 1)
-                _currentWeaponID = _weaponType.Count - 1;
+           {
+               if (Time.time > _canFire)
+                   FireWeapon();
+           }
+           if (_currentWeaponID > _weaponType.Count - 1)
+               _currentWeaponID = _weaponType.Count - 1;
         }
 
         private void FireWeapon()

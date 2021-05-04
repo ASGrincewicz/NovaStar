@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1912985845912812045}
   - component: {fileID: 9169439252218227567}
   - component: {fileID: 6449095625265777366}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Enemy_normal_proj
   m_TagString: Enemy Projectile
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912985845912812047}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.172141, y: -0.6526389, z: 0}
+  m_LocalPosition: {x: 9.913691, y: 2.2461588, z: 0.000000014901161}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 6439623091337347508}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f892f4cea25914968a76acf65508b172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectileType: {fileID: 11400000, guid: 1067a227b63f748c99829abcaa6e36d2, type: 2}
+  projectileType: {fileID: 11400000, guid: 1067a227b63f748c99829abcaa6e36d2, type: 2}
   _impactVFX: {fileID: 2581462059173570728, guid: d7b53bf753a4544b7b3a584fa73427d5, type: 3}
   _projVFXRequest: {fileID: 11400000, guid: 613ea06b674204bb4956151a3d6974a5, type: 2}
 --- !u!1 &4393104294075459105
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 6439623091337347508}
   - component: {fileID: 2837211790963362436}
   - component: {fileID: 5670785867925457031}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Fire_Spritesheet_0
   m_TagString: Bullet
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8837712788700011286}
   - component: {fileID: 334448309896679462}
   - component: {fileID: 7874915942503043621}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Fire_Spritesheet_0
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 4140978072433156271}
   - component: {fileID: 6682105494276501965}
   - component: {fileID: 7826467411088979348}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Boss_projectile
   m_TagString: Enemy Projectile
   m_Icon: {fileID: 0}
@@ -177,6 +177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f892f4cea25914968a76acf65508b172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectileType: {fileID: 11400000, guid: d9006e7782a4142469954023bbe80e67, type: 2}
+  projectileType: {fileID: 11400000, guid: 1067a227b63f748c99829abcaa6e36d2, type: 2}
   _impactVFX: {fileID: 2581462059173570728, guid: d7b53bf753a4544b7b3a584fa73427d5, type: 3}
   _projVFXRequest: {fileID: 11400000, guid: 613ea06b674204bb4956151a3d6974a5, type: 2}

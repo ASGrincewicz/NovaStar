@@ -9,12 +9,12 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class Projectile : MonoBehaviour
     {
-        [SerializeField] private ProjectileTypeSO _projectileType;
+        public ProjectileTypeSO projectileType;
         [SerializeField] private GameObject _impactVFX;
         [SerializeField] private PoolGORequest _projVFXRequest;
-        private string Target => _projectileType.target;
-        private float Speed => _projectileType.speed;
-        private int DamageAmount => _projectileType.damageAmount;
+        private string Target => projectileType.target;
+        private float Speed => projectileType.speed;
+        private int DamageAmount => projectileType.damageAmount;
 
         private void Update()=> Movement();
 
@@ -23,7 +23,7 @@ namespace Veganimus.NovaStar
             if (transform.position.x < -20.0f || transform.position.x > 25.0f)
                 gameObject.SetActive(false);
         }
-        private void Movement()=> transform.Translate(_projectileType.moveDirection * (Speed * Time.deltaTime));
+        private void Movement()=> transform.Translate(projectileType.moveDirection * (Speed * Time.deltaTime));
         
         private void OnTriggerEnter(Collider other)
         {

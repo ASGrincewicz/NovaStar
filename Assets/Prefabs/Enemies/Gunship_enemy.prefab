@@ -110,8 +110,6 @@ MonoBehaviour:
   _fireOffset: {fileID: 5744112928102310235}
   _fireOffset2: {fileID: 8781536877618898978}
   _hasAltWeapon: 1
-  _shootDirection: {x: -1, y: 0, z: 0}
-  _firePower: 5
   _hp: 0
   _shieldHP: 0
   _shieldOn: 0
@@ -122,6 +120,7 @@ MonoBehaviour:
   _enemyTracking: {fileID: 11400000, guid: f97016cdce5004efb98ce56800a41802, type: 2}
   _playSFXEvent: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
   _requestPowerUpDrop: {fileID: 11400000, guid: 41378fe3a993c414881382123f8a622b, type: 2}
+  _requestProjectile: {fileID: 11400000, guid: e67f09d5876ca433795ac8e65bef09a3, type: 2}
 --- !u!54 &8271079131609878780
 Rigidbody:
   m_ObjectHideFlags: 0

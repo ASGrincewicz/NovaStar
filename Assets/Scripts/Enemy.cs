@@ -12,8 +12,8 @@ namespace Veganimus.NovaStar
     public class Enemy : MonoBehaviour, IDamageable
     {
         [SerializeField] private MirrorMoveSO _mirrorMoveSO;
-        [SerializeField] private bool _mirror;
-        private bool _mirrorMoveOn;
+        [SerializeField] private bool _hasMirrorMove;
+        private bool _isMirrorMoveOn;
         [SerializeField] private float _sceneEntryTime;
         private AudioClip _shootSound => _enemyClass.shootSound;
         private AudioClip _damageSound => _enemyClass.damageSound;
@@ -28,7 +28,7 @@ namespace Veganimus.NovaStar
         private int scoreTier => _enemyClass.scoreTier;
         [SerializeField] private int _hp;
         [SerializeField] private int _shieldHP;
-        [SerializeField] private bool _shieldOn;
+        [SerializeField] private bool _isShieldOn;
         private int _chance;
         private float _speed => _enemyClass.speed;
         private float _canFire = -1.0f;
@@ -48,6 +48,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private EnemyTrackerChannel _enemyTracking;
         [SerializeField] private PlaySFXEvent _playSFXEvent;
         [SerializeField] private PoolGORequest _requestPowerUpDrop;
+       
 
         private void Awake()
         {
@@ -62,7 +63,7 @@ namespace Veganimus.NovaStar
             {
                 case true:
                     _shieldHP = _enemyClass.shieldHP;
-                    _shieldOn = true;
+                    _isShieldOn = true;
                     break;
                 default:
                     _shield = null;
@@ -75,12 +76,12 @@ namespace Veganimus.NovaStar
             _fireDelay = new WaitForSeconds(_enemyClass.fireRate);
             _chance = Random.Range(0, 100);
             _rigidbody = GetComponent<Rigidbody>();
-            if (_mirror)
+            if (_hasMirrorMove)
                 StartCoroutine(ActivateMirrorMovementRoutine());
         }
         private void Update()
         {
-            if (_mirrorMoveOn)
+            if (_isMirrorMoveOn)
              MirrorMovement();
 
             else
@@ -102,7 +103,7 @@ namespace Veganimus.NovaStar
             if(_shieldHP <= 0 && _shield == true)
             {
                 _shield.SetActive(false);
-                _shieldOn = false;
+                _isShieldOn = false;
             }
         }
         private void Movement()
@@ -120,7 +121,7 @@ namespace Veganimus.NovaStar
         private void Shoot()
         {
             _canFire = Time.time + _fireRate;
-            GameObject enemyBullet = Instantiate(_weapon, this.gameObject.transform);
+           GameObject enemyBullet = Instantiate(_weapon, gameObject.transform);
             enemyBullet.transform.position = _fireOffset.transform.position;
             _playSFXEvent.RaiseSFXEvent(_shootSound);
             StartCoroutine(EnemyFireRoutine());
@@ -128,7 +129,7 @@ namespace Veganimus.NovaStar
         private void AltShoot()
         {
             _canFire = Time.time + (_fireRate);
-            GameObject enemyBullet = Instantiate(_weapon, this.gameObject.transform);
+            GameObject enemyBullet = Instantiate(_weapon, gameObject.transform);
             enemyBullet.transform.position = _fireOffset2.transform.position;
             _playSFXEvent.RaiseSFXEvent(_shootSound);
             StartCoroutine(EnemyFireRoutine());
@@ -153,7 +154,7 @@ namespace Veganimus.NovaStar
         }
         public void Damage(int amount)
         {
-            if (_enemyClass.hasShield && _shieldOn)
+            if (_enemyClass.hasShield && _isShieldOn)
                 _shieldHP -= amount;
             else
             {
@@ -191,7 +192,7 @@ namespace Veganimus.NovaStar
         private IEnumerator ActivateMirrorMovementRoutine()
         {
             yield return new WaitForSeconds(_sceneEntryTime);
-            _mirrorMoveOn = true;
+            _isMirrorMoveOn = true;
         }
     }
 }

@@ -14,8 +14,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private GameObject _projectilePrefab;
         [SerializeField] private GameObject _projectileContainer;
         [SerializeField] private List<GameObject> _projectilePool;
-        [Header("Enemy Projectiles")] [SerializeField]
-        private GameObject _enemyProjectileContainer;
+       
         [Header("Boss Projectile Pool")]
         [SerializeField] private GameObject _bossProjectilePrefab;
         [SerializeField] private GameObject _bossProjectileContainer;

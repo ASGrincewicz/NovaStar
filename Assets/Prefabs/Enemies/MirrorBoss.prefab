@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mirrorMoveSO: {fileID: 11400000, guid: 850f219631e444b83b8e1829310bd2ca, type: 2}
-  _mirror: 1
+  _hasMirrorMove: 1
   _sceneEntryTime: 4
   _damageVFX:
   - {fileID: 718958189782876689}
@@ -254,7 +254,7 @@ MonoBehaviour:
   _hasAltWeapon: 0
   _hp: 0
   _shieldHP: 0
-  _shieldOn: 0
+  _isShieldOn: 0
   _weapon: {fileID: 0}
   _shield: {fileID: 0}
   _moveDirection: {x: 0, y: 0, z: 0}
@@ -262,7 +262,6 @@ MonoBehaviour:
   _enemyTracking: {fileID: 11400000, guid: f97016cdce5004efb98ce56800a41802, type: 2}
   _playSFXEvent: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
   _requestPowerUpDrop: {fileID: 11400000, guid: 41378fe3a993c414881382123f8a622b, type: 2}
-  _requestProjectile: {fileID: 11400000, guid: e67f09d5876ca433795ac8e65bef09a3, type: 2}
 --- !u!54 &9628703216535414
 Rigidbody:
   m_ObjectHideFlags: 0

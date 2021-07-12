@@ -147,11 +147,11 @@ namespace Veganimus.NovaStar
         }
        private IEnumerator SpawnEnemy()
         {
-            foreach (var enemy in _enemies)
+            for(int i = 0; i < _enemies.Count; i++)
             {
                 yield return _spawnDelay;
-                enemy.gameObject.transform.position = new Vector3(_rightBound,UnityEngine.Random.Range(_bottomBound,_topBound), 0);
-                enemy.gameObject.SetActive(true);
+                _enemies[i].gameObject.transform.position = new Vector3(_rightBound,Random.Range(_bottomBound,_topBound), 0);
+                _enemies[i].gameObject.SetActive(true);
                 _enemyTracking.EnemySpawnedEvent();
             }
         }

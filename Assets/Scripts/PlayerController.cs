@@ -45,7 +45,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private CoRoutineEvent _startPowerUpCoolDown;
         [SerializeField] private intEventSO _upgradeTracker;
         [SerializeField] private intEventSO _powerUpTracker;
-      
+        private Transform _transform;
         private WaitForSeconds _damageCoolDown;
         private WaitForSeconds _powerUpCoolDown;
         private WaitForSeconds _powerUpEffectTimer;
@@ -67,6 +67,7 @@ namespace Veganimus.NovaStar
         
         private void Start()
         {
+            _transform = transform;
             _damageCoolDown = new WaitForSeconds(3.0f);
             _powerUpCoolDown = new WaitForSeconds(10.0f);
             _powerUpEffectTimer = new WaitForSeconds(1.0f);
@@ -74,10 +75,10 @@ namespace Veganimus.NovaStar
         }
         private void Update()
         {
-            var position = transform.position;
+            var position = _transform.position;
             position = new Vector3(Mathf.Clamp(position.x, _xLeftBound, _xRightBound),
                 Mathf.Clamp(position.y, _yBottomBound, _yTopBound), 0);
-            transform.position = position;
+            _transform.position = position;
         }
        private void CurrentWeaponTracker(int current)=> _currentWeaponID = current;
         

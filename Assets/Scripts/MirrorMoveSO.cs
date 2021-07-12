@@ -19,16 +19,16 @@ namespace Veganimus.NovaStar
 
         private void OnDisable() => inputReader.moveEvent -= OnMoveInput;
 
-        public void MirrorMovement(GameObject mover, Rigidbody rigidbody)
+        public void MirrorMovement(Transform mover, Rigidbody rigidbody, float deltaTime)
         {
             moveDirection = new Vector3(-horizontal, -vertical, 0);
-            rigidbody.MovePosition(mover.transform.position + (moveDirection * speed * Time.deltaTime));
+            rigidbody.MovePosition(mover.position + (moveDirection * speed * deltaTime));
         }
-        public void Pitch(GameObject mover)
+        public void Pitch(Transform mover, float deltaTime)
         {
             float pitch = vertical * tiltAngle;
             Quaternion target = Quaternion.Euler(0, mover.transform.rotation.y , pitch);
-            mover.transform.rotation = Quaternion.Slerp(mover.transform.rotation, target, Time.deltaTime * smooth);
+            mover.rotation = Quaternion.Slerp(mover.rotation, target, deltaTime * smooth);
         }
         public void OnMoveInput(float h, float v)
         {

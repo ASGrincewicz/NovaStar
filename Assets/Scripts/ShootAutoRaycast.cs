@@ -38,7 +38,7 @@ namespace Veganimus.NovaStar
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(_fireOffset.transform.position, _sphereCastRadius);
         }
-        void OnEnable()
+        private void OnEnable()
         {
             _weaponChangeEvent.OnWeaponChanged += ChangeWeapon;
         }
@@ -46,7 +46,7 @@ namespace Veganimus.NovaStar
         {
             _weaponChangeEvent.OnWeaponChanged -= ChangeWeapon;
         }
-        void Start()
+        private void Start()
         {
             //_projectileRigidbody = _projectilePrefab.GetComponent<Rigidbody>();
             _fireCoolDown = new WaitForSeconds(_fireRate);
@@ -64,7 +64,7 @@ namespace Veganimus.NovaStar
                 _currentWeaponID = _weaponType.Count - 1;
         }
 
-        void AcquireTarget()
+        private void AcquireTarget()
         {
             _canFire = Time.time + _fireRate;
             RaycastHit hitInfo;

@@ -9,10 +9,10 @@ namespace Veganimus.NovaStar
     [CreateAssetMenu(fileName = "newMovement.asset", menuName = "Movement/ AIMovement")]
     public class EnemyMovement : MovementSO
     {
-        public void Movement(GameObject mover)
+        public void Movement(Transform mover, float deltaTime)
         {
-            moveDirection = new Vector3(horizontal, vertical,0) * speed * Time.deltaTime;
-            mover.transform.Translate(moveDirection);
+            moveDirection = new Vector3(horizontal, vertical,0) * speed * deltaTime;
+            mover.Translate(moveDirection);
         }
     }
 }

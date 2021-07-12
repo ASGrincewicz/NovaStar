@@ -97,17 +97,18 @@ namespace Veganimus.NovaStar
         {
             _canFire = Time.time + _fireRate;
             RaycastHit hitInfo;
-            if (Physics.SphereCast(_fireOffset.transform.position, _sphereCastRadius, Vector3.right, out hitInfo, _sphereCastDistance, _targetLayer))
+            if (Physics.SphereCast(_fireOffset.position, _sphereCastRadius, Vector3.right, out hitInfo, _sphereCastDistance, _targetLayer))
             {
                 if (hitInfo.collider != null)
                 {
-                    if (_multiShotOn == false)
+                    if (!_multiShotOn)
                     {
                         _projectilePrefab = _requestProjectile.RequestGameObject();
                         if (_projectilePrefab != null)
                         {
-                            _projectilePrefab.transform.position = _fireOffset.transform.position;
-                            _projectilePrefab.transform.rotation = Quaternion.identity;
+                            Transform projTransform = _projectilePrefab.transform;
+                            projTransform.position = _fireOffset.transform.position;
+                            projTransform.rotation = Quaternion.identity;
                             _playSFXEvent.RaiseSFXEvent(_fireSound);
                             StartCoroutine(FireCoolDownRoutine());
                         }
@@ -118,11 +119,14 @@ namespace Veganimus.NovaStar
                         GameObject proj2 = _requestProjectile.RequestGameObject();
                         if (proj1 != null && proj2 != null)
                         {
-                            proj1.transform.position = _multiShotOffset.transform.position;
-                            proj1.transform.rotation = _multiShotOffset.transform.rotation;
+                            Transform[] projTransforms = new Transform[]{ proj1.transform, proj2.transform};
+                            Transform[] offsetTransforms = new Transform[] { _multiShotOffset.transform, _multiShotOffset2.transform };
+
+                            projTransforms[0].position = offsetTransforms[0].position;
+                            projTransforms[0].rotation = offsetTransforms[0].rotation;
                             _playSFXEvent.RaiseSFXEvent(_fireSound);
-                            proj2.transform.position = _multiShotOffset2.transform.position;
-                            proj2.transform.rotation = _multiShotOffset2.transform.rotation;
+                            projTransforms[1].position = offsetTransforms[1].position;
+                            projTransforms[1].rotation = offsetTransforms[1].rotation;
                             _playSFXEvent.RaiseSFXEvent(_fireSound);
                             StartCoroutine(FireCoolDownRoutine());
                         }
@@ -132,17 +136,17 @@ namespace Veganimus.NovaStar
         }
         private void ChangeWeapon(bool isUpgrade, bool isPowerUp, int changeTo)
         {
-            if (isUpgrade == true && isPowerUp == false)
+            if (isUpgrade && !isPowerUp)
             {
                 if (_currentWeaponID < _weaponType.Count - 1)
                     _currentWeaponID++;
                 else
                     return;
             }
-            else if (isUpgrade == false && isPowerUp == false)
+            else if (!isUpgrade  && !isPowerUp)
                 _currentWeaponID = 0;
 
-            else if (isPowerUp == true && isUpgrade == false)
+            else if (isPowerUp && !isUpgrade)
                 _currentWeaponID = changeTo;
 
             WeaponStatUpdate();

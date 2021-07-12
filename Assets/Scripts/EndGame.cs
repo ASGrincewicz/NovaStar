@@ -64,9 +64,6 @@ namespace Veganimus.NovaStar
             _totalReward.text = $"Total: ${total}";
         }
 
-        public void LoadScene(string scene)
-        {
-            SceneManager.LoadScene(scene);
-        }
+        public void LoadScene(string scene) => SceneManager.LoadScene(scene);
     }
 }

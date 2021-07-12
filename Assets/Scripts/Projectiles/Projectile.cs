@@ -15,15 +15,23 @@ namespace Veganimus.NovaStar
         private string Target => projectileType.target;
         private float Speed => projectileType.speed;
         private int DamageAmount => projectileType.damageAmount;
+        private Transform _transform;
+        private float _deltaTime;
 
-        private void Update()=> Movement();
+        private void Start() => _transform = transform;
+
+        private void Update()
+        {
+            _deltaTime = Time.deltaTime * Speed;
+            Movement();
+        }
 
         private void FixedUpdate()
         {
-            if (transform.position.x < -20.0f || transform.position.x > 25.0f)
+            if (_transform.position.x < -20.0f || _transform.position.x > 25.0f)
                 gameObject.SetActive(false);
         }
-        private void Movement()=> transform.Translate(projectileType.moveDirection * (Speed * Time.deltaTime));
+        private void Movement()=> _transform.Translate(projectileType.moveDirection *  _deltaTime);
         
         private void OnTriggerEnter(Collider other)
         {
@@ -36,8 +44,8 @@ namespace Veganimus.NovaStar
                     GameObject impact = _projVFXRequest.RequestGameObject();
                     if (impact != null)
                     {
-                        impact.transform.position = transform.position;
-                        impact.transform.rotation = transform.rotation;
+                        impact.transform.position = _transform.position;
+                        impact.transform.rotation = _transform.rotation;
                         this.gameObject.SetActive(false);
                     }
                     else

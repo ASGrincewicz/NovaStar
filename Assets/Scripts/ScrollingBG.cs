@@ -18,7 +18,7 @@ namespace Veganimus.GDHQcert{
         [SerializeField] private float _speed;
         private Renderer _renderer;
        
-        void Start()
+        private void Start()
         {
             _renderer = GetComponent<Renderer>();
             if(_renderer == null)
@@ -26,11 +26,9 @@ namespace Veganimus.GDHQcert{
                 Debug.LogError(message:"Renderer: ScrollingBG is NULL!");
             }
         }
-        void Update()
-        {
-            Scroll();
-        }
-        void Scroll()
+        private void Update() => Scroll();
+
+        private void Scroll()
         {
             switch(_scrollDirection)
             {

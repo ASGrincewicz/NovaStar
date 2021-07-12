@@ -25,6 +25,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private List<GameObject> _damageVFX;
         [SerializeField] private GameObject _explosionPrefab;
         [SerializeField] private Animator _anim;
+        private int _patternAP = Animator.StringToHash("Pattern");
         [Header("Sound Effects")]
         [SerializeField] private AudioClip _shootSound;
         [SerializeField] private AudioClip _damageSound;
@@ -78,7 +79,7 @@ namespace Veganimus.NovaStar
             }
             return null;
         }
-        private void TriggerAttackPattern(AttackPattern pattern)=> _anim.SetInteger("Pattern", (int)pattern);
+        private void TriggerAttackPattern(AttackPattern pattern)=> _anim.SetInteger(_patternAP, (int)pattern);
 
         // Shoot is called through Animation Event.
         private void Shoot()

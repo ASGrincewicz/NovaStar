@@ -14,15 +14,22 @@ namespace Veganimus.NovaStar
         [SerializeField] private List<GameObject> _planets = new List<GameObject>();
         [SerializeField] private GameObject _currentPlanet;
         private int _planetToSpawn = 0;
+        private Transform _transform;
+        private float _deltaTime;
 
-        private void Start()=> _currentPlanet = _planets[0];
+        private void Start()
+        {
+            _currentPlanet = _planets[0];
+            _transform = transform;
+        }
 
         private void Update()
         {
-            transform.Translate(Vector3.left * _speed * Time.deltaTime);
-            if (transform.position.x < -15f)
+            _deltaTime = Time.deltaTime * _speed;
+            _transform.Translate(Vector3.left * _deltaTime);
+            if (_transform.position.x < -15f)
             {
-                transform.position = _startPosition;
+                _transform.position = _startPosition;
                 _currentPlanet.SetActive(false);
                 SpawnPlanet();
             }

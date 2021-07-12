@@ -116,14 +116,22 @@ namespace Veganimus.NovaStar
         }
         private GameObject RequestProjectile()
         {
-            foreach(GameObject obj in _projectilePool)
+            for(int i = 0; i < _projectilePool.Count; i++)
             {
-                if (obj.activeInHierarchy == false)
+                if(!_projectilePool[i].activeInHierarchy)
                 {
-                    obj.SetActive(true);
-                    return obj;
+                    _projectilePool[i].SetActive(true);
+                    return _projectilePool[i];
                 }
             }
+            //foreach(GameObject obj in _projectilePool)
+            //{
+            //    if (obj.activeInHierarchy == false)
+            //    {
+            //        obj.SetActive(true);
+            //        return obj;
+            //    }
+            //}
             GameObject newBullet = _projectilePrefab;
             newBullet.SetActive(true);
             _projectilePool.Add(newBullet);
@@ -131,12 +139,12 @@ namespace Veganimus.NovaStar
         }
         private GameObject RequestBossProjectile()
         {
-            foreach(GameObject bossProj in _bossProjectilePool)
+            for(int i = 0; i < _bossProjectilePool.Count; i++)
             {
-                if(bossProj.activeInHierarchy == false)
+                if(!_bossProjectilePool[i].activeInHierarchy)
                 {
-                    bossProj.SetActive(true);
-                    return bossProj;
+                    _bossProjectilePool[i].SetActive(true);
+                    return _bossProjectilePool[i];
                 }
             }
             GameObject newBossProj = _bossProjectilePrefab;

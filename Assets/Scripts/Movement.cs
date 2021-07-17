@@ -9,10 +9,10 @@ namespace Veganimus.NovaStar
 
     public class Movement :MonoBehaviour
     {
-        private Rigidbody _rigidbody;
-        private float _deltaTime;
-        private Transform _transform;
         [SerializeField] PlayerMovement _playerMovementSO;
+        private float _deltaTime;
+        private Rigidbody _rigidbody;
+        private Transform _transform;
 
         private void Start()
         {
@@ -20,12 +20,14 @@ namespace Veganimus.NovaStar
             _transform = transform;
         }
 
-        private void Update() => _deltaTime = Time.deltaTime;
-
         private void FixedUpdate()
         {
-           _playerMovementSO.Movement(_transform,_rigidbody,_deltaTime);
-           _playerMovementSO.Pitch(_transform, _deltaTime);
+            _playerMovementSO.Movement(_transform, _rigidbody, _deltaTime);
+            _playerMovementSO.Pitch(_transform, _deltaTime);
         }
+
+        private void Update() => _deltaTime = Time.deltaTime;
+
+       
     }
 }

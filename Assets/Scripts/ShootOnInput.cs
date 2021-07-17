@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Veganimus.NovaStar
 {
     ///<summary>
@@ -11,40 +10,31 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class ShootOnInput : MonoBehaviour
     {
-        [SerializeField] private AudioClip _fireSound;
-        [SerializeField] private bool _autoShootRaycastOn;
-        [SerializeField] private bool _aIAutoShootOn;
-        [SerializeField] private float _sphereCastRadius = 1f;
-        [SerializeField] private float _sphereCastDistance = 20f;
+        [SerializeField] private bool _autoShootRaycastOn, _aIAutoShootOn, _multiShotOn;
+        [SerializeField] private float _sphereCastRadius = 1f, _sphereCastDistance = 20f;
+        [SerializeField] private float _accuracyOffsetMin, _accuracyOffsetMax, _firePower;
+        [SerializeField] private string _weaponName;
         [SerializeField] private LayerMask _targetLayer;
+        [SerializeField] private Vector3 _shootDirection;//get from input reader or set default
+        [SerializeField] private AudioClip _fireSound;
+        [SerializeField] private GameObject _projectilePrefab, _multiShotOffset, _multiShotOffset2;
         [SerializeField] private InputReaderSO _inputReader;
         [SerializeField] private List<WeaponType> _weaponType = new List<WeaponType>();
-        [SerializeField] private WeaponType _currentWeapon;
-        private int _currentWeaponID;
-        private int _lastWeaponID;
-        [SerializeField] private GameObject _projectilePrefab;
-        [SerializeField] private Vector3 _shootDirection;//get from input reader or set default
-        [SerializeField] private string _weaponName;
-        [SerializeField] private float _accuracyOffsetMin;
-        [SerializeField] private float _accuracyOffsetMax;
         [SerializeField] private Transform _fireOffset;
-        [SerializeField] private float _firePower;
+        [SerializeField] private WeaponType _currentWeapon;
+        [Header("Broadcasting On")]
+        [SerializeField] private intEventSO _currentWeaponIDEvent;
+        [SerializeField] private intEventSO _maxUpgradeChannel;
+        [SerializeField] private PlaySFXEvent _playSFXEvent;
+        [SerializeField] private PlayerWeaponEvent _playerWeaponEvent;
+        [SerializeField] private PoolGORequest _requestProjectile;
+        [Header("Listening To")]
+        [SerializeField] private WeaponChangeEvent _weaponChangeEvent;
+        private int _currentWeaponID, _lastWeaponID;
         private float _fireRate;
         private float _canFire = -1.0f;
         private Rigidbody _projectileRigidbody;
         private WaitForSeconds _fireCoolDown;
-        [Header("Broadcasting On")]
-        [SerializeField] private PlaySFXEvent _playSFXEvent;
-        [SerializeField] private PlayerWeaponEvent _playerWeaponEvent;
-        [SerializeField] private intEventSO _currentWeaponIDEvent;
-        [SerializeField] private intEventSO _maxUpgradeChannel;
-        [SerializeField] private PoolGORequest _requestProjectile;
-        [Header("Listening To")]
-        [SerializeField] private WeaponChangeEvent _weaponChangeEvent;
-
-        [SerializeField] private bool _multiShotOn;
-        [SerializeField] private GameObject _multiShotOffset;
-        [SerializeField] private GameObject _multiShotOffset2;
 
         private void OnEnable()
         {
@@ -66,7 +56,7 @@ namespace Veganimus.NovaStar
         }
         private void Update()
         {
-           if(_autoShootRaycastOn == true)
+           if(_autoShootRaycastOn)
            {
                if (Time.time > _canFire)
                    AcquireTarget();
@@ -88,7 +78,7 @@ namespace Veganimus.NovaStar
                 _projectilePrefab.transform.position =  _fireOffset.transform.position;
                 _projectilePrefab.transform.rotation = Quaternion.identity;
                 _projectileRigidbody = _projectilePrefab.GetComponent<Rigidbody>();
-                _shootDirection.y = UnityEngine.Random.Range(_accuracyOffsetMin, _accuracyOffsetMax);
+                _shootDirection.y = Random.Range(_accuracyOffsetMin, _accuracyOffsetMax);
                 _projectileRigidbody.AddForce(_shootDirection * _firePower, ForceMode.Impulse);
                 StartCoroutine(FireCoolDownRoutine());
             }

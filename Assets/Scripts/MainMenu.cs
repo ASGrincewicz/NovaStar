@@ -15,18 +15,16 @@ namespace Veganimus.NovaStar
     {
         [Header("Main Menu UI")]
         [SerializeField] private GameObject _optionsMenu;
+        [SerializeField] private Slider _brightnessSlider, _volumeSlider;
         [SerializeField] private TMP_Dropdown _resolutionDropDown;
+        [SerializeField] private TMP_Text _availableCurrency, _highScoreText, _playerName;
         [SerializeField] private Toggle _fullScreenToggle;
         [SerializeField] private Resolution[] _availableRes;
-        [SerializeField] private Slider _brightnessSlider;
-        [SerializeField] private Slider _volumeSlider;
-        [SerializeField] private TMP_Text _playerName;
-        [SerializeField] private TMP_Text _highScoreText;
-        [SerializeField] private TMP_Text _availableCurrency;
+
         [Header("Listening To")]
+        [SerializeField] private AudioSettingSO _audioSettingsSO;
         [SerializeField] private LoadSceneEventSO _loadSceneEventSO;
         [SerializeField] private PlayerStats _playerRecords;
-        [SerializeField] private AudioSettingSO _audioSettingsSO;
         [Header("Broadcasting On")]
         [SerializeField] private PlaySFXEvent _playSFXEvent;
 
@@ -36,10 +34,10 @@ namespace Veganimus.NovaStar
 
         private void Start()
         {
-            UpdateRecords();
             GetScreenResolution();
+            UpdateRecords();
         }
-        public void UpdateRecords()
+        private void UpdateRecords()
         {
             _playerName.text = $"Pilot Name: {_playerRecords.PlayerName}";
             _highScoreText.text = $"High Score:{_playerRecords.HighScore}";
@@ -54,6 +52,24 @@ namespace Veganimus.NovaStar
         public void GameDevHQButton() => Application.OpenURL("http://www.GameDevHQ.com");
 #if UNITY_STANDALONE
 #elif PLATFORM_WEBGL
+
+        public void ChangeBrightness() => Screen.brightness = _brightnessSlider.value;
+
+        public void ChangeResolution()
+        {
+            var height = _availableRes[_resolutionDropDown.value - 1].height;
+            var width = _availableRes[_resolutionDropDown.value - 1].width;
+            Screen.SetResolution(width, height, false);
+        }
+
+        public void FullScreenToggle()
+        {
+            if (_fullScreenToggle.isOn == true)
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            else
+                Screen.fullScreenMode = FullScreenMode.Windowed;
+        }
+
         public void GetScreenResolution()
         {
             _availableRes = Screen.resolutions;
@@ -62,20 +78,9 @@ namespace Veganimus.NovaStar
              reso.Add(res.ToString());
             _resolutionDropDown.AddOptions(reso);
         }
-        public void ChangeResolution()
-        {
-            var height = _availableRes[_resolutionDropDown.value - 1].height;
-            var width = _availableRes[_resolutionDropDown.value - 1].width;
-            Screen.SetResolution(width, height, false);
-        }
-        public void FullScreenToggle()
-        {
-            if (_fullScreenToggle.isOn == true)
-                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
-            else
-                Screen.fullScreenMode = FullScreenMode.Windowed;
-        }
-        public void ChangeBrightness() => Screen.brightness = _brightnessSlider.value;
+       
+        
+       
 #endif
     }
 }

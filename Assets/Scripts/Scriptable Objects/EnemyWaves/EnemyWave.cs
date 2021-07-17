@@ -11,8 +11,7 @@ namespace Veganimus.NovaStar
     [CreateAssetMenu(fileName = "newEnemyWave.asset", menuName = "Scriptable Objects/ Enemy Wave")]
     public class EnemyWave : ScriptableObject
     {
-        public List<Enemy> enemySequence;
-       
         public int waveNumber;
+        public List<Enemy> enemySequence;
     }
 }

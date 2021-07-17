@@ -14,8 +14,8 @@ namespace Veganimus.NovaStar
         [SerializeField] private List<GameObject> _planets = new List<GameObject>();
         [SerializeField] private GameObject _currentPlanet;
         private int _planetToSpawn = 0;
-        private Transform _transform;
         private float _deltaTime;
+        private Transform _transform;
 
         private void Start()
         {
@@ -34,16 +34,16 @@ namespace Veganimus.NovaStar
                 SpawnPlanet();
             }
         }
+
         private void SpawnPlanet()
         {
-            if (_planetToSpawn > _planets.Count)
+            if (_planetToSpawn >= _planets.Count)
                 _planetToSpawn = 0;
 
             else
             {
                 _planetToSpawn++;
                 GameObject planet = _planets[_planetToSpawn];
-                //planet.transform.position = transform.position;
                 planet.SetActive(true);
                 _currentPlanet = planet;
             }

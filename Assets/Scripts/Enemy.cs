@@ -11,46 +11,36 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class Enemy : MonoBehaviour, IDamageable
     {
-        [SerializeField] private MirrorMoveSO _mirrorMoveSO;
-        [SerializeField] private bool _hasMirrorMove;
-        private bool _isMirrorMoveOn;
+        [SerializeField] private bool _hasAltWeapon, _isShieldOn, _hasMirrorMove;
+        [SerializeField] private int _hp, _shieldHP;
         [SerializeField] private float _sceneEntryTime;
+        [SerializeField] private EnemyClass _enemyClass;
+        [SerializeField] private GameObject _weapon, _shield;
+        [SerializeField] private List<GameObject> _damageVFX;
+        [SerializeField] private MirrorMoveSO _mirrorMoveSO;
+        [SerializeField] private Transform _fireOffset, _fireOffset2;
+        private bool _isMirrorMoveOn;
+        private int _chance;
+        private float _canFire = -1.0f;
+        private float _deltaTime;
+        private Rigidbody _rigidbody;
+        private Transform _transform;
+        private WaitForSeconds _fireDelay;
+        private bool _hasWeapon => _enemyClass.hasWeapon;
+        private bool _hasShield => _enemyClass.hasShield;
+        private int scoreTier => _enemyClass.scoreTier;
+        private float _speed => _enemyClass.speed;
+        private float _fireRate => _enemyClass.fireRate;
         private AudioClip _shootSound => _enemyClass.shootSound;
         private AudioClip _damageSound => _enemyClass.damageSound;
         private AudioClip _deathSound => _enemyClass.deathSound;
-        [SerializeField] private List<GameObject> _damageVFX;
-        private int _damageAmount;
-        [SerializeField] private EnemyClass _enemyClass;
-        [SerializeField] private Transform _fireOffset;
-        [SerializeField] private Transform _fireOffset2;
-        [SerializeField] private bool _hasAltWeapon;
-        private string _enemyName => _enemyClass.enemyName;
-        private int scoreTier => _enemyClass.scoreTier;
-        [SerializeField] private int _hp;
-        [SerializeField] private int _shieldHP;
-        [SerializeField] private bool _isShieldOn;
-        private int _chance;
-        private float _speed => _enemyClass.speed;
-        private float _canFire = -1.0f;
-        private float _fireRate => _enemyClass.fireRate;
-        private WaitForSeconds _fireDelay;
         private GameObject _itemDrop => _enemyClass.itemDrop;
-        private bool _hasWeapon => _enemyClass.hasWeapon;
-        private bool _hasShield => _enemyClass.hasShield;
-        [SerializeField] private GameObject _weapon;
-        [SerializeField] private GameObject _shield;
         private GameObject _explosionPrefab => _enemyClass.explosionPrefab;
-        private List<GameObject> _enemyBullets;
-        private Rigidbody _rigidbody;
-        [SerializeField] private Vector3 _moveDirection;
         [Header("Broadcasting on")]
-        [SerializeField] private intEventSO _updateScoreChannel;
         [SerializeField] private EnemyTrackerChannel _enemyTracking;
+        [SerializeField] private intEventSO _updateScoreChannel;
         [SerializeField] private PlaySFXEvent _playSFXEvent;
         [SerializeField] private PoolGORequest _requestPowerUpDrop;
-        private Transform _transform;
-        private float _deltaTime;
-       
 
         private void Awake()
         {
@@ -105,7 +95,7 @@ namespace Veganimus.NovaStar
             {
                Die();
             }
-            if(_shieldHP <= 0 && _shield == true)
+            if(_shieldHP <= 0 && _shield)
             {
                 _shield.SetActive(false);
                 _isShieldOn = false;
@@ -165,9 +155,8 @@ namespace Veganimus.NovaStar
             {
                 int damageVFX_chance = Random.Range(0, 10);
                 if (damageVFX_chance > 5)
-                {
-                    GameObject dVFX = ActivateDamageVFX();
-                }
+                    ActivateDamageVFX();
+                
                 _playSFXEvent.RaiseSFXEvent(_damageSound);
                 _updateScoreChannel.RaiseEvent(scoreTier / 5);
                 _hp -= amount;
@@ -175,12 +164,12 @@ namespace Veganimus.NovaStar
         }
         private GameObject ActivateDamageVFX()
         {
-            foreach (GameObject obj in _damageVFX)
+            for(int i = 0; i < _damageVFX.Count; i++)
             {
-                if (obj.activeSelf == false)
+                if (!_damageVFX[i].activeSelf)
                 {
-                    obj.SetActive(true);
-                    return obj;
+                    _damageVFX[i].SetActive(true);
+                    return _damageVFX[i];
                 }
             }
             return null;

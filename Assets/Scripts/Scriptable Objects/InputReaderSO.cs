@@ -27,9 +27,8 @@ namespace Veganimus
             _controls.Player.Enable();
             _controls.Player.Movement.performed += OnMove;
             _controls.Player.Movement.canceled += OnMove;
-           // _controls.Player.Roll.performed += OnRoll;
-            _controls.Player.Shoot.performed += OnShoot;
             _controls.Player.Pause.performed += OnPause;
+            _controls.Player.Shoot.performed += OnShoot;
         }
         
         private void OnDisable()
@@ -37,27 +36,28 @@ namespace Veganimus
             _controls.Player.Disable();
             _controls.Player.Movement.performed -= OnMove;
             _controls.Player.Movement.canceled -= OnMove;
-            _controls.Player.Shoot.performed -= OnShoot;
             _controls.Player.Pause.performed -= OnPause;
+            _controls.Player.Shoot.performed -= OnShoot;
         }
 
-        public void OnMove(InputAction.CallbackContext obj)
+        private void OnMove(InputAction.CallbackContext obj)
         {
             Vector2 moveInput = obj.ReadValue<Vector2>();
             if (moveEvent != null)
                 moveEvent.Invoke(moveInput.x, moveInput.y);
         }
 
+        private void OnPause(InputAction.CallbackContext obj)
+        {
+            if (pauseEvent != null)
+                pauseEvent.Invoke();
+        }
+
         private void OnShoot(InputAction.CallbackContext obj)
         {
             if(shootEvent != null)
-            shootEvent.Invoke();
+                shootEvent.Invoke();
         }
-        public void OnPause(InputAction.CallbackContext obj)
-        {
-            if (pauseEvent != null)
-             pauseEvent.Invoke();
-        }
-
+        
     }
 }

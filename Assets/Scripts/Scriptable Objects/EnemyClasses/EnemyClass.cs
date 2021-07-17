@@ -10,19 +10,11 @@ namespace Veganimus.NovaStar
     [CreateAssetMenu(fileName = "newEnemyClass.asset", menuName = "Scriptable Objects/ EnemyClass")]
     public class EnemyClass : ScriptableObject
     {
+        public bool hasShield, hasWeapon;
+        public int hp, scoreTier, shieldHP;
+        public float speed, fireRate;
         public string enemyName;
-        public int scoreTier;
-        public int hp;
-        public float speed;
-        public int shieldHP;
-        public float fireRate;
-        public bool hasShield;
-        public bool hasWeapon;
-        public GameObject weapon;
-        public GameObject itemDrop;
-        public GameObject explosionPrefab;
-        public AudioClip shootSound;
-        public AudioClip damageSound;
-        public AudioClip deathSound;
+        public AudioClip damageSound, deathSound, shootSound;
+        public GameObject explosionPrefab, itemDrop, weapon;
     }
 }

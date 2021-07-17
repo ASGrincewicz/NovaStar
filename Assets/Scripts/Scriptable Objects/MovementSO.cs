@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 namespace Veganimus
 {
     ///<summary>
@@ -11,11 +10,9 @@ namespace Veganimus
 
     public abstract class MovementSO : ScriptableObject
     {
-        public float speed;
         [Range(-1,1)]
         public float vertical, horizontal;
+        public float tiltAngle, smooth, speed;
         public Vector3 moveDirection;
-        public float tiltAngle;
-        public float smooth;
     }
 }

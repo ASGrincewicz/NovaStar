@@ -10,12 +10,10 @@ namespace Veganimus.GDHQcert
     [CreateAssetMenu(fileName = "newBulletType.asset", menuName = "Scriptable Objects/ Bullet Type")]
     public class BulletType : ScriptableObject
     {
-        public string bulletName;
-        public float speed;
         public bool isPlayerBullet;
-        public int damage;
-        public int power;
+        public int damage, power;
+        public float speed;
+        public string bulletName;
         public GameObject impactVFXPrefab;
-       // public List<Color> colors = new List<Color>() {Color.yellow, Color.red, Color.green,Color.blue, Color.magenta};
     }
 }

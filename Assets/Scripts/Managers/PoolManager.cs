@@ -124,14 +124,6 @@ namespace Veganimus.NovaStar
                     return _projectilePool[i];
                 }
             }
-            //foreach(GameObject obj in _projectilePool)
-            //{
-            //    if (obj.activeInHierarchy == false)
-            //    {
-            //        obj.SetActive(true);
-            //        return obj;
-            //    }
-            //}
             GameObject newBullet = _projectilePrefab;
             newBullet.SetActive(true);
             _projectilePool.Add(newBullet);
@@ -154,12 +146,12 @@ namespace Veganimus.NovaStar
         }
         private GameObject RequestProjectileVFX()
         {
-            foreach(GameObject projVFX in _projectileVFXPool)
-            {
-                if (projVFX.activeInHierarchy == false)
+            for(int i = 0; i < _projectileVFXPool.Count; i++)
+            { 
+                if (!_projectileVFXPool[i].activeInHierarchy)
                 {
-                    projVFX.SetActive(true);
-                    return projVFX;
+                    _projectileVFXPool[i].SetActive(true);
+                    return _projectileVFXPool[i];
                 }
             }
             GameObject newProjVFX = _projectileVFXPrefab;

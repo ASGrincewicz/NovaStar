@@ -16,20 +16,13 @@ namespace Veganimus.NovaStar
         Entry , First, Second, Third
        }
         [SerializeField] private AttackPattern _attackPattern;
-        [SerializeField] private int _hp = 100;
-        [SerializeField] private int _damageTaken;
-        [SerializeField] private int _scoreTier;
-        [SerializeField] private List<Transform> _firePositions;
         [SerializeField] private Vector3 _projectileShootPos;
-        [SerializeField] private GameObject _cannonFireVFX;
+        [SerializeField] private int _hp = 100, _damageTaken, _scoreTier;
+        [SerializeField] private List<Transform> _firePositions;
+        [SerializeField] private GameObject _cannonFireVFX, _explosionPrefab;
         [SerializeField] private List<GameObject> _damageVFX;
-        [SerializeField] private GameObject _explosionPrefab;
         [SerializeField] private Animator _anim;
-        private int _patternAP = Animator.StringToHash("Pattern");
-        [Header("Sound Effects")]
-        [SerializeField] private AudioClip _shootSound;
-        [SerializeField] private AudioClip _damageSound;
-        [SerializeField] private AudioClip _deathSound;
+        [SerializeField] private AudioClip _shootSound, _damageSound, _deathSound;
         [Header("Broadcasting On")]
         [SerializeField] private intEventSO _updateScoreChannel;
         [SerializeField] private intEventSO _bossHealthUIEvent;
@@ -37,6 +30,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private PoolGORequest _bossProjRequest;
         [SerializeField] private PlaySFXEvent _playSFXEvent;
         private int _currentFirePositions;
+        private int _patternAP = Animator.StringToHash("Pattern");
 
         private void Start()
         {
@@ -44,42 +38,6 @@ namespace Veganimus.NovaStar
             if (_anim == null)
                 Debug.LogError("Animator is null");
         }
-        public void Damage(int amount)
-        {
-            _damageTaken+= amount;
-            if (_damageTaken >= 25)
-            {
-                _damageTaken = 0;
-                GameObject dvfx = ActivateDamageVFX();
-            }
-            _playSFXEvent.RaiseSFXEvent(_damageSound);
-            _hp-= amount;
-            _updateScoreChannel.RaiseEvent(_scoreTier / 40);
-            _bossHealthUIEvent.RaiseEvent(_hp);
-            if(_hp <= 0)
-            {
-                _playSFXEvent.RaiseSFXEvent( _deathSound);
-                _nextLevelEvent.RaiseEvent();
-                Destroy(this.gameObject);
-            }
-            else if (_hp <= 66)
-             TriggerAttackPattern(AttackPattern.Second);
-            else if(_hp <= 33)
-                TriggerAttackPattern(AttackPattern.Third);
-        }
-        private GameObject ActivateDamageVFX()
-        {
-            foreach (GameObject obj in _damageVFX)
-            {
-                if (obj.activeSelf == false)
-                {
-                    obj.SetActive(true);
-                    return obj;
-                }
-            }
-            return null;
-        }
-        private void TriggerAttackPattern(AttackPattern pattern)=> _anim.SetInteger(_patternAP, (int)pattern);
 
         // Shoot is called through Animation Event.
         private void Shoot()
@@ -89,6 +47,44 @@ namespace Veganimus.NovaStar
             GameObject cannonVFX = Instantiate(_cannonFireVFX, _firePositions[_currentFirePositions].transform.position, Quaternion.identity);
             bossBullet.transform.position = _firePositions[_currentFirePositions].transform.position;
             _playSFXEvent.RaiseSFXEvent(_shootSound);
+        }
+
+        private void TriggerAttackPattern(AttackPattern pattern) => _anim.SetInteger(_patternAP, (int)pattern);
+
+        private GameObject ActivateDamageVFX()
+        {
+            foreach (GameObject obj in _damageVFX)
+            {
+                if (!obj.activeSelf)
+                {
+                    obj.SetActive(true);
+                    return obj;
+                }
+            }
+            return null;
+        }
+        public void Damage(int amount)
+        {
+            _damageTaken += amount;
+            if (_damageTaken >= 25)
+            {
+                _damageTaken = 0;
+                ActivateDamageVFX();
+            }
+            _playSFXEvent.RaiseSFXEvent(_damageSound);
+            _hp -= amount;
+            _updateScoreChannel.RaiseEvent(_scoreTier / 40);
+            _bossHealthUIEvent.RaiseEvent(_hp);
+            if (_hp <= 0)
+            {
+                _playSFXEvent.RaiseSFXEvent(_deathSound);
+                _nextLevelEvent.RaiseEvent();
+                Destroy(this.gameObject);
+            }
+            else if (_hp <= 66)
+                TriggerAttackPattern(AttackPattern.Second);
+            else if (_hp <= 33)
+                TriggerAttackPattern(AttackPattern.Third);
         }
     }
 }

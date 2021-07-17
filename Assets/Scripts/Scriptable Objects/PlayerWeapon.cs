@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-
-namespace Veganimus.GDHQcert
+namespace Veganimus.NovaStar
 {
     ///<summary>
     ///@author
@@ -13,10 +8,9 @@ namespace Veganimus.GDHQcert
     [CreateAssetMenu(fileName = "newEnemyWave.asset", menuName = "Scriptable Objects/ Player Weapon")]
     public class PlayerWeapon : ScriptableObject
     { 
-        public string weaponName;
-        public int weaponID;
-        public int damage;
-        public GameObject projectile;
+        public int damage, weaponID;
         public float fireRate;
+        public string weaponName;
+        public GameObject projectile;
     }
 }

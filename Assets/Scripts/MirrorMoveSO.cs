@@ -24,16 +24,19 @@ namespace Veganimus.NovaStar
             moveDirection = new Vector3(-horizontal, -vertical, 0);
             rigidbody.MovePosition(mover.position + (moveDirection * speed * deltaTime));
         }
+
+        public void OnMoveInput(float h, float v)
+        {
+            horizontal = h;
+            vertical = v;
+        }
+
         public void Pitch(Transform mover, float deltaTime)
         {
             float pitch = vertical * tiltAngle;
             Quaternion target = Quaternion.Euler(0, mover.transform.rotation.y , pitch);
             mover.rotation = Quaternion.Slerp(mover.rotation, target, deltaTime * smooth);
         }
-        public void OnMoveInput(float h, float v)
-        {
-            horizontal = h;
-            vertical = v;
-        }
+        
     }
 }

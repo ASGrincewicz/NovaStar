@@ -10,6 +10,5 @@ namespace Veganimus.NovaStar
     {
         [SerializeField] private float _destroyDelay;
         private void Start()=> Destroy(this.gameObject, _destroyDelay);
-        
     }
 }

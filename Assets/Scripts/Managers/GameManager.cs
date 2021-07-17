@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Playables;
 
 
 namespace Veganimus.NovaStar
@@ -67,26 +66,7 @@ namespace Veganimus.NovaStar
             SceneManager.LoadScene(scene);
             Time.timeScale = 1;
         }
-        /*private void ContinueInput(Canvas activeCanvas)
-        {
-            switch(activeCanvas.name)
-            {
-                case "Level_Complete":
-                    NextLevel();
-                    break;
-                case "Pause_Menu":
-                    OnPauseInput();
-                    break;
-            }
-        }*/
-        // public void OnPauseInput()
-        // {
-        //     if(Time.timeScale == 1)
-        //         Time.timeScale = 0;
-        //     
-        //     else if(Time.timeScale == 0 )
-        //         Time.timeScale = 1;
-        // }
+      
         private void GameOver()
         {
             gameOver(true);
@@ -95,7 +75,7 @@ namespace Veganimus.NovaStar
 
         private void LevelComplete(bool isComplete)
         {
-            if (isComplete == true)
+            if (isComplete)
             {
                 levelComplete = true;
                 Time.timeScale = 0;

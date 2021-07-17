@@ -10,11 +10,11 @@ namespace Veganimus.NovaStar
 
     public class PowerUp : MonoBehaviour
     {
-        [SerializeField] private PowerUpSO _powerUpType;
         [SerializeField] private CollectEvent _collectEvent;
+        [SerializeField] private PowerUpSO _powerUpType;
+        private float _deltaTime;
         private Transform _transform;
         private float _speed => _powerUpType.speed;
-        private float _deltaTime;
 
         private void Start() => _transform = transform;
 
@@ -25,7 +25,7 @@ namespace Veganimus.NovaStar
             if (_transform.position.x < -10f)
              Destroy(this.gameObject);
         }
-        //test
+        
         private void OnTriggerEnter(Collider other)
         {
             if(other.CompareTag("Player"))

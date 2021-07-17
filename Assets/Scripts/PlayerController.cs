@@ -10,28 +10,10 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class PlayerController : MonoBehaviour, IDamageable
     {
-        private bool _canTakeDamage = true;
-        private bool _powerUpActive;
-        private bool _shieldActive;
-        private int _currentWeaponID;
-        private int _lastWeaponID;
-        private int _maxUpgrade;
         [SerializeField] private int _lives = 3;
-        [Header("Sound Effects")]
-        [SerializeField] private AudioClip _shieldSFX;
-        [SerializeField] private AudioClip _powerUpSFX;
-        [SerializeField] private AudioClip _damageSFX;
-        [SerializeField] private AudioClip _deathSFX;
-        [Header("Screen Bounds")]
-        [SerializeField] private float _yTopBound;
-        [SerializeField] private float _yBottomBound;
-        [SerializeField] private float _xLeftBound;
-        [SerializeField] private float _xRightBound;
-        [Space]
-        [SerializeField] private GameObject _shipModel;
-        [SerializeField] private GameObject _shield;
-        [SerializeField] private GameObject _explosionPrefab;
-        [SerializeField] private GameObject _powerUpEffect;
+        [SerializeField] private float _yTopBound, _yBottomBound, _xLeftBound, _xRightBound;
+        [SerializeField] private AudioClip _shieldSFX, _powerUpSFX, _damageSFX, _deathSFX;
+        [SerializeField] private GameObject _shipModel, _shield, _explosionPrefab, _powerUpEffect;
         [Header("Two-way Channels")]
         [SerializeField] private intEventSO _currentWeaponIDEvent;
         [Header("Listening On")]
@@ -43,14 +25,12 @@ namespace Veganimus.NovaStar
         [SerializeField] private BoolEventSO _shieldUIEvent;
         [SerializeField] private WeaponChangeEvent _weaponChangeEvent;
         [SerializeField] private CoRoutineEvent _startPowerUpCoolDown;
-        [SerializeField] private intEventSO _upgradeTracker;
-        [SerializeField] private intEventSO _powerUpTracker;
-        private Transform _transform;
-        private WaitForSeconds _damageCoolDown;
-        private WaitForSeconds _powerUpCoolDown;
-        private WaitForSeconds _powerUpEffectTimer;
+        [SerializeField] private intEventSO _upgradeTracker, _powerUpTracker;
+        private bool _canTakeDamage = true, _powerUpActive, _shieldActive;
+        private int _currentWeaponID, _lastWeaponID, _maxUpgrade;
         private ShootOnInput _shootOnInput;
-
+        private Transform _transform;
+        private WaitForSeconds _damageCoolDown, _powerUpCoolDown, _powerUpEffectTimer;
 
         private void OnEnable()
         {
@@ -80,9 +60,16 @@ namespace Veganimus.NovaStar
                 Mathf.Clamp(position.y, _yBottomBound, _yTopBound), 0);
             _transform.position = position;
         }
-       private void CurrentWeaponTracker(int current)=> _currentWeaponID = current;
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Enemy")
+                Damage(0);
+        }
+
+        private void CurrentWeaponTracker(int current)=> _currentWeaponID = current;
         
-       private void PowerUpCollect(int id)
+        private void PowerUpCollect(int id)
         {
             _playSFXEvent.OnSFXEventRaised(_powerUpSFX);
             if (_powerUpActive == false)
@@ -116,38 +103,7 @@ namespace Veganimus.NovaStar
                 StartCoroutine(PowerUpFlicker());
             }
         }
-        public void Damage(int amount)
-        {
-            if (_shieldActive)
-            {
-                _shield.SetActive(false);
-                _shieldActive = false;
-                _playSFXEvent.RaiseSFXEvent(_shieldSFX);
-                _shieldUIEvent.RaiseBoolEvent(false);
-            }
-            else
-            {//Camera shake
-                if (_canTakeDamage)
-                {
-                    if (_currentWeaponID == 0)
-                    {
-                        StartCoroutine(DeathRoutine());
-                    }
-                    else
-                    {
-                        _playSFXEvent.RaiseSFXEvent( _damageSFX);
-                        _weaponChangeEvent.RaiseWeaponChangeEvent(false, false, 0);
-                        _canTakeDamage = false;
-                        StartCoroutine(DamageCoolDown());
-                    }
-                }
-            }
-        }
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.tag == "Enemy")
-                Damage(0);
-        }
+       
         private IEnumerator DamageCoolDown()
         {
             yield return _damageCoolDown;
@@ -182,6 +138,32 @@ namespace Veganimus.NovaStar
             yield return new WaitForSeconds(2.0f);
             _playerDeadEvent.RaiseEvent();
             Destroy(gameObject);
+        }
+        public void Damage(int amount)
+        {
+            if (_shieldActive)
+            {
+                _shield.SetActive(false);
+                _shieldActive = false;
+                _playSFXEvent.RaiseSFXEvent(_shieldSFX);
+                _shieldUIEvent.RaiseBoolEvent(false);
+            }
+            else
+            {//Camera shake
+                if (_canTakeDamage)
+                {
+                    if (_currentWeaponID == 0)
+                        StartCoroutine(DeathRoutine());
+
+                    else
+                    {
+                        _playSFXEvent.RaiseSFXEvent(_damageSFX);
+                        _weaponChangeEvent.RaiseWeaponChangeEvent(false, false, 0);
+                        _canTakeDamage = false;
+                        StartCoroutine(DamageCoolDown());
+                    }
+                }
+            }
         }
     }
 }

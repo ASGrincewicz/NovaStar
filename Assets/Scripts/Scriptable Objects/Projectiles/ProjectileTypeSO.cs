@@ -10,11 +10,10 @@ namespace Veganimus.NovaStar
     [CreateAssetMenu(menuName =("Projectile Type"))]
     public class ProjectileTypeSO :ScriptableObject
     {
-        public string projectileName;
+        public bool isMultiShot;
         public int damageAmount;
         public float speed;
-        public string target;
+        public string projectileName, target;
         public Vector2 moveDirection;
-        public bool isMultiShot;
     }
 }

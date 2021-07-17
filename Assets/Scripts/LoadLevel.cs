@@ -11,16 +11,13 @@ namespace Veganimus.NovaStar
         [SerializeField] private Image _progessBar;
         [SerializeField] private TMP_Text _loadingProgress;
 
-        private void Start()
-        {
-            StartCoroutine(LoadLevelASync());
-        }
+        private void Start() => StartCoroutine(LoadLevelASync());
 
-       private IEnumerator LoadLevelASync()
+        private IEnumerator LoadLevelASync()
         {
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Level");
 
-            while (asyncOperation.isDone == false)
+            while (!asyncOperation.isDone)
             {
                 _progessBar.fillAmount = asyncOperation.progress;
                 _loadingProgress.text = $"Loading: {asyncOperation.progress * 100}%";

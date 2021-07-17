@@ -10,13 +10,11 @@ namespace Veganimus.NovaStar
     [CreateAssetMenu(menuName=("Weapon Type"))]
     public class WeaponType :ScriptableObject
     {
-        public string weaponName;
-        public int weaponID;
-        public float accuracyOffsetMin ;
-        public float accuracyOffsetMax ;
-        public float fireRate ;
         public bool isMultiShot;
-        public GameObject projectilePrefab;
+        public int weaponID;
+        public float accuracyOffsetMin, accuracyOffsetMax, fireRate;
+        public string weaponName;
         public AudioClip fireSound;
+        public GameObject projectilePrefab;
     }
 }

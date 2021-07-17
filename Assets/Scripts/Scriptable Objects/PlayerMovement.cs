@@ -15,7 +15,13 @@ namespace Veganimus.NovaStar
         private void OnEnable()=> inputReader.moveEvent += OnMoveInput;
         
         private void OnDisable()=> inputReader.moveEvent -= OnMoveInput;
-        
+
+        private void OnMoveInput(float h, float v)
+        {
+            horizontal = h;
+            vertical = v;
+        }
+
         public void  Movement(Transform mover, Rigidbody rigidbody, float deltaTime)
         {
             moveDirection = new Vector3(horizontal, vertical,0);
@@ -26,11 +32,6 @@ namespace Veganimus.NovaStar
             float pitch = vertical * tiltAngle;
             Quaternion target = Quaternion.Euler(0, 0, pitch);
             mover.rotation = Quaternion.Slerp(mover.rotation, target, deltaTime * smooth);
-        }
-        public void OnMoveInput(float h, float v)
-        {
-            horizontal = h;
-            vertical = v;
         }
     }
 }

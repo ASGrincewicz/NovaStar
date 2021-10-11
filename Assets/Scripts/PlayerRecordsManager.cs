@@ -69,10 +69,6 @@ namespace Veganimus.NovaStar
 
         private void TrackUpgrade(int value) => _playerRecords.Upgrades++;
 
-        
-
-        
-
         public void SaveRecords()=> SaveSystem.SaveRecords(_playerRecords);
     }
 }

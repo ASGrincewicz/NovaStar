@@ -29,7 +29,6 @@ namespace Veganimus.NovaStar
         [SerializeField] private List<Enemy> _enemies;
         [SerializeField] private GameObject _bossSpawnPos, _enemyContainer;
         [SerializeField] private int _enemyToSpawn, _enemyDestroyed;
-        private bool _isBossWave;
         [SerializeField] private int _enemySpawns;
         [Space]
         [SerializeField] private int _currentWave = 1;
@@ -44,7 +43,8 @@ namespace Veganimus.NovaStar
         [SerializeField] private GameEvent _nextLevelRoutineEvent;
         //Coroutine Timers
         private WaitForSeconds _spawnDelay, _nextWaveDelay;
-       
+        private bool _isBossWave;
+
 
         private void OnEnable()
         {
@@ -53,8 +53,14 @@ namespace Veganimus.NovaStar
             _enemyTracking.OnEnemyDestroyed += () => _enemyDestroyed++;
             _enemyTracking.OnEnemySpawned += () => _enemySpawns++;
         }
-        private void OnDisable()=> _startNextLevelEvent.OnEventRaised -= StartNextLevel;
-        
+        private void OnDisable()
+        {
+            _startNextLevelEvent.OnEventRaised -= StartNextLevel;
+            _nextLevelRoutineEvent.OnEventRaised -= () => StartCoroutine(NextLevelRoutine(true));
+            _enemyTracking.OnEnemyDestroyed -= () => _enemyDestroyed++;
+            _enemyTracking.OnEnemySpawned -= () => _enemySpawns++;
+        }
+
         private void Start()
         {
             _spawnDelay = new WaitForSeconds(5f);
@@ -70,16 +76,13 @@ namespace Veganimus.NovaStar
         {
             _activeLevel = _levels[_currentLevel];
             _trackLevelEvent.OnEventRaised(_currentLevel);
-            if(_activeLevel != null)
-            {
-                GetWaveFromLevel();
-                if(_enemyWaves.Count > 0)
-                {
-                    RequestEnemyWave();
-                    _trackWaveEvent.RaiseEvent(_currentWave);
-                }
-                RequestBossWave();
-            }
+            if (_activeLevel == null) return;
+            
+            GetWaveFromLevel();
+            if (_enemyWaves.Count <= 0) return;
+            RequestEnemyWave();
+            _trackWaveEvent.RaiseEvent(_currentWave);
+            RequestBossWave();
         }
         private void Update() => KillTracking();
         
@@ -105,14 +108,13 @@ namespace Veganimus.NovaStar
         }
         private void PopulateEnemies()
         {
-            if (_enemyWave != null)
-            {
-                _waveComplete = false;
-                GetEnemyFromWave(_enemyWave.enemySequence.Count);
-                _enemyToSpawn = _enemyWave.enemySequence.Count;
-                _enemyDestroyed = 0;
-                StartCoroutine(SpawnEnemy());
-            }
+            if (_enemyWave == null) return;
+            
+            _waveComplete = false;
+            GetEnemyFromWave(_enemyWave.enemySequence.Count);
+            _enemyToSpawn = _enemyWave.enemySequence.Count;
+            _enemyDestroyed = 0;
+            StartCoroutine(SpawnEnemy());
         }
         private List<Enemy> GetEnemyFromWave(int count)
         {
@@ -127,19 +129,18 @@ namespace Veganimus.NovaStar
        
         private BossWave RequestBossWave()
         {
-            if(_activeLevel.bossWave != null)
-                _levelBossWave = _activeLevel.bossWave;
-            
+            if (_activeLevel.bossWave == null) return null;
+             _levelBossWave = _activeLevel.bossWave;
             return _levelBossWave;
         }
        
         private void SpawnLevelBoss()
         {
-            if(_levelBossWave != null)
-            {
-                GameObject boss = Instantiate(_levelBossWave.levelBoss, _enemyContainer.transform);
-                boss.transform.position = _bossSpawnPos.transform.position;
-            }
+            if (_levelBossWave == null) return;
+            
+            GameObject boss = Instantiate(_levelBossWave.levelBoss, _enemyContainer.transform);
+            boss.transform.position = _bossSpawnPos.transform.position;
+            
         }
        private IEnumerator SpawnEnemy()
         {
@@ -157,7 +158,7 @@ namespace Veganimus.NovaStar
             _waveComplete = true;
             _enemyWave = null;
            
-             if (_currentWave == _enemyWaves.Count)
+            if (_currentWave == _enemyWaves.Count)
             {
                 _isBossWave = true;
                 StartCoroutine(BossWaveRoutine());
@@ -172,14 +173,14 @@ namespace Veganimus.NovaStar
         }
        private IEnumerator NextLevelRoutine(bool bossDead)
         {
-            if (bossDead)
-            {
-                _enemyWaves.Clear();
-                _levelComplete = true;
-                _activeLevel = null;
-                _currentLevel++;
-                _currentWave = 1;
-            }
+            if (!bossDead) yield return null;
+            
+            _enemyWaves.Clear();
+            _levelComplete = true;
+            _activeLevel = null;
+            _currentLevel++;
+            _currentWave = 1;
+            
             if(_currentLevel >= _levels.Count)
                 _endGameEvent.RaiseEvent();
             

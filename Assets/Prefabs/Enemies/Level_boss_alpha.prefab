@@ -482,6 +482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackPattern: 0
+  _projectileShootPos: {x: 0, y: 0, z: 0}
   _hp: 100
   _damageTaken: 0
   _scoreTier: 4000
@@ -489,14 +490,13 @@ MonoBehaviour:
   - {fileID: 2428143189955965616}
   - {fileID: 3916556127482894662}
   - {fileID: 3691549332722649149}
-  _projectileShootPos: {x: 0, y: 0, z: 0}
   _cannonFireVFX: {fileID: 3253772729312070469, guid: 940f2581b7f0b4a3a8f5a87bac58604f, type: 3}
+  _explosionPrefab: {fileID: 8217003109968079750, guid: 42d342ef03f5e4756b49a209766eed83, type: 3}
   _damageVFX:
   - {fileID: 8048753642388582449}
   - {fileID: 4046788513689954771}
   - {fileID: 7028866480759764509}
   - {fileID: 1233243807604695158}
-  _explosionPrefab: {fileID: 8217003109968079750, guid: 42d342ef03f5e4756b49a209766eed83, type: 3}
   _anim: {fileID: 3718590433894912687}
   _shootSound: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}
   _damageSound: {fileID: 8300000, guid: b5586fa9df261487f95339a3681dc7a4, type: 3}
@@ -504,7 +504,7 @@ MonoBehaviour:
   _updateScoreChannel: {fileID: 11400000, guid: 162717f3763e646df8af5df4528deadf, type: 2}
   _bossHealthUIEvent: {fileID: 11400000, guid: 771c079859e0c4d3b91639545d7ad042, type: 2}
   _nextLevelEvent: {fileID: 11400000, guid: a408d4b74580449c3b718cea134044eb, type: 2}
-  _bossProjRequest: {fileID: 11400000, guid: bcc2b09f5fdab4ef49ee285fa0653309, type: 2}
+  _bossProjRequest: {fileID: 11400000, guid: 736ebb49090cb479593f93fc24c6cdd7, type: 2}
   _playSFXEvent: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
 --- !u!95 &3718590433894912687
 Animator:

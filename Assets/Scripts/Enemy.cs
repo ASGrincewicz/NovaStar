@@ -76,26 +76,22 @@ namespace Veganimus.NovaStar
         private void Update()
         {
             _deltaTime = Time.deltaTime;
-            if (_isMirrorMoveOn)
-             MirrorMovement();
-
-            else
-                Movement();
+            
+             Movement();
 
             if (_hasWeapon)
             {
                 if (Time.time > _canFire)
                 {
-                    Shoot();
+                    Shoot(_fireOffset.transform.position);
                     if (_hasAltWeapon)
-                        AltShoot();
+                        Shoot(_fireOffset2.transform.position);
                 }
             }
             if(_hp <= 0)
-            {
-               Die();
-            }
-            if(_shieldHP <= 0 && _shield)
+                Die();
+
+            if (_shieldHP <= 0 && _shield)
             {
                 _shield.SetActive(false);
                 _isShieldOn = false;
@@ -103,32 +99,30 @@ namespace Veganimus.NovaStar
         }
         private void Movement()
         {
-            _transform.Translate(Vector3.left * (_speed * _deltaTime));
+            if (!_isMirrorMoveOn)
+            {
+                _transform.Translate(Vector3.left * (_speed * _deltaTime));
 
-            if (_transform.position.x < -20f)
-               _transform.position = new Vector3(13f, Random.Range(-3f, 5f), 0);
+                if (_transform.position.x < -20f)
+                    _transform.position = new Vector3(13f, Random.Range(-3f, 5f), 0);
+            }
+            else
+                MirrorMovement();
         }
         private void MirrorMovement()
         {
             _mirrorMoveSO.Pitch(_transform, _deltaTime);
             _mirrorMoveSO.MirrorMovement(_transform, _rigidbody, _deltaTime);
         }
-        private void Shoot()
+        private void Shoot(Vector3 offset)
         {
             _canFire = Time.time + _fireRate;
            GameObject enemyBullet = Instantiate(_weapon, _transform);
-            enemyBullet.transform.position = _fireOffset.transform.position;
+            enemyBullet.transform.position = offset;
             _playSFXEvent.RaiseSFXEvent(_shootSound);
             StartCoroutine(EnemyFireRoutine());
         }
-        private void AltShoot()
-        {
-            _canFire = Time.time + (_fireRate);
-            GameObject enemyBullet = Instantiate(_weapon, _transform);
-            enemyBullet.transform.position = _fireOffset2.transform.position;
-            _playSFXEvent.RaiseSFXEvent(_shootSound);
-            StartCoroutine(EnemyFireRoutine());
-        }
+       
         private void Die()
         {
             _playSFXEvent.RaiseSFXEvent(_deathSound);
@@ -136,16 +130,13 @@ namespace Veganimus.NovaStar
             if (_chance >= 75)
             {
                 GameObject itemDrop = _requestPowerUpDrop.RequestGameObjectInt(scoreTier);
-                if (itemDrop != null)
-                {
-                    itemDrop.transform.position = _transform.position;
-                    itemDrop.SetActive(true);
-                }
-                else
-                    return;
+                if (itemDrop == null) return;
+                
+                itemDrop.transform.position = _transform.position;
+                itemDrop.SetActive(true);
             }
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         public void Damage(int amount)
         {

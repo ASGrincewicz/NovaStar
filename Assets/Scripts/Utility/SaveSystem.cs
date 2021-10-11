@@ -11,6 +11,12 @@ namespace Veganimus.NovaStar
     ///</summary>
     public static class SaveSystem
     {
+
+        /// <summary>
+        /// Uses a Binary Formatter and opens a files stream to save
+        /// an instance of PlayerStats.
+        /// </summary>
+        /// <param name="playerStats"></param>
         public static void SaveRecords(PlayerStats playerStats)
         {
             BinaryFormatter formatter = new BinaryFormatter();

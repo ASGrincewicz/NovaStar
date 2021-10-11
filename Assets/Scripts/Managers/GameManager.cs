@@ -75,11 +75,10 @@ namespace Veganimus.NovaStar
 
         private void LevelComplete(bool isComplete)
         {
-            if (isComplete)
-            {
-                levelComplete = true;
-                Time.timeScale = 0;
-            }
+            if (!isComplete) return;
+            
+            levelComplete = true;
+            Time.timeScale = 0;
         }
 
         private void NextLevel()=> _nextLevelEvent.RaiseEvent();

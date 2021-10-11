@@ -93,7 +93,7 @@ namespace Veganimus.NovaStar
                 {
                     if (!_multiShotOn)
                     {
-                        _projectilePrefab = _requestProjectile.RequestGameObject();
+                        _projectilePrefab = _requestProjectile.RequestGameObjectInt(0);
                         if (_projectilePrefab != null)
                         {
                             Transform projTransform = _projectilePrefab.transform;
@@ -105,8 +105,8 @@ namespace Veganimus.NovaStar
                     }
                     else
                     {
-                        GameObject proj1 = _requestProjectile.RequestGameObject();
-                        GameObject proj2 = _requestProjectile.RequestGameObject();
+                        GameObject proj1 = _requestProjectile.RequestGameObjectInt(0);
+                        GameObject proj2 = _requestProjectile.RequestGameObjectInt(0);
                         if (proj1 != null && proj2 != null)
                         {
                             Transform[] projTransforms = new Transform[]{ proj1.transform, proj2.transform};

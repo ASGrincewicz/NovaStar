@@ -1,14 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 namespace Veganimus.NovaStar
 {
     ///<summary>
     ///@author
     ///Aaron Grincewicz
+    ///@info: Can be added to any class with a MovementSO field. Allows
+    ///the game object to mirror the Player's movement input.
     ///</summary>
     [CreateAssetMenu(fileName = "newMovement.asset", menuName = "Movement/ Mirror Movement")]
     public class MirrorMoveSO : MovementSO

@@ -16,6 +16,9 @@ namespace Veganimus.NovaStar
         [SerializeField] private AudioClip _pauseSound;
         [SerializeField] private AudioClip _gameOverSound;
         [SerializeField] private Canvas _hUD_Canvas, pauseMenu, levelSummary, gameOverScreen, endOfGameScreen;
+        [Header("Static UI")]
+
+        [Header("Dynamic UI")]
         [SerializeField] private GameObject _incomingWaveTextGO, _powerUpTimer, _bossHealthUI, _shieldImage;
         [SerializeField] private Image _bossHealthBar;
         [SerializeField] private TMP_Text _levelText, _scoreText, _weaponText, _incomingWaveText;

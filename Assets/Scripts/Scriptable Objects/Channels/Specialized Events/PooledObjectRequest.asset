@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0aab02c0a7d843c8a3fe6b26b63f46b, type: 3}
-  m_Name: BossProjRequest
+  m_Name: PooledObjectRequest
   m_EditorClassIdentifier: 

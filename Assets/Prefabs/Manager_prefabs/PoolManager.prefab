@@ -1,5 +1,56 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1691265335243164591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8500927996308899886}
+  - component: {fileID: 1777941754774549497}
+  m_Layer: 0
+  m_Name: PowerUpPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8500927996308899886
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691265335243164591}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5051965282798542037}
+  m_Father: {fileID: 2624876563007947477}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1777941754774549497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691265335243164591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8632a86b491b448e3995e34515109d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _powerUps:
+  - {fileID: 4054395830110364153, guid: ad5794fa723164468a47ff4a66a93f85, type: 3}
+  - {fileID: 8669839817956141900, guid: 0a14f39be09684ef38f25eeec953af5e, type: 3}
+  - {fileID: 7334643961800842593, guid: 8426fa5aa241745e69b231181a9f845b, type: 3}
+  _powerUpPrefab: {fileID: 4054395830110364153, guid: ad5794fa723164468a47ff4a66a93f85, type: 3}
+  _powerUpContainer: {fileID: 5051965282798542037}
+  _powerUpRequest: {fileID: 11400000, guid: 41378fe3a993c414881382123f8a622b, type: 2}
 --- !u!1 &3833784988686036645
 GameObject:
   m_ObjectHideFlags: 0
@@ -23,12 +74,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3833784988686036645}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2624876563007947477}
-  m_RootOrder: 2
+  m_Father: {fileID: 8500927996308899886}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5346352272616832105
 GameObject:
@@ -88,7 +139,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2624876563007947477}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8378779022571050922
 GameObject:
@@ -120,8 +171,8 @@ Transform:
   m_Children:
   - {fileID: 1473499422292221726}
   - {fileID: 982838544280296040}
-  - {fileID: 5051965282798542037}
   - {fileID: 1080968775536860384}
+  - {fileID: 8500927996308899886}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -137,27 +188,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cb487b1f710644878f3f563f9af0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectilePrefab: {fileID: 0}
-  _projectileContainer: {fileID: 1473499422292221727}
-  _projectilePool: []
-  _enemyProjectileContainer: {fileID: 0}
-  _bossProjectilePrefab: {fileID: 4140978072433156269, guid: 40beb55010da54294abcd0a045843c9a, type: 3}
-  _bossProjectileContainer: {fileID: 5346352272616832105}
-  _bossProjectilePool: []
-  _powerUps:
-  - {fileID: 4054395830110364153, guid: ad5794fa723164468a47ff4a66a93f85, type: 3}
-  - {fileID: 8669839817956141900, guid: 0a14f39be09684ef38f25eeec953af5e, type: 3}
-  - {fileID: 7334643961800842593, guid: 8426fa5aa241745e69b231181a9f845b, type: 3}
-  _powerUpPrefab: {fileID: 8669839817956141900, guid: 0a14f39be09684ef38f25eeec953af5e, type: 3}
-  powerUpContainer: {fileID: 3833784988686036645}
-  _projectileVFXPrefab: {fileID: 2581462059173570728, guid: d7b53bf753a4544b7b3a584fa73427d5, type: 3}
-  _projectileVFXContainer: {fileID: 6770663298435406103}
-  _projectileVFXPool: []
+  _poolableObjects:
+  - {fileID: 0}
+  - {fileID: 4140978072433156269, guid: 40beb55010da54294abcd0a045843c9a, type: 3}
+  - {fileID: 2581462059173570728, guid: d7b53bf753a4544b7b3a584fa73427d5, type: 3}
+  _poolableObjectContainers:
+  - {fileID: 1473499422292221726}
+  - {fileID: 982838544280296040}
+  - {fileID: 1080968775536860384}
+  - {fileID: 5051965282798542037}
   _playerWeaponEvent: {fileID: 11400000, guid: dffd77a8754f64ed38d99bce70f2301f, type: 2}
-  _projectileRequest: {fileID: 11400000, guid: 736ebb49090cb479593f93fc24c6cdd7, type: 2}
-  _projectileVFXRequest: {fileID: 11400000, guid: 613ea06b674204bb4956151a3d6974a5, type: 2}
-  _bossProjectileRequest: {fileID: 11400000, guid: bcc2b09f5fdab4ef49ee285fa0653309, type: 2}
-  _powerUpRequest: {fileID: 11400000, guid: 41378fe3a993c414881382123f8a622b, type: 2}
+  _pooledObjectRequest: {fileID: 11400000, guid: 736ebb49090cb479593f93fc24c6cdd7, type: 2}
 --- !u!1001 &9200870142050437888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -215,11 +256,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5119a995b69c9439785f5882b301229b, type: 3}
---- !u!1 &1473499422292221727 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7765020838009672735, guid: 5119a995b69c9439785f5882b301229b, type: 3}
-  m_PrefabInstance: {fileID: 9200870142050437888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1473499422292221726 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7765020838009672734, guid: 5119a995b69c9439785f5882b301229b, type: 3}

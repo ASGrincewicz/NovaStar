@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.019587237, g: 0.020637795, b: 0.01862774, a: 1}
+  m_IndirectSpecularColor: {r: 0.019587204, g: 0.02063775, b: 0.01862772, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6620,9 +6620,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7126750937861517065, guid: d0eac1c144bcb4f1d95d7f9e236c543f, type: 3}
-      propertyPath: _enemyProjectileRequest
+      propertyPath: _poolableObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: e67f09d5876ca433795ac8e65bef09a3, type: 2}
+      objectReference: {fileID: 670806353022106560, guid: 8ed38429270844c97a43a96ae1ae4519, type: 3}
+    - target: {fileID: 7126750937861517065, guid: d0eac1c144bcb4f1d95d7f9e236c543f, type: 3}
+      propertyPath: _poolableObjectContainers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8378779022571050922, guid: d0eac1c144bcb4f1d95d7f9e236c543f, type: 3}
       propertyPath: m_Name
       value: PoolManager

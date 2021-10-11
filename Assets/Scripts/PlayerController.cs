@@ -42,6 +42,7 @@ namespace Veganimus.NovaStar
         private void OnDisable()
         {
             _collectEvent.OnPowerUpCollect -= PowerUpCollect;
+            _maxUpgradeChannel.OnEventRaised -= max => _maxUpgrade = max;
             _currentWeaponIDEvent.OnEventRaised -= CurrentWeaponTracker;
         }
         

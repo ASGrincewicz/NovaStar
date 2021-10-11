@@ -10,160 +10,80 @@ namespace Veganimus.NovaStar
     ///</summary>
     public class PoolManager : MonoBehaviour
     {
-        [Header("Player Projectile Pool")]
-        [SerializeField] private GameObject _projectilePrefab;
-        [SerializeField] private GameObject _projectileContainer;
-        [SerializeField] private List<GameObject> _projectilePool;
-       
-        [Header("Boss Projectile Pool")]
-        [SerializeField] private GameObject _bossProjectilePrefab;
-        [SerializeField] private GameObject _bossProjectileContainer;
-        [SerializeField] private List<GameObject> _bossProjectilePool;
-        [Header("Power Up Pool")]
-        [SerializeField] private List<GameObject> _powerUps;
-        [SerializeField] private GameObject _powerUpPrefab;
-        [SerializeField] private GameObject powerUpContainer;
-        [Header("VFX Pool")]
-        [SerializeField] private GameObject _projectileVFXPrefab;
-        [SerializeField] private GameObject _projectileVFXContainer;
-        [SerializeField] private List<GameObject> _projectileVFXPool;
+        [Header("Object Pooling")]
+        [Tooltip("Do not assign an object to index 0, this is done in the script. " +
+            "Assign the Boss Projectile to index 1 and Projectile VFX to index 2.")]
+        [SerializeField] private GameObject[] _poolableObjects = new GameObject[3];
+        [Tooltip("This list should match the Poolable Objects list indexes.")]
+        [SerializeField] private Transform[] _poolableObjectContainers = new Transform[3];
+        private List<GameObject> _projectilePool;
+        private List<GameObject> _bossProjectilePool;
+        private List<GameObject> _projectileVFXPool;
         [Header("Listening to:")]
         [SerializeField] private PlayerWeaponEvent _playerWeaponEvent;
-        [SerializeField] private PoolGORequest _projectileRequest;
-        [SerializeField] private PoolGORequest _projectileVFXRequest;
-        [SerializeField] private PoolGORequest _bossProjectileRequest;
-        [SerializeField] private PoolGORequest _powerUpRequest;
+        [SerializeField] private PoolGORequest _pooledObjectRequest;
 
         public static Action clearChildren;
        
         private void OnEnable()
         {
             _playerWeaponEvent.OnPlayerWeaponChangeEventRaised += GetCurrentWeapon;
-            _projectileRequest.OnGameObjectRequested += RequestProjectile;
-            _projectileVFXRequest.OnGameObjectRequested += RequestProjectileVFX;
-            _bossProjectileRequest.OnGameObjectRequested += RequestBossProjectile;
-            _powerUpRequest.OnGameObjectIntRequested += RequestPowerUp;
+            _pooledObjectRequest.OnGameObjectIntRequested += RequestObject;
         }
 
         private void OnDisable()
         {
             _playerWeaponEvent.OnPlayerWeaponChangeEventRaised -= GetCurrentWeapon;
-            _projectileRequest.OnGameObjectRequested -= RequestProjectile;
-            _projectileVFXRequest.OnGameObjectRequested -= RequestProjectileVFX;
-            _bossProjectileRequest.OnGameObjectRequested -= RequestBossProjectile;
-            _powerUpRequest.OnGameObjectIntRequested -= RequestPowerUp;
+            _pooledObjectRequest.OnGameObjectIntRequested -= RequestObject;
         }
 
         private void Start()
         {
-            _powerUpPrefab = _powerUps[0];
-            GenerateProjectileVFX(5);
-            GenerateBossProjectile(10);
+            GenerateObjects(_projectileVFXPool, _poolableObjects[2], _poolableObjectContainers[2].transform,5);
+            GenerateObjects(_bossProjectilePool, _poolableObjects[1], _poolableObjectContainers[1].transform, 10);
         }
         private void GetCurrentWeapon(WeaponType weapon)
         {
             clearChildren();
             _projectilePool.Clear();
-            _projectilePrefab = weapon.projectilePrefab;
-            if(_projectilePrefab != null)
-             GenerateProjectile(20);
-        }
-       private List<GameObject> GenerateProjectile(int amount)
-        {
-            for(int i = 0; i< amount; i++)
-            {
-                if (_projectilePool.Count < amount)
-                {
-                    GameObject bullet = Instantiate(_projectilePrefab, _projectileContainer.transform);
-                    bullet.SetActive(false);
-                    _projectilePool.Add(bullet);
-                }
-                else
-                 return null;
-            }
-            return _projectilePool;
-        }
-        private List<GameObject> GenerateBossProjectile(int amount)
-        {
-            for(int i = 0; i < amount; i++)
-            {
-                if (_bossProjectilePool.Count < amount)
-                {
-                    var bossProj = Instantiate(_bossProjectilePrefab, _bossProjectileContainer.transform);
-                    bossProj.SetActive(false);
-                    _bossProjectilePool.Add(bossProj);
-                }
-                else
-                    return null;
-            }
-            return _bossProjectilePool;
+            _poolableObjects[0] = weapon.projectilePrefab;
+            if(_poolableObjects[0] != null)
+                GenerateObjects(_projectilePool, _poolableObjects[0], _poolableObjectContainers[0].transform, 20);
         }
 
-        private List<GameObject> GenerateProjectileVFX(int amount)
+        private List<GameObject> GenerateObjects(List<GameObject> pool, GameObject prefab, Transform container, int amount)
         {
-            for(int i = 0; i< amount; i++)
+            for (int i = 0; i < amount; i++)
             {
-                if (_projectileVFXPool.Count < amount)
-                {
-                    GameObject projVFX = Instantiate(_projectileVFXPrefab, _projectileVFXContainer.transform);
-                    projVFX.SetActive(false);
-                    _projectileVFXPool.Add(projVFX);
-                }
-                else
-                    return null;
+                if (pool.Count >= amount) return null;
+               
+                GameObject obj = Instantiate(prefab, container);
+                obj.SetActive(false);
+                pool.Add(obj);
             }
-            return _projectileVFXPool;
+            return pool;
         }
-        private GameObject RequestProjectile()
+        private GameObject RequestObject(int objectIndex)
         {
-            for(int i = 0; i < _projectilePool.Count; i++)
+            List<GameObject> pool = objectIndex switch
             {
-                if(!_projectilePool[i].activeInHierarchy)
-                {
-                    _projectilePool[i].SetActive(true);
-                    return _projectilePool[i];
-                }
-            }
-            GameObject newBullet = _projectilePrefab;
-            newBullet.SetActive(true);
-            _projectilePool.Add(newBullet);
-            return newBullet;
-        }
-        private GameObject RequestBossProjectile()
-        {
-            for(int i = 0; i < _bossProjectilePool.Count; i++)
+                0 => _projectilePool,
+                1 => _bossProjectilePool,
+                2 => _projectileVFXPool,
+                _ => null,
+            };
+            for (int i = 0; i < pool.Count; i++)
             {
-                if(!_bossProjectilePool[i].activeInHierarchy)
+                if (!pool[i].activeInHierarchy)
                 {
-                    _bossProjectilePool[i].SetActive(true);
-                    return _bossProjectilePool[i];
+                    pool[i].SetActive(true);
+                    return pool[i];
                 }
             }
-            GameObject newBossProj = _bossProjectilePrefab;
-            newBossProj.SetActive(true);
-            _bossProjectilePool.Add(newBossProj);
-            return newBossProj;
-        }
-        private GameObject RequestProjectileVFX()
-        {
-            for(int i = 0; i < _projectileVFXPool.Count; i++)
-            { 
-                if (!_projectileVFXPool[i].activeInHierarchy)
-                {
-                    _projectileVFXPool[i].SetActive(true);
-                    return _projectileVFXPool[i];
-                }
-            }
-            GameObject newProjVFX = _projectileVFXPrefab;
-            newProjVFX.SetActive(true);
-            _projectileVFXPool.Add(newProjVFX);
-            return newProjVFX;
-        }
-        private GameObject RequestPowerUp(int scoreTier)
-        {
-            _powerUpPrefab = _powerUps[UnityEngine.Random.Range(0,3)];
-           GameObject powerUp = Instantiate(_powerUpPrefab, powerUpContainer.transform);
-           return powerUp;
+            GameObject newObject = Instantiate(_poolableObjects[objectIndex], _poolableObjectContainers[objectIndex]);
+            newObject.SetActive(true);
+            pool.Add(newObject);
+            return newObject;
         }
     }
 }

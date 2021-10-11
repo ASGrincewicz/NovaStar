@@ -42,7 +42,7 @@ namespace Veganimus.NovaStar
         // Shoot is called through Animation Event.
         private void Shoot()
         {
-            GameObject bossBullet = _bossProjRequest.RequestGameObject();
+            GameObject bossBullet = _bossProjRequest.RequestGameObjectInt(1);
             _currentFirePositions = Random.Range(0, 3);
             GameObject cannonVFX = Instantiate(_cannonFireVFX, _firePositions[_currentFirePositions].transform.position, Quaternion.identity);
             bossBullet.transform.position = _firePositions[_currentFirePositions].transform.position;
@@ -55,11 +55,9 @@ namespace Veganimus.NovaStar
         {
             foreach (GameObject obj in _damageVFX)
             {
-                if (!obj.activeSelf)
-                {
-                    obj.SetActive(true);
-                    return obj;
-                }
+                if (obj.activeSelf) continue;
+                obj.SetActive(true);
+                return obj;
             }
             return null;
         }

@@ -129,7 +129,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4140978072433156269}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.545533, y: -0.7300128, z: -1.1355596}
+  m_LocalPosition: {x: 4.401002, y: -0.86490816, z: 1.8991045}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 8837712788700011286}
@@ -179,4 +179,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileType: {fileID: 11400000, guid: 1067a227b63f748c99829abcaa6e36d2, type: 2}
   _impactVFX: {fileID: 2581462059173570728, guid: d7b53bf753a4544b7b3a584fa73427d5, type: 3}
-  _projVFXRequest: {fileID: 11400000, guid: 613ea06b674204bb4956151a3d6974a5, type: 2}
+  _projVFXRequest: {fileID: 11400000, guid: 736ebb49090cb479593f93fc24c6cdd7, type: 2}

@@ -41,7 +41,7 @@ namespace Veganimus.NovaStar
                 if (obj != null)
                 {
                     obj.Damage(DamageAmount);
-                    GameObject impact = _projVFXRequest.RequestGameObject();
+                    GameObject impact = _projVFXRequest.RequestGameObjectInt(2);
                     if (impact != null)
                     {
                         impact.transform.position = _transform.position;

@@ -189,14 +189,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poolableObjects:
-  - {fileID: 0}
+  - {fileID: 670806353022106560, guid: 8ed38429270844c97a43a96ae1ae4519, type: 3}
   - {fileID: 4140978072433156269, guid: 40beb55010da54294abcd0a045843c9a, type: 3}
   - {fileID: 2581462059173570728, guid: d7b53bf753a4544b7b3a584fa73427d5, type: 3}
   _poolableObjectContainers:
   - {fileID: 1473499422292221726}
   - {fileID: 982838544280296040}
   - {fileID: 1080968775536860384}
-  - {fileID: 5051965282798542037}
   _playerWeaponEvent: {fileID: 11400000, guid: dffd77a8754f64ed38d99bce70f2301f, type: 2}
   _pooledObjectRequest: {fileID: 11400000, guid: 736ebb49090cb479593f93fc24c6cdd7, type: 2}
 --- !u!1001 &9200870142050437888

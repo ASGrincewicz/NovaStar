@@ -46,11 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSettings: {fileID: 11400000, guid: 4ef79351ad5d14368893bc6f25dcc04a, type: 2}
   _audio: {fileID: 876093842627084324}
-  _mainBGMusic: {fileID: 8300000, guid: 9468c608966ff40ad8724a542a0c5bf5, type: 3}
-  _secondaryBGMusic: {fileID: 8300000, guid: 358f3fc126f944ee38575c3cd292ff04, type: 3}
-  _thirdBGMusic: {fileID: 8300000, guid: 1e26a0c62c6a2468f9001347fa7e7169, type: 3}
-  _bossMusic: {fileID: 8300000, guid: e590c6b8e0aa34096af2343e8e53ffcb, type: 3}
-  _endMusic: {fileID: 8300000, guid: a866d25650cbd4f28ae108d9bcabd54d, type: 3}
+  _mainBGMusic: {fileID: 8300000, guid: a1b783941efad4bc0a2c4928ee166cab, type: 3}
+  _secondaryBGMusic: {fileID: 8300000, guid: a05d9b83c6de54f4084e230a80bc87fe, type: 3}
+  _thirdBGMusic: {fileID: 8300000, guid: d329d1b43d88a4422a28020d13c0437f, type: 3}
+  _bossMusic: {fileID: 8300000, guid: 0172a05f17b7d45aaab71bda133f9346, type: 3}
+  _endMusic: {fileID: 8300000, guid: a5665c5683e844157a1ad0943304f4f3, type: 3}
   _playSFXEvent: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
   _trackWaveEvent: {fileID: 11400000, guid: c2f66dcd5d3464ed698ae72af2602413, type: 2}
   _trackBossWave: {fileID: 11400000, guid: faec6a1b8de114965bbdc2494a9acb34, type: 2}

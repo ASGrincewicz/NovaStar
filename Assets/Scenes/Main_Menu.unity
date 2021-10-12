@@ -156,13 +156,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _optionsMenu: {fileID: 1217305989}
-  _brightnessSlider: {fileID: 1865521480}
   _volumeSlider: {fileID: 2001963253}
-  _resolutionDropDown: {fileID: 1160386351}
   _availableCurrency: {fileID: 330997538}
   _highScoreText: {fileID: 1706114641}
   _playerName: {fileID: 267007168}
-  _fullScreenToggle: {fileID: 1709994378}
+  _brightnessSlider: {fileID: 0}
+  _resolutionDropDown: {fileID: 0}
+  _fullScreenToggle: {fileID: 0}
   _audioSettingsSO: {fileID: 11400000, guid: 4ef79351ad5d14368893bc6f25dcc04a, type: 2}
   _loadSceneEventSO: {fileID: 11400000, guid: d27cb486527e849aeae2e1e3c195389c, type: 2}
   _playerRecords: {fileID: 11400000, guid: 84a44c0af272b49deb981536a4821fa2, type: 2}
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -713,6 +713,35 @@ RectTransform:
   m_AnchoredPosition: {x: 383, y: -352}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &547164469 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5036398836564309027, guid: e713d1e6544f64ea1a82d6f86cc4dbe4, type: 3}
+  m_PrefabInstance: {fileID: 1795397250733218618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &547164471 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4629423148393727607, guid: e713d1e6544f64ea1a82d6f86cc4dbe4, type: 3}
+  m_PrefabInstance: {fileID: 1795397250733218618}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547164469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &547164474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547164469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2b899cb9ce14a0a89579218d1d9c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textInputField: {fileID: 547164471}
 --- !u!1 &570245378
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,7 +799,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f87bb71de7a0749f0b8b0e35e845c11e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ecb598b03c4c5b45bea92168edb3474, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1182,17 +1211,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1026650680}
   m_CullTransparentMesh: 1
---- !u!114 &1160386351 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1795397251888090133, guid: e713d1e6544f64ea1a82d6f86cc4dbe4, type: 3}
-  m_PrefabInstance: {fileID: 1795397250733218618}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1217305989 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1795397251932358335, guid: e713d1e6544f64ea1a82d6f86cc4dbe4, type: 3}
@@ -1579,17 +1597,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706114639}
   m_CullTransparentMesh: 1
---- !u!114 &1709994378 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1795397252421184176, guid: e713d1e6544f64ea1a82d6f86cc4dbe4, type: 3}
-  m_PrefabInstance: {fileID: 1795397250733218618}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1818509933
 GameObject:
   m_ObjectHideFlags: 0
@@ -1665,17 +1672,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818509933}
   m_CullTransparentMesh: 1
---- !u!114 &1865521480 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1795397252594467442, guid: e713d1e6544f64ea1a82d6f86cc4dbe4, type: 3}
-  m_PrefabInstance: {fileID: 1795397250733218618}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1916825887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,13 +1729,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "GamePlay: Use the WSAD keys to move verticially and horizontally. \n\nYour
-    ship fires automatically when enemies are within range.\n\nWeapons can be upgraded
-    by collecting the Upgrade powerup from defeated enemies.\n\nHits from the enemy
-    will revert your weapon back to the Standard Issue. \n\nIf you get hit without
-    upgrades, you're dead!\n\nSurvive all 16 waves and defeat the Boss to earn credits
-    and claim your High Score. Use the Options Menu to enter your Pilot Name.\n\nPress
-    Tab to pause during Gameplay."
+  m_text: "GamePlay: Use the Arrow or WSAD keys to move verticially and horizontally.
+    \n\nYour ship fires automatically when enemies are within range.\n\nWeapons can
+    be upgraded by collecting the Upgrade powerup from defeated enemies.\n\nHits
+    from the enemy will revert your weapon back to the Standard Issue. \n\nIf you
+    get hit without upgrades, you're dead!\n\nSurvive all 16 waves and defeat the
+    Boss to earn credits and claim your High Score. Use the Options Menu to enter
+    your Pilot Name.\n\nPress Tab to pause during Gameplay."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2115,6 +2111,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameDevHQ_button
       objectReference: {fileID: 0}
+    - target: {fileID: 1581954742534845142, guid: 642a9eb9f67d14eedbf240b475853d4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1581954742534845143, guid: 642a9eb9f67d14eedbf240b475853d4e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2133,7 +2133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1581954742534845143, guid: 642a9eb9f67d14eedbf240b475853d4e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1581954742534845143, guid: 642a9eb9f67d14eedbf240b475853d4e, type: 3}
       propertyPath: m_AnchorMin.x
@@ -2141,7 +2141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1581954742534845143, guid: 642a9eb9f67d14eedbf240b475853d4e, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1581954742534845143, guid: 642a9eb9f67d14eedbf240b475853d4e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2181,11 +2181,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1581954742534845143, guid: 642a9eb9f67d14eedbf240b475853d4e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1581954742534845143, guid: 642a9eb9f67d14eedbf240b475853d4e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -479.84
       objectReference: {fileID: 0}
     - target: {fileID: 1581954742534845143, guid: 642a9eb9f67d14eedbf240b475853d4e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2486,6 +2486,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4459177210661841096, guid: e713d1e6544f64ea1a82d6f86cc4dbe4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4629423148393727607, guid: e713d1e6544f64ea1a82d6f86cc4dbe4, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4629423148393727607, guid: e713d1e6544f64ea1a82d6f86cc4dbe4, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4629423148393727607, guid: e713d1e6544f64ea1a82d6f86cc4dbe4, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 547164474}
+    - target: {fileID: 4629423148393727607, guid: e713d1e6544f64ea1a82d6f86cc4dbe4, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4629423148393727607, guid: e713d1e6544f64ea1a82d6f86cc4dbe4, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: InputTextToVerify
+      objectReference: {fileID: 0}
+    - target: {fileID: 4629423148393727607, guid: e713d1e6544f64ea1a82d6f86cc4dbe4, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Grincewicz.Verify.VerifyTextInput, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4629423148393727607, guid: e713d1e6544f64ea1a82d6f86cc4dbe4, type: 3}
+      propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []

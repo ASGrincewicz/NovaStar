@@ -1,10 +1,10 @@
 using UnityEngine;
-//using UnityEngine.Playables;
 using UnityEngine.UI;
-using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEditor;
+using Grincewicz.Verify;
+
 namespace Veganimus.NovaStar
 {
     ///<summary>
@@ -15,12 +15,15 @@ namespace Veganimus.NovaStar
     {
         [Header("Main Menu UI")]
         [SerializeField] private GameObject _optionsMenu;
-        [SerializeField] private Slider _brightnessSlider, _volumeSlider;
-        [SerializeField] private TMP_Dropdown _resolutionDropDown;
+        [SerializeField] private Slider  _volumeSlider;
         [SerializeField] private TMP_Text _availableCurrency, _highScoreText, _playerName;
+#if UNITY_EDITOR
+        [SerializeField] private Slider _brightnessSlider;
+        [SerializeField] private TMP_Dropdown _resolutionDropDown;
+        
         [SerializeField] private Toggle _fullScreenToggle;
         [SerializeField] private Resolution[] _availableRes;
-
+#endif
         [Header("Listening To")]
         [SerializeField] private AudioSettingSO _audioSettingsSO;
         [SerializeField] private LoadSceneEventSO _loadSceneEventSO;
@@ -34,12 +37,14 @@ namespace Veganimus.NovaStar
 
         private void Start()
         {
+#if UNITY_STANDALONE
             GetScreenResolution();
+#endif
             UpdateRecords();
         }
         private void UpdateRecords()
         {
-            _playerName.text = $"Pilot Name: {_playerRecords.PlayerName}";
+            _playerName.text = $"Pilot Name: {Verify.TextToVerify}";
             _highScoreText.text = $"High Score:{_playerRecords.HighScore}";
             _availableCurrency.text = $"Credits: ${_playerRecords.Currency}";
         }
@@ -48,10 +53,20 @@ namespace Veganimus.NovaStar
         {
             SceneManager.LoadScene("Loading");
         }
-        public void QuitGame() => Application.Quit();
-        public void GameDevHQButton() => Application.OpenURL("http://www.GameDevHQ.com");
+        public void QuitGame()
+        {
 #if UNITY_STANDALONE
-#elif PLATFORM_WEBGL
+
+            Application.Quit();
+#endif
+#if UNITY_EDITOR
+            EditorApplication.ExitPlaymode();
+#endif
+
+        }
+
+#if UNITY_STANDALONE
+
 
         public void ChangeBrightness() => Screen.brightness = _brightnessSlider.value;
 
@@ -78,9 +93,6 @@ namespace Veganimus.NovaStar
              reso.Add(res.ToString());
             _resolutionDropDown.AddOptions(reso);
         }
-       
-        
-       
 #endif
     }
 }

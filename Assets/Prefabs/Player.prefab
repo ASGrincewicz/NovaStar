@@ -312,14 +312,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lives: 3
-  _shieldSFX: {fileID: 8300000, guid: 9b46c26e275a749eea9f9b5d7090b8d2, type: 3}
-  _powerUpSFX: {fileID: 8300000, guid: 0938b1ddd1dbc4bcb81191088b669e52, type: 3}
-  _damageSFX: {fileID: 8300000, guid: 249a3628bba56495db54dfa5224a346c, type: 3}
-  _deathSFX: {fileID: 8300000, guid: 72c02987d7c9d429c983b8b8db77ee3e, type: 3}
   _yTopBound: 5
   _yBottomBound: -3
   _xLeftBound: -7.5
   _xRightBound: 0
+  _shieldSFX: {fileID: 8300000, guid: 9b46c26e275a749eea9f9b5d7090b8d2, type: 3}
+  _powerUpSFX: {fileID: 8300000, guid: 0938b1ddd1dbc4bcb81191088b669e52, type: 3}
+  _damageSFX: {fileID: 8300000, guid: 249a3628bba56495db54dfa5224a346c, type: 3}
+  _deathSFX: {fileID: 8300000, guid: 72c02987d7c9d429c983b8b8db77ee3e, type: 3}
   _shipModel: {fileID: 3508733172638740488}
   _shield: {fileID: 4231415812636464}
   _explosionPrefab: {fileID: 3090572505325651045, guid: c4ddddeb398ec44f696cca0a872be47f, type: 3}
@@ -359,37 +359,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f90ca842b844964bd352a8f974ffd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fireSound: {fileID: 0}
   _autoShootRaycastOn: 1
+  _aIAutoShootOn: 0
+  _multiShotOn: 0
   _sphereCastRadius: 0.5
   _sphereCastDistance: 12
+  _accuracyOffsetMin: 0
+  _accuracyOffsetMax: 0
+  _firePower: 0
+  _weaponName: 
   _targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  _aIAutoShootOn: 0
+  _shootDirection: {x: 1, y: 0, z: 0}
+  _fireSound: {fileID: 0}
+  _projectilePrefab: {fileID: 0}
+  _multiShotOffset: {fileID: 483873815438646911}
+  _multiShotOffset2: {fileID: 139421879432134532}
   _inputReader: {fileID: 11400000, guid: 324a74f8cc92140b5bce154114f7b3af, type: 2}
   _weaponType:
   - {fileID: 11400000, guid: 713fcbae1feb644baba6226bb0647711, type: 2}
   - {fileID: 11400000, guid: a7c33b56c57884bf6898fcc71273335b, type: 2}
   - {fileID: 11400000, guid: 481d3ab4d26d24910806d1373cbe438c, type: 2}
   - {fileID: 11400000, guid: 819aaded2995648d89cebd6717ed032e, type: 2}
-  _currentWeapon: {fileID: 0}
-  _projectilePrefab: {fileID: 0}
-  _shootDirection: {x: 1, y: 0, z: 0}
-  _weaponName: 
-  _accuracyOffsetMin: 0
-  _accuracyOffsetMax: 0
   _fireOffset: {fileID: 3508733171879755657}
-  _firePower: 0
-  _playSFXEvent: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
-  _playerWeaponEvent: {fileID: 11400000, guid: dffd77a8754f64ed38d99bce70f2301f, type: 2}
+  _currentWeapon: {fileID: 11400000, guid: 713fcbae1feb644baba6226bb0647711, type: 2}
   _currentWeaponIDEvent: {fileID: 11400000, guid: 21960657f946041089a3ee829a99bc75, type: 2}
   _maxUpgradeChannel: {fileID: 11400000, guid: 6bfc9308a479a4c83a9f957dc7e283c9, type: 2}
+  _playSFXEvent: {fileID: 11400000, guid: 29122f728cb9746a0bc09dfab2476750, type: 2}
+  _playerWeaponEvent: {fileID: 11400000, guid: dffd77a8754f64ed38d99bce70f2301f, type: 2}
   _requestProjectile: {fileID: 11400000, guid: 736ebb49090cb479593f93fc24c6cdd7, type: 2}
   _weaponChangeEvent: {fileID: 11400000, guid: f6defe545db134ce881251a43df5c5be, type: 2}
-  _multiShotOn: 0
-  _multiShotOffset: {fileID: 483873815438646911}
-  _multiShotOffset2: {fileID: 139421879432134532}
 --- !u!1 &3508733171879755656
 GameObject:
   m_ObjectHideFlags: 0

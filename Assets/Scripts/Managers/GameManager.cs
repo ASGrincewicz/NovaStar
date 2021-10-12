@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 namespace Veganimus.NovaStar
 {
     ///<summary>
@@ -31,22 +30,19 @@ namespace Veganimus.NovaStar
 
         private void OnEnable()
         {
-            //_inputReader.pauseEvent += OnPauseInput;
+           
             _enemyTracking.OnEnemySpawned += EnemySpawns;
             _enemyTracking.OnEnemyDestroyed += EnemyDestroyed;
             _trackLevelEvent.OnBoolEventRaised += LevelComplete;
-           // UIManager.continueButton += ContinueInput;
             _playerDeadEvent.OnEventRaised += GameOver;
             _loadSceneEventSO.OnEventRaised += LoadSceneCalled;
             _endGameEvent.OnEventRaised += EndGame;
         }
         private void OnDisable()
         {
-            //_inputReader.pauseEvent -= OnPauseInput;
             _enemyTracking.OnEnemySpawned -= EnemySpawns;
             _enemyTracking.OnEnemyDestroyed -= EnemyDestroyed;
             _trackLevelEvent.OnBoolEventRaised -= LevelComplete;
-           // UIManager.continueButton -= ContinueInput;
             _playerDeadEvent.OnEventRaised -= GameOver;
             _loadSceneEventSO.OnEventRaised -= LoadSceneCalled;
             _endGameEvent.OnEventRaised -= EndGame;

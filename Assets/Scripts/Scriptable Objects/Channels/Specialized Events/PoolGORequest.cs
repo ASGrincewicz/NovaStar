@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Veganimus.NovaStar
+namespace Grincewicz.PoolManager
 {
     ///<summary>
     ///@author

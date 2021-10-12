@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Rendering.UI;
+using Grincewicz.PoolManager;
 
 namespace Veganimus.NovaStar
 {

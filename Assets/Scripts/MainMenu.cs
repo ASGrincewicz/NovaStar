@@ -51,10 +51,8 @@ namespace Veganimus.NovaStar
             _availableCurrency.text = $"Credits: ${_playerRecords.Currency}";
         }
 
-        private void SceneLoader(string value)
-        {
-            SceneManager.LoadScene("Loading");
-        }
+        private void SceneLoader(string value) => SceneManager.LoadScene("Loading");
+
         public void QuitGame()
         {
 #if UNITY_STANDALONE

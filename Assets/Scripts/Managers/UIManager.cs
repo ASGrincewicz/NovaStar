@@ -18,13 +18,23 @@ namespace Veganimus.NovaStar
         [SerializeField] private int _playerScore;
         [SerializeField] private AudioClip _pauseSound;
         [SerializeField] private AudioClip _gameOverSound;
-        [SerializeField] private Canvas _hUD_Canvas, pauseMenu, levelSummary, gameOverScreen, endOfGameScreen;
+        [SerializeField] private Canvas pauseMenu, gameOverScreen, endOfGameScreen;
         [Header("Static UI")]
-
+        [SerializeField] private Canvas _staticHUD;
+        [SerializeField] private TMP_Text _levelTextLabel;
+        [SerializeField] private TMP_Text _scoreTextLabel;
+        [SerializeField] private TMP_Text _weaponTextLabel;
+        private const string _levelLabel_static = "Level:";
+        private const string _scoreLabel_static = "Score:";
+        private const string _weaponLabel_static = "Weapon:";
         [Header("Dynamic UI")]
-        [SerializeField] private GameObject _incomingWaveTextGO, _powerUpTimer, _bossHealthUI, _shieldImage;
+        [SerializeField] private Canvas _dynamicHUD;
+        [SerializeField] private GameObject _incomingWaveTextGO; 
+        [SerializeField] private GameObject _powerUpTimer;
+        [SerializeField] private GameObject _bossHealthUI;
+        [SerializeField] private GameObject _shieldImage;
         [SerializeField] private Image _bossHealthBar;
-        [SerializeField] private TMP_Text _levelText, _scoreText, _weaponText, _incomingWaveText;
+        [SerializeField] private TMP_Text _levelText_dynamic, _scoreText_dynamic, _weaponText_dynamic, _incomingWaveText;
         [Header("Listening To")]
         [SerializeField] private BoolEventSO _shieldUIEvent;
         [SerializeField] private CoRoutineEvent _startCoolDownTimer;
@@ -72,6 +82,9 @@ namespace Veganimus.NovaStar
         
         private void Start()
         {
+            _levelTextLabel.text = _levelLabel_static;
+            _scoreTextLabel.text = _scoreLabel_static;
+            _weaponTextLabel.text = _weaponLabel_static;
             _playerScore = 0;
             UpdateScore(0);
         }
@@ -86,7 +99,8 @@ namespace Veganimus.NovaStar
         {
             _playSFXEvent.RaiseSFXEvent(_gameOverSound);
             gameOverScreen.gameObject.SetActive(isOver);
-            _hUD_Canvas.gameObject.SetActive(false);
+            _staticHUD.gameObject.SetActive(false);
+            _dynamicHUD.gameObject.SetActive(false);
             _playerScore = 0;
             UpdateScore(0);
         }
@@ -125,7 +139,7 @@ namespace Veganimus.NovaStar
 
         private void TrackBossWave()
         {
-            _levelText.text = $"Level: {_currentLevel} - Boss";
+            _levelText_dynamic.text = $"{_currentLevel} - Boss";
             _bossWave = true;
             _bossHealthUI.SetActive(true);
             StartCoroutine(IncomingWaveText());
@@ -134,13 +148,13 @@ namespace Veganimus.NovaStar
         private void TrackLevel(int level)
         {
             _currentLevel = level;
-            _levelText.text = $"Level:  { _currentLevel } -  {_currentWave}";
+            _levelText_dynamic.text = $"{ _currentLevel } -  {_currentWave}";
         }
 
         private void TrackWave(int wave)
         {
             _currentWave = wave;
-            _levelText.text = $"Level:  { _currentLevel} - { _currentWave}";
+            _levelText_dynamic.text = $"{ _currentLevel} - { _currentWave}";
             StartCoroutine(IncomingWaveText());
         }
 
@@ -154,12 +168,12 @@ namespace Veganimus.NovaStar
         private void UpdateScore(int amount)
         {
             _playerScore += amount;
-            _scoreText.text = $"Score: { _playerScore}";
+            _scoreText_dynamic.text = $"{ _playerScore}";
         }
 
         private void UpdateShieldUI(bool shieldOn) => _shieldImage.SetActive(shieldOn);
 
-        private void UpdateWeaponName(string name)=> _weaponText.text = $"Weapon: {name}";
+        private void UpdateWeaponName(string name)=> _weaponText_dynamic.text = $"{name}";
 
         private IEnumerator IncomingWaveText()
         {

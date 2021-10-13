@@ -28,12 +28,11 @@ namespace Veganimus.NovaStar
         
         private void OnTriggerEnter(Collider other)
         {
-            if(other.CompareTag("Player"))
-            {
-                _collectEvent.RaiseCollectEvent(_powerUpType.powerUpID);
-                Instantiate(_powerUpType.colectedAnimPrefab, _transform.position, Quaternion.identity);
-                Destroy(gameObject);
-            }
+            if (!other.CompareTag("Player")) return;
+            
+            _collectEvent.RaiseCollectEvent(_powerUpType.powerUpID);
+            Instantiate(_powerUpType.colectedAnimPrefab, _transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }

@@ -35,25 +35,21 @@ namespace Veganimus.NovaStar
         
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == Target)
+            if (other.tag != Target) return;
+            
+            IDamageable obj = other.GetComponentInParent<IDamageable>();
+            if (obj == null) return;
+            
+            obj.Damage(DamageAmount);
+            GameObject impact = _projVFXRequest.RequestGameObjectInt(2);
+            if (impact != null)
             {
-                IDamageable obj = other.GetComponentInParent<IDamageable>();
-                if (obj != null)
-                {
-                    obj.Damage(DamageAmount);
-                    GameObject impact = _projVFXRequest.RequestGameObjectInt(2);
-                    if (impact != null)
-                    {
-                        impact.transform.position = _transform.position;
-                        impact.transform.rotation = _transform.rotation;
-                        this.gameObject.SetActive(false);
-                    }
-                    else
-                        impact = null;
-                }
+                impact.transform.position = _transform.position;
+                impact.transform.rotation = _transform.rotation;
+                this.gameObject.SetActive(false);
             }
             else
-                return;
+                impact = null;
         }
     }
 }

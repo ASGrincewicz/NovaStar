@@ -80,15 +80,7 @@ namespace Veganimus.NovaStar
             
              Movement();
 
-            if (_hasWeapon)
-            {
-                if (Time.time > _canFire)
-                {
-                    Shoot(_fireOffset.transform.position);
-                    if (_hasAltWeapon)
-                        Shoot(_fireOffset2.transform.position);
-                }
-            }
+            
             if(_hp <= 0)
                 Die();
 
@@ -97,18 +89,24 @@ namespace Veganimus.NovaStar
                 _shield.SetActive(false);
                 _isShieldOn = false;
             }
+            if (!_hasWeapon) return;
+
+            if (Time.time < _canFire) return;
+            
+            Shoot(_fireOffset.transform.position);
+            if (_hasAltWeapon)
+                Shoot(_fireOffset2.transform.position);
+            
+            
         }
         private void Movement()
         {
-            if (!_isMirrorMoveOn)
-            {
-                _transform.Translate(Vector3.left * (_speed * _deltaTime));
+            if (_isMirrorMoveOn) MirrorMovement();
+            
+            _transform.Translate(Vector3.left * (_speed * _deltaTime));
 
-                if (_transform.localPosition.x < -15f)
-                    _transform.localPosition = new Vector3(13f, Random.Range(-3f, 5f), 0);
-            }
-            else
-                MirrorMovement();
+            if (_transform.localPosition.x < -15f)
+                _transform.localPosition = new Vector3(13f, Random.Range(-3f, 5f), 0);
         }
         private void MirrorMovement()
         {

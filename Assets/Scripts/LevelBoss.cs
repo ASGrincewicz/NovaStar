@@ -39,8 +39,8 @@ namespace Veganimus.NovaStar
                 Debug.LogError("Animator is null");
         }
 
-        // Shoot is called through Animation Event.
-        private void Shoot()
+        ///<summary>BossShoot is called through Animation Event.</summary>
+        private void BossShoot()
         {
             GameObject bossBullet = _bossProjRequest.RequestGameObjectInt(1);
             _currentFirePositions = Random.Range(0, 3);

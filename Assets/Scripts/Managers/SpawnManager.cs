@@ -17,6 +17,7 @@ namespace Veganimus.NovaStar
         [SerializeField] private float _bottomBound;
         [SerializeField] private float _rightBound;
         [SerializeField] private float _leftBound;
+        [SerializeField] private float _zPosition;
         [Space]
         [SerializeField] private bool _waveComplete, _levelComplete;
         [SerializeField] private LevelStructure _activeLevel;
@@ -147,7 +148,7 @@ namespace Veganimus.NovaStar
             for(int i = 0; i < _enemies.Count; i++)
             {
                 yield return _spawnDelay;
-                _enemies[i].gameObject.transform.position = new Vector3(_rightBound,Random.Range(_bottomBound,_topBound), 0);
+                _enemies[i].gameObject.transform.position = new Vector3(_rightBound,Random.Range(_bottomBound,_topBound), _zPosition);
                 _enemies[i].gameObject.SetActive(true);
                 _enemyTracking.EnemySpawnedEvent();
             }

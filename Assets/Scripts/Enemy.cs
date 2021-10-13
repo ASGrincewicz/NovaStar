@@ -104,8 +104,8 @@ namespace Veganimus.NovaStar
             {
                 _transform.Translate(Vector3.left * (_speed * _deltaTime));
 
-                if (_transform.position.x < -20f)
-                    _transform.position = new Vector3(13f, Random.Range(-3f, 5f), 0);
+                if (_transform.localPosition.x < -15f)
+                    _transform.localPosition = new Vector3(13f, Random.Range(-3f, 5f), 0);
             }
             else
                 MirrorMovement();

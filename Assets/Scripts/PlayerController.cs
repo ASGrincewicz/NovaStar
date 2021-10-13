@@ -56,10 +56,10 @@ namespace Veganimus.NovaStar
         }
         private void Update()
         {
-            var position = _transform.position;
+            var position = _transform.localPosition;
             position = new Vector3(Mathf.Clamp(position.x, _xLeftBound, _xRightBound),
-                Mathf.Clamp(position.y, _yBottomBound, _yTopBound), 0);
-            _transform.position = position;
+                Mathf.Clamp(position.y, _yBottomBound, _yTopBound), 20);
+            _transform.localPosition = position;
         }
 
         private void OnTriggerEnter(Collider other)

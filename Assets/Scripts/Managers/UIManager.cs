@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 using TMPro;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -104,7 +107,17 @@ namespace Veganimus.NovaStar
                     break;
             }
         }
-        private void QuitGame() => Application.Quit();
+        private void QuitGame()
+        {
+#if UNITY_STANDALONE
+
+            Application.Quit();
+#endif
+#if UNITY_EDITOR
+            EditorApplication.ExitPlaymode();
+#endif
+
+        }
 
         private void RestartGame() => _loadSceneEvent.RaiseEvent("Main_Menu");
 

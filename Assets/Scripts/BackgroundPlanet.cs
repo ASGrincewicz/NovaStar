@@ -27,7 +27,7 @@ namespace Veganimus.NovaStar
         {
             _deltaTime = Time.deltaTime * _speed;
             _transform.Translate(Vector3.left * _deltaTime);
-            if (_transform.position.x < -15f)
+            if (_transform.position.x < -40f)
             {
                 _transform.position = _startPosition;
                 _currentPlanet.SetActive(false);
@@ -37,7 +37,7 @@ namespace Veganimus.NovaStar
 
         private void SpawnPlanet()
         {
-            if (_planetToSpawn >= _planets.Count)
+            if (_planetToSpawn >= _planets.Count -1)
                 _planetToSpawn = 0;
 
             else

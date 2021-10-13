@@ -22,8 +22,8 @@ namespace Veganimus.NovaStar
         {
             _deltaTime = Time.deltaTime * _speed;
             _transform.Translate(Vector3.left * _deltaTime);
-            if (_transform.position.x < -10f)
-             Destroy(this.gameObject);
+            if (_transform.localPosition.x < -10f)
+             Destroy(gameObject);
         }
         
         private void OnTriggerEnter(Collider other)
@@ -31,8 +31,8 @@ namespace Veganimus.NovaStar
             if(other.CompareTag("Player"))
             {
                 _collectEvent.RaiseCollectEvent(_powerUpType.powerUpID);
-               GameObject collect = Instantiate(_powerUpType.colectedAnimPrefab, _transform.position, Quaternion.identity);
-                Destroy(this.gameObject);
+                Instantiate(_powerUpType.colectedAnimPrefab, _transform.position, Quaternion.identity);
+                Destroy(gameObject);
             }
         }
     }

@@ -20,7 +20,7 @@ namespace Veganimus.NovaStar
         public void MirrorMovement(Transform mover, Rigidbody rigidbody, float deltaTime)
         {
             moveDirection = new Vector3(-horizontal, -vertical, 0);
-            rigidbody.MovePosition(mover.position + (moveDirection * speed * deltaTime));
+            rigidbody.MovePosition(mover.localPosition + (moveDirection * speed * deltaTime));
         }
 
         public void OnMoveInput(float h, float v)

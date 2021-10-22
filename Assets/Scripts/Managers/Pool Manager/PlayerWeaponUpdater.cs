@@ -8,7 +8,7 @@ namespace Veganimus.NovaStar
     /// </summary>
     public class PlayerWeaponUpdater : MonoBehaviour
     {
-        [SerializeField] private PoolManager _poolManager;
+        [SerializeField] private NewPoolManager _poolManager;
         [SerializeField] private PlayerWeaponEvent _playerWeaponEvent;
 
         private void OnEnable() => _playerWeaponEvent.OnPlayerWeaponChangeEventRaised += GetCurrentWeapon;
@@ -20,11 +20,10 @@ namespace Veganimus.NovaStar
         /// <param name="weapon"></param>
         private void GetCurrentWeapon(WeaponType weapon)
         {
-            PoolManager.clearChildren();
-            _poolManager.PoolZero.Clear();
-            _poolManager.PoolableObjectZero = weapon.projectilePrefab;
-            if (_poolManager.PoolableObjectZero != null)
-                _poolManager.PoolZero = _poolManager.GenerateObjects(_poolManager.PoolZero, _poolManager.PoolableObjectZero, _poolManager.PoolableObjectContainerZero, 20);
+            _poolManager.CreateNewPool(0, weapon.projectilePrefab, 20);
+            //_poolManager.PoolableObjectZero = weapon.projectilePrefab;
+            //if (_poolManager.PoolableObjectZero != null)
+            //    _poolManager.PoolZero = _poolManager.GenerateObjects(_poolManager.PoolZero, _poolManager.PoolableObjectZero, _poolManager.PoolableObjectContainerZero, 20);
         }
     }
 }

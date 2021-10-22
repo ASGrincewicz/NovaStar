@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9330d5707e9546a691183e39c68579e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationVector: {x: 0, y: 2, z: 0}
+  _rotationVector: {x: 1, y: 0, z: 0}
 --- !u!1001 &422606517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -378,6 +378,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &495887040 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6770663298435406103, guid: d0eac1c144bcb4f1d95d7f9e236c543f, type: 3}
+  m_PrefabInstance: {fileID: 1944301243}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &525208812 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1652345509415783245, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
@@ -6297,7 +6302,13 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2098654166}
-    m_RemovedComponents: []
+    - target: {fileID: 5218662491039092254, guid: 69bdc0daff04442c79ed0dfe685b6127, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2647181837482080588, guid: 69bdc0daff04442c79ed0dfe685b6127, type: 3}
+    - {fileID: 6268788486542033907, guid: 69bdc0daff04442c79ed0dfe685b6127, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 69bdc0daff04442c79ed0dfe685b6127, type: 3}
 --- !u!1 &1389669764 stripped
 GameObject:
@@ -6484,6 +6495,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6146365228978456428, guid: 95c1d9c96bbd1470d9616a2d5a44c117, type: 3}
+      propertyPath: _endMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 7fd3f7c61ff51474899c557b31710577, type: 3}
+    - target: {fileID: 6146365228978456428, guid: 95c1d9c96bbd1470d9616a2d5a44c117, type: 3}
+      propertyPath: _bossMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: acf3d9a5dcf1541049275f51f4516e74, type: 3}
+    - target: {fileID: 6146365228978456428, guid: 95c1d9c96bbd1470d9616a2d5a44c117, type: 3}
+      propertyPath: _mainBGMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: c0fe6fbac7bf04765a0f2eb0efbd2fd8, type: 3}
+    - target: {fileID: 6146365228978456428, guid: 95c1d9c96bbd1470d9616a2d5a44c117, type: 3}
+      propertyPath: _thirdBGMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c5d41b9ce2cd4c21ae71d1037be065f, type: 3}
+    - target: {fileID: 6146365228978456428, guid: 95c1d9c96bbd1470d9616a2d5a44c117, type: 3}
+      propertyPath: _secondaryBGMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: a3cda73e922e1420788b624428400d35, type: 3}
     - target: {fileID: 6146365228978456429, guid: 95c1d9c96bbd1470d9616a2d5a44c117, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -6738,7 +6769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf18971366174d5581dc8e7ae495c8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _poolManager: {fileID: 1944301253}
+  _poolManager: {fileID: 1944301255}
   _playerWeaponEvent: {fileID: 11400000, guid: dffd77a8754f64ed38d99bce70f2301f, type: 2}
 --- !u!114 &1944301253
 MonoBehaviour:
@@ -6747,7 +6778,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944301250}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55ef1d56018354991816efd59f4e67cf, type: 3}
   m_Name: 
@@ -6763,6 +6794,32 @@ MonoBehaviour:
   _poolZero: []
   _poolOne: []
   _poolTwo: []
+  _pooledObjectRequest: {fileID: 11400000, guid: 736ebb49090cb479593f93fc24c6cdd7, type: 2}
+--- !u!114 &1944301255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944301250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053c6255502064927ab24ded31ba4fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pools:
+  - poolableObject: {fileID: 670806353022106560, guid: 8ed38429270844c97a43a96ae1ae4519, type: 3}
+    objectContainer: {fileID: 1944301249}
+    initialPoolSize: 10
+    objectPool: []
+  - poolableObject: {fileID: 495887040}
+    objectContainer: {fileID: 1944301248}
+    initialPoolSize: 5
+    objectPool: []
+  - poolableObject: {fileID: 2581462059173570728, guid: d7b53bf753a4544b7b3a584fa73427d5, type: 3}
+    objectContainer: {fileID: 1944301247}
+    initialPoolSize: 15
+    objectPool: []
   _pooledObjectRequest: {fileID: 11400000, guid: 736ebb49090cb479593f93fc24c6cdd7, type: 2}
 --- !u!1 &2002441235 stripped
 GameObject:
@@ -7327,7 +7384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1652345508091440647, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
       propertyPath: _speed
-      value: 4
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1652345508091440647, guid: 52798cd514eae4650aa4b15cb8e0a411, type: 3}
       propertyPath: _currentPlanet
